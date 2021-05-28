@@ -1,0 +1,10 @@
+*.pyc
+*.pyd
+*.pyo
+*.so
+/bencode/__pycache__/
+/.mypy_cache/
+/build/
+/dist/
+/.idea/
+/fast_bencode.egg-info/
