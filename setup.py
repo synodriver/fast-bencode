@@ -39,7 +39,7 @@ def get_dis():
 
 setup(
     name="fast-bencode",
-    version="1.0",
+    version="1.0.1",
     packages=find_packages(exclude=('test', 'tests.*', "test*")),
     ext_modules=cythonize(ext_modules) if has_cython else None,
     author="synodriver",
@@ -50,6 +50,19 @@ setup(
     url="https://github.com/synodriver/bencode3",
     zip_safe=True,
     include_package_data=True,
+    python_requires=">=3.6",
+    classifiers=[
+        "Development Status :: 3 - Alpha",
+        "Operating System :: OS Independent",
+        "Programming Language :: Cython",
+        "Programming Language :: Python",
+        "Programming Language :: Python :: 3.6",
+        "Programming Language :: Python :: 3.7",
+        "Programming Language :: Python :: 3.8",
+        "Programming Language :: Python :: 3.9",
+        "Programming Language :: Python :: Implementation :: CPython"
+    ],
     cmdclass={'build_ext': build_ext_compiler_check} if has_cython else None,
-    long_description=get_dis()
+    long_description=get_dis(),
+    long_description_content_type="text/markdown"
 )

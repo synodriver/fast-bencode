@@ -1,7 +1,10 @@
 # cython: language_level=3
 from typing import Tuple, List
 
-from .BTL import BTFailure
+
+class BTFailure(Exception):
+    pass
+
 
 def decode_int(str x, int f) -> Tuple[int, int]:
     """
