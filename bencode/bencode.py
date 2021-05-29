@@ -143,13 +143,14 @@ encode_func[dict] = encode_dict  # type: ignore
 encode_func[bool] = encode_bool  # type: ignore
 
 
-def bencode(x):
+def bencode(x) -> str:
     r = []
     encode_func[type(x)](x, r)
     return ''.join(r)
 
 
 try:
-    from ._bencode import bencode, bdecode  # type: ignore
+    from ._bencode import bencode, bdecode, BTFailure  # type: ignore
 except ImportError:
     pass
+
