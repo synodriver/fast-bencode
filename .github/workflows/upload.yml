@@ -1,4 +1,4 @@
-name: build wheel
+name: upload
 
 on:
   workflow_dispatch:
@@ -29,7 +29,8 @@ jobs:
     - name: build_whl
       run: |
         python setup.py sdist bdist_wheel
-    - uses: actions/upload-artifact@v2
+    - name: Publish package
+      uses: pypa/gh-action-pypi-publish@release/v1
       with:
-        name: ${{ matrix.os }}-${{ matrix.python-version }}
-        path: dist/*.whl
+        user: ${{ secrets.PYPI_USER }}
+        password: ${{ secrets.PYPI_PASSWORD }}
