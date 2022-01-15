@@ -25,12 +25,12 @@ jobs:
         python -m pip install --upgrade setuptools
         python -m pip install --upgrade wheel
         pip install flake8 pytest
+        pip install twine
         pip install -r requirements.txt
     - name: build_whl
       run: |
         python setup.py sdist bdist_wheel
+        python changename.py
     - name: Publish package
-      uses: pypa/gh-action-pypi-publish@release/v1
-      with:
-        user: ${{ secrets.PYPI_USER }}
-        password: ${{ secrets.PYPI_PASSWORD }}
+      run: |
+        twine upload dist/* -u ${{ secrets.PYPI_USER }} -p ${{ secrets.PYPI_PASSWORD }}

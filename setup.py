@@ -39,7 +39,7 @@ def get_dis():
 
 setup(
     name="fast-bencode",
-    version="1.0.1",
+    version="1.1.0",
     packages=find_packages(exclude=('test', 'tests.*', "test*")),
     ext_modules=cythonize(ext_modules) if has_cython else None,
     author="synodriver",
