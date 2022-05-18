@@ -68,20 +68,21 @@ def decode_dict(x: bytes, f: int) -> Tuple[dict, int]:
     return (r, f + 1)
 
 
-decode_func = {}
-decode_func[ord('l')] = decode_list
-decode_func[ord('d')] = decode_dict  # type: ignore
-decode_func[ord('i')] = decode_int  # type: ignore
-decode_func[ord('0')] = decode_string  # type: ignore
-decode_func[ord('1')] = decode_string  # type: ignore
-decode_func[ord('2')] = decode_string  # type: ignore
-decode_func[ord('3')] = decode_string  # type: ignore
-decode_func[ord('4')] = decode_string  # type: ignore
-decode_func[ord('5')] = decode_string  # type: ignore
-decode_func[ord('6')] = decode_string  # type: ignore
-decode_func[ord('7')] = decode_string  # type: ignore
-decode_func[ord('8')] = decode_string  # type: ignore
-decode_func[ord('9')] = decode_string  # type: ignore
+decode_func = {
+    ord('l'): decode_list,
+    ord('d'): decode_dict,
+    ord('i'): decode_int,
+    ord('0'): decode_string,
+    ord('1'): decode_string,
+    ord('2'): decode_string,
+    ord('3'): decode_string,
+    ord('4'): decode_string,
+    ord('5'): decode_string,
+    ord('6'): decode_string,
+    ord('7'): decode_string,
+    ord('8'): decode_string,
+    ord('9'): decode_string,
+}
 
 
 def bdecode(x: bytes):
@@ -133,23 +134,23 @@ def encode_list(x: list, r: BytesIO):
 
 def encode_dict(x: dict, ret: BytesIO):
     ret.write(b'd')
-    ilist = list(x.items())
-    ilist.sort()
+    ilist = sorted(x.items())
     for k, v in ilist:
         ret.write(b''.join((str(len(k)).encode(), b':', k.encode() if isinstance(k, str) else k)))
         encode_func[type(v)](v, ret)
     ret.write(b'e')
 
 
-encode_func = {}
-encode_func[Bencached] = encode_bencached
-encode_func[int] = encode_int  # type: ignore
-encode_func[str] = encode_string  # type: ignore
-encode_func[bytes] = encode_bytes  # type: ignore
-encode_func[list] = encode_list  # type: ignore
-encode_func[tuple] = encode_list  # type: ignore
-encode_func[dict] = encode_dict  # type: ignore
-encode_func[bool] = encode_bool  # type: ignore
+encode_func = {
+    Bencached: encode_bencached,
+    int: encode_int,
+    str: encode_string,
+    bytes: encode_bytes,
+    list: encode_list,
+    tuple: encode_list,
+    dict: encode_dict,
+    bool: encode_bool,
+}
 
 
 def bencode(x) -> bytes:
