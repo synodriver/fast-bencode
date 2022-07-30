@@ -47,7 +47,7 @@ setup(
     description="The BitTorrent bencode module as light-weight, standalone package.",
     license="BitTorrent Open Source License",
     keywords="bittorrent bencode bdecode",
-    url="https://github.com/synodriver/bencode3",
+    url="https://github.com/synodriver/fast-bencode",
     zip_safe=True,
     include_package_data=True,
     python_requires=">=3.6",
@@ -60,6 +60,7 @@ setup(
         "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
+        "Programming Language :: Python :: 3.10",
         "Programming Language :: Python :: Implementation :: CPython"
     ],
     cmdclass={'build_ext': build_ext_compiler_check} if has_cython else None,
