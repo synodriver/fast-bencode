@@ -6,7 +6,7 @@ from libc.string cimport memcpy
 from cpython.long cimport PyLong_Check
 from cpython.unicode cimport PyUnicode_Check
 from cpython.conversion cimport PyOS_snprintf
-from cpython.bytes cimport PyBytes_FromStringAndSize, PyBytes_Check
+from cpython.bytes cimport PyBytes_FromStringAndSize, PyBytes_Check, PyBytes_GET_SIZE
 from cpython.bytearray cimport PyByteArray_Check
 from cpython.list cimport PyList_Check
 from cpython.tuple cimport PyTuple_Check
@@ -16,6 +16,49 @@ from cpython.mem cimport PyMem_Malloc, PyMem_Free
 
 cdef extern from "util.h" nogil:
     int CM_Atoi(char* source, int size, int64_t* integer)
+
+cdef extern from "sds.h" nogil:
+    ctypedef char * sds
+    sds sdsnewlen(void *init, size_t initlen)
+    sds sdsnew(char *init)
+    sds sdsempty()
+    sds sdsdup( sds s)
+    size_t sdslen( sds s)
+    size_t sdsavail( sds s)
+    void sdssetlen(sds s, size_t newlen)
+    void sdsinclen(sds s, size_t inc)
+    size_t sdsalloc( sds s)
+    void sdssetalloc(sds s, size_t newlen)
+    void sdsfree(sds s)
+    sds sdsgrowzero(sds s, size_t len)
+    sds sdscatlen(sds s,  void *t, size_t len)
+    sds sdscat(sds s,  char *t)
+    sds sdscatsds(sds s,  sds t)
+    sds sdscpylen(sds s,  char *t, size_t len)
+    sds sdscpy(sds s,  char *t)
+    sds sdscatfmt(sds s, char *fmt, ...);
+    sds sdstrim(sds s,  char *cset);
+    void sdsrange(sds s, ssize_t start, ssize_t end);
+    void sdsupdatelen(sds s);
+    void sdsclear(sds s);
+    int sdscmp( sds s1,  sds s2);
+    sds *sdssplitlen( char *s, ssize_t len,  char *sep, int seplen, int *count);
+    void sdsfreesplitres(sds *tokens, int count);
+    void sdstolower(sds s);
+    void sdstoupper(sds s);
+    sds sdsfromlonglong(long long value);
+    sds sdscatrepr(sds s,  char *p, size_t len_);
+    sds *sdssplitargs( char *line, int *argc);
+    sds sdsmapchars(sds s, char *from_,  char *to, size_t setlen);
+    sds sdsjoin(char **argv, int argc, char *sep);
+    sds sdsjoinsds(sds *argv, int argc,  char *sep, size_t seplen);
+
+
+    sds sdsMakeRoomFor(sds s, size_t addlen);
+    void sdsIncrLen(sds s, ssize_t incr);
+    sds sdsRemoveFreeSpace(sds s);
+    size_t sdsAllocSize(sds s);
+    void *sdsAllocPtr(sds s);
 
 
 from typing import Tuple, List  # todo del
@@ -196,24 +239,30 @@ cdef class Bencached:
         self.bencoded = s  # type: bytes
 
 
-def encode_bencached(Bencached data, object r):
-    r.write(data.bencoded)
+cdef encode_bencached(Bencached data, sds* r):
+    cdef Py_ssize_t data_size = PyBytes_GET_SIZE(data.bencoded)
+    cdef sds newsds = sdsMakeRoomFor(r[0], <size_t>data_size)
+    r[0] = newsds
+    memcpy(newsds+sdslen(newsds), <char*>data.bencoded, <size_t>data_size)
+    sdsIncrLen(newsds, <ssize_t>data_size)
 
 
-cdef encode_int(int data, object r):
-    cdef char buf[20]
-    cdef int count = PyOS_snprintf(buf, 20,"i%de", data)
-    r.write(<bytes>buf[:count])
+cdef encode_int(int data, sds* r):
+    # cdef char buf[20]
+    cdef sds newsds = sdsMakeRoomFor(r[0], 20)
+    r[0] = newsds
+    cdef int count = PyOS_snprintf(newsds+sdslen(newsds), 20,"i%de", data)
+    # r.write(<bytes>buf[:count])
+    sdsIncrLen(newsds, <ssize_t> count)
 
-
-cdef encode_bool(bint data, object r):
+cdef encode_bool(bint data, sds* r):
     if data:
         encode_int(1, r)
     else:
         encode_int(0, r)
 
 
-cdef int encode_string(str data, object r) except? -1:
+cdef int encode_string(str data, sds* r) except? -1:
     # cdef:
     #     bytes d = data.encode()
     #     Py_ssize_t size = PyBytes_GET_SIZE(d)
@@ -228,25 +277,24 @@ cdef int encode_string(str data, object r) except? -1:
     #     PyMem_Free(buf)
     return encode_bytes(data.encode(), r)
 
-cdef int encode_bytes(const uint8_t[::1] data, object r) except? -1:
+cdef int encode_bytes(const uint8_t[::1] data, sds* r) except? -1:
     cdef:
         Py_ssize_t size = data.shape[0]
-        char * buf = <char *> PyMem_Malloc(<size_t> size + 30)
         int count
-    if not buf:
-        raise MemoryError
-    try:
-        count = PyOS_snprintf(buf, <size_t>size + 30, "%d:", size)
-        # print(f"in encode_bytes, count = {count}")
-        memcpy(&buf[count], &data[0], <size_t>size)
-        r.write(<bytes>buf[:count+<int>size])
-    finally:
-        PyMem_Free(buf)
+    cdef sds newsds = sdsMakeRoomFor(r[0], <size_t>size + 30)
+    r[0] = newsds
+    count = PyOS_snprintf(newsds+sdslen(newsds), <size_t>size + 30, "%d:", size)
+    sdsIncrLen(newsds, <ssize_t> count)
+    # print(f"in encode_bytes, count = {count}")
+    memcpy(newsds+sdslen(newsds), &data[0], <size_t>size)
+    # r.write(<bytes>buf[:count+<int>size])
+    sdsIncrLen(newsds, <ssize_t> size)
     # r.write(b''.join((str(len(data)).encode(), b':', data)))
 
 
-cdef int encode_list(list data, object r) except? -1:
-    r.write(b'l')
+cdef int encode_list(list data, sds* r) except? -1:
+    # r.write(b'l')
+    r[0] = sdscat(r[0], 'l')
     for i in data:
         # encode_func[type(i)](i, r)
         tp = type(i)
@@ -264,11 +312,11 @@ cdef int encode_list(list data, object r) except? -1:
             encode_dict(i ,r)
         elif PyBool_Check(i):
             encode_bool(i, r)
-    r.write(b'e')
+    r[0] = sdscat(r[0], 'e')
 
 
-cdef int encode_dict(dict data, object  ret) except? -1:
-    ret.write(b'd')
+cdef int encode_dict(dict data,sds* ret) except? -1:
+    ret[0] = sdscat(ret[0], 'd')
     cdef list ilist = list(data.items()) # todo should we sort?
     ilist.sort()
     for key, v in ilist:
@@ -292,7 +340,7 @@ cdef int encode_dict(dict data, object  ret) except? -1:
             encode_dict(v, ret)
         elif PyBool_Check(v):
             encode_bool(v, ret)
-    ret.write(b'e')
+    ret[0] = sdscat(ret[0], 'e')
 
 
 # encode_func = {}
@@ -311,20 +359,24 @@ cpdef bytes bencode(object data):
     bencode(data) -> bytes
 
     """
-    ret = BytesIO()  # todo bytearray
+    cdef sds ret =  sdsempty() # todo sds
     tp = type(data)
     if tp == Bencached:
-        encode_bencached(data, ret)
+        encode_bencached(data, &ret)
     elif PyLong_Check(data):
-        encode_int(data, ret)
+        encode_int(data,  &ret)
     elif PyUnicode_Check(data):
-        encode_string(data, ret)
+        encode_string(data,  &ret)
     elif PyBytes_Check(data) or PyByteArray_Check(data):
-        encode_bytes(data, ret)
+        encode_bytes(data,  &ret)
     elif PyList_Check(data) or PyTuple_Check(data):
-        encode_list(data, ret)
+        encode_list(data,  &ret)
     elif PyDict_Check(data):
-        encode_dict(data, ret)
+        encode_dict(data,  &ret)
     elif PyBool_Check(data):
-        encode_bool(data, ret)
-    return ret.getvalue()
+        encode_bool(data,  &ret)
+    # return ret.getvalue()
+    try:
+        return PyBytes_FromStringAndSize(ret, <Py_ssize_t>sdslen(ret))
+    finally:
+        sdsfree(ret)

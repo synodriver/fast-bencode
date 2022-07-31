@@ -12,7 +12,7 @@ except ImportError:
 
 ext_modules = [
     Extension("bencode._bencode",
-              sources=["bencode/_bencode.pyx", "bencode/util.c"],
+              sources=["bencode/_bencode.pyx", "bencode/util.c", "bencode/sds.c"],
               include_dirs=["bencode"]
               )
 ]
