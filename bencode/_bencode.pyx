@@ -1,12 +1,158 @@
 # cython: language_level=3
-from typing import Tuple, List
-from io import BytesIO
+from libc.string cimport strchr
+from libc.stdint cimport uint8_t, int64_t
+from libc.stdlib cimport atoi
+
+cdef extern from * nogil:
+    """
+int CM_Atoi(char* source, int size; int64_t* integer)
+{
+	int offset1,offset2;
+    int64_t num;
+	int signedflag;//+为1 -为0
+ 
+	if(source == NULL || *source == 0 ||integer == NULL)
+	{
+		return 0;
+	}
+ 
+	offset1 = 0;
+	offset2 = 0;
+	num = 0;
+ 
+	while(*source > 0 && *source <= 32)//去除首部空格 \r \n \t \r 等异常字符
+	{
+		source++;
+		offset1++;
+	}
+ 
+	signedflag = 1;//默认为+
+	if(*source == '+')
+	{
+		signedflag = 1;
+		source++;
+		offset1++;
+	}
+	else if(*source == '-')
+	{
+		signedflag = 0;
+		source++;
+		offset1++;
+	}
+ 
+	while(*source != '\0' && *source >= '0' && *source <= '9' && ((offset1 + offset2) < size))
+	{
+		num = *source- '0' + num*10;
+		source++;
+		offset2++;
+	}
+ 
+	if(signedflag == 0)
+	{
+		num = -num;
+	}
+ 
+	if(offset2)
+	{
+		*integer = num;
+		return offset1+offset2;
+	}
+	else
+	{
+		return 0;
+	}
+}
+
+int CM_Atof(char* source, int size, double* doubleing)
+{
+	int offset1,offset2,n;
+	double num;
+	int signedflag;//+为1 -为0
+ 
+	if(source == NULL || *source == 0 || doubleing == NULL)
+	{
+		return 0;
+	}
+ 
+	offset1 = 0;
+	offset2 = 0;
+	num = 0.0;
+ 
+	while(*source > 0 && *source <= 32)//去除首部空格 \r \n \t \r 等异常字符
+	{
+		source++;
+		offset1++;
+	}
+ 
+	signedflag = 1;//默认为+
+	if(*source == '+')
+	{
+		signedflag = 1;
+		source++;
+		offset1++;
+	}
+	else if(*source == '-')
+	{
+		signedflag = 0;
+		source++;
+		offset1++;
+	}
+ 
+ 
+	//整数部分
+	while(*source != '\0' && *source >= '0' && *source <= '9' && ((offset1 + offset2) < size))
+	{
+		num = *source- '0' + num*10.0;
+		source++;
+		offset2++;
+	}
+ 
+	if(offset2 != 0 && *source == '.')
+	{
+		source++;
+		offset2++;
+ 
+		//小数部分
+		n = 0;
+		while(*source != '\0' && *source >= '0' && *source <= '9' && ((offset1 + offset2) < size))
+		{
+			num = (*source- '0')*(1.0/pow1(10,++n)) + num;
+			source++;
+			offset2++;
+		}
+	}
+ 
+	if(signedflag == 0)
+	{
+		num = -num;
+	}
+ 
+	if(offset2)
+	{
+		*doubleing = num;
+		return offset1+offset2;
+	}
+	else
+	{
+		return 0;
+	}
+}
+    """
+    int CM_Atoi(char* source, int size, int64_t* integer) nogil
+
+
+from typing import Tuple, List  # todo del
+from io import BytesIO # todo del
 
 class BTFailure(Exception):
     pass
 
+# bytes.index
+cdef Py_ssize_t bytes_index(uint8_t[::1] data, int c, Py_ssize_t offset):
+    cdef char* substring = strchr(<const char *>&data[offset], c)
+    return <Py_ssize_t>(substring - &data[0])
 
-def decode_int(x: bytes, f: int) -> Tuple[int, int]:
+cdef Py_ssize_t decode_int(uint8_t[::1] x, Py_ssize_t *f) except? 0:
     """
     i开头 e结束 i123e
     :param x:
@@ -14,32 +160,38 @@ def decode_int(x: bytes, f: int) -> Tuple[int, int]:
     :return:
     """
     # assert x[f] == "i"
-    f += 1
-    end = x.index(b'e', f)
-    number = int(x[f:end])
+    *f += 1
+    # end = x.index(b'e', f)
+    cdef Py_ssize_t end = bytes_index(x, 101, *f)
+    # number = int(x[f:end])
+    cdef int64_t n
+    CM_Atoi(&x[*f], end-*f, &n)  # fixme use custom one
     if x[f] == 45:  # '-'
-        if x[f + 1] == 48:  # ord('0')
+        if x[f + 1] == 48:  # ord('0')  # can not be negative
             raise ValueError
     elif x[f] == 48 and end != f + 1:  # 不能加多余的0
         raise ValueError
-    return (number, end + 1)
+    *f = end + 1
+    return <Py_ssize_t>n
 
 
-def decode_string(x: bytes, f: int) -> Tuple[str, int]:
+cdef object decode_string(x: bytes, Py_ssize_t* f) -> Tuple[str, int]:
     """
     :param x: 3:abc
     :param f: 偏移
     :return: 解析出来的字符串和下一个偏移
     """
-    colon = x.index(b':', f)  # ：的索引
-    length = int(x[f:colon])  # 长度
+    # colon = x.index(b':', f)  # ：的索引
+    cdef Py_ssize_t colon = bytes_index(x, 58, *f)
+    cdef Py_ssize_t length = int(x[f:colon])  # 长度 fixme use custom one
     if x[f] == 48 and colon != f + 1:
         raise ValueError
     colon += 1
+    *f = colon + length
     try:
-        return (x[colon:colon + length].decode(), colon + length)
+        return x[colon:colon + length].decode()
     except UnicodeDecodeError:
-        return (x[colon:colon + length], colon + length)
+        return x[colon:colon + length]
 
 def decode_list(x: bytes, f: int) -> Tuple[list, int]:
     """

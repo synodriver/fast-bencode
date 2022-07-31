@@ -1,4 +1,4 @@
 # -*- coding: utf-8 -*-
-from .bencode import bencode, bdecode
+from bencode.bencode import bencode, bdecode, BTFailure
 
 __all__ = ["bencode", "bdecode"]
