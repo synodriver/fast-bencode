@@ -1,1 +1,2 @@
-recursive-include bencode *.c *.pyx py.typed
+recursive-include bencode *
+include README.markdown

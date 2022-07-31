@@ -1,18 +1,18 @@
 # cython: language_level=3
-from libc.string cimport strchr
-from libc.stdint cimport uint8_t, int64_t
-from libc.string cimport memcpy
-
-from cpython.long cimport PyLong_Check
-from cpython.unicode cimport PyUnicode_Check
-from cpython.conversion cimport PyOS_snprintf
-from cpython.bytes cimport PyBytes_FromStringAndSize, PyBytes_Check, PyBytes_GET_SIZE
-from cpython.bytearray cimport PyByteArray_Check
-from cpython.list cimport PyList_Check
-from cpython.tuple cimport PyTuple_Check
-from cpython.dict cimport PyDict_Check
 from cpython.bool cimport PyBool_Check
-from cpython.mem cimport PyMem_Malloc, PyMem_Free
+from cpython.bytearray cimport PyByteArray_Check
+from cpython.bytes cimport (PyBytes_Check, PyBytes_FromStringAndSize,
+                            PyBytes_GET_SIZE)
+from cpython.conversion cimport PyOS_snprintf
+from cpython.dict cimport PyDict_Check
+from cpython.list cimport PyList_Check
+from cpython.long cimport PyLong_Check
+from cpython.mem cimport PyMem_Free, PyMem_Malloc
+from cpython.tuple cimport PyTuple_Check
+from cpython.unicode cimport PyUnicode_Check
+from libc.stdint cimport int64_t, uint8_t
+from libc.string cimport memcpy, strchr
+
 
 cdef extern from "util.h" nogil:
     int CM_Atoi(char* source, int size, int64_t* integer)
@@ -61,8 +61,9 @@ cdef extern from "sds.h" nogil:
     void *sdsAllocPtr(sds s);
 
 
-from typing import Tuple, List  # todo del
-from io import BytesIO # todo del
+from io import BytesIO  # todo del
+from typing import List, Tuple  # todo del
+
 
 class BTFailure(Exception):
     pass
@@ -247,11 +248,11 @@ cdef encode_bencached(Bencached data, sds* r):
     sdsIncrLen(newsds, <ssize_t>data_size)
 
 
-cdef encode_int(int data, sds* r):
+cdef encode_int(Py_ssize_t data, sds* r):
     # cdef char buf[20]
     cdef sds newsds = sdsMakeRoomFor(r[0], 20)
     r[0] = newsds
-    cdef int count = PyOS_snprintf(newsds+sdslen(newsds), 20,"i%de", data)
+    cdef int count = PyOS_snprintf(newsds+sdslen(newsds), 20,"i%lde", data)
     # r.write(<bytes>buf[:count])
     sdsIncrLen(newsds, <ssize_t> count)
 
