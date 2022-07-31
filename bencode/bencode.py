@@ -1,4 +1,4 @@
-from typing import Tuple, List
+from typing import Tuple, Any
 from io import BytesIO
 
 from bencode.BTL import BTFailure
@@ -11,7 +11,7 @@ def decode_int(x: bytes, f: int) -> Tuple[int, int]:
     :param f:
     :return:
     """
-    # assert x[f] == "i"
+    # assert data[offset] == "i"
     f += 1
     end = x.index(b'e', f)
     number = int(x[f:end])
@@ -46,7 +46,7 @@ def decode_list(x: bytes, f: int) -> Tuple[list, int]:
     :param f:
     :return:
     """
-    # assert x[f] == "l"
+    # assert data[offset] == "l"
     ret, f = [], f + 1
     while x[f] != 101:
         v, f = decode_func[x[f]](x, f)
@@ -84,12 +84,12 @@ decode_func[ord('8')] = decode_string  # type: ignore
 decode_func[ord('9')] = decode_string  # type: ignore
 
 
-def bdecode(x: bytes):
+def bdecode(data: bytes):
     try:
-        r, l = decode_func[x[0]](x, 0)
+        r, l = decode_func[data[0]](data, 0)
     except (IndexError, KeyError, ValueError):
         raise BTFailure("not a valid bencoded string")
-    if l != len(x):
+    if l != len(data):
         raise BTFailure("invalid bencoded value (data after valid prefix)")
     return r
 
@@ -152,13 +152,7 @@ encode_func[dict] = encode_dict  # type: ignore
 encode_func[bool] = encode_bool  # type: ignore
 
 
-def bencode(x) -> bytes:
+def bencode(data: Any) -> bytes:
     r = BytesIO()  # todo bytearray
-    encode_func[type(x)](x, r)
+    encode_func[type(data)](data, r)
     return r.getvalue()
-
-
-try:
-    from ._bencode import bencode, bdecode, BTFailure  # type: ignore
-except ImportError:
-    pass

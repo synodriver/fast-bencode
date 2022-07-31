@@ -17,11 +17,11 @@ class Test(unittest.TestCase):
         self.assertEqual(bencode({'a': {'id': 'abcdefghij0123456789'}, 'q': 'ping', 't': 'aa', 'y': 'q'}), data)
 
     def test_file(self):
-        with open('../[桜都字幕组]2021年12月合集.torrent', 'rb') as f:
+        with open('./[桜都字幕组]2021年03月合集.torrent.loaded', 'rb') as f:
             data = f.read()
         ret = bdecode(data)
-        encoded=bencode(ret)
-        self.assertEqual(encoded,data)
+        encoded = bencode(ret)
+        self.assertEqual(encoded, data)
 
 
 if __name__ == "__main__":

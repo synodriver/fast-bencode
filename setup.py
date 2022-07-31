@@ -12,7 +12,8 @@ except ImportError:
 
 ext_modules = [
     Extension("bencode._bencode",
-              sources=["bencode/_bencode.pyx"],
+              sources=["bencode/_bencode.pyx", "bencode/util.c"],
+              include_dirs=["bencode"]
               )
 ]
 
@@ -41,7 +42,7 @@ setup(
     name="fast-bencode",
     version="1.1.0",
     packages=find_packages(exclude=('test', 'tests.*', "test*")),
-    ext_modules=cythonize(ext_modules，compiler_directives={"cdivision": True,
+    ext_modules=cythonize(ext_modules,compiler_directives={"cdivision": True,
                                                    "embedsignature": True,
                                                    "boundscheck": False,
                                                    "wraparound": False}) if has_cython else None,
