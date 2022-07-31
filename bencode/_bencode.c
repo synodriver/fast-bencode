@@ -2312,7 +2312,7 @@ static PyObject *__pyx_codeobj__28;
  * # bytes.index
  * cdef Py_ssize_t bytes_index(const uint8_t[::1] data, int c, Py_ssize_t offset) nogil:             # <<<<<<<<<<<<<<
  *     cdef char* substring = strchr(<const char *>&data[offset], c)
- *     return <Py_ssize_t>(substring - &data[0])
+ *     return <Py_ssize_t>(substring - <char*>&data[0])
  */
 
 static Py_ssize_t __pyx_f_7bencode_8_bencode_bytes_index(__Pyx_memviewslice __pyx_v_data, int __pyx_v_c, Py_ssize_t __pyx_v_offset) {
@@ -2324,7 +2324,7 @@ static Py_ssize_t __pyx_f_7bencode_8_bencode_bytes_index(__Pyx_memviewslice __py
  * # bytes.index
  * cdef Py_ssize_t bytes_index(const uint8_t[::1] data, int c, Py_ssize_t offset) nogil:
  *     cdef char* substring = strchr(<const char *>&data[offset], c)             # <<<<<<<<<<<<<<
- *     return <Py_ssize_t>(substring - &data[0])
+ *     return <Py_ssize_t>(substring - <char*>&data[0])
  * 
  */
   __pyx_t_1 = __pyx_v_offset;
@@ -2333,12 +2333,12 @@ static Py_ssize_t __pyx_f_7bencode_8_bencode_bytes_index(__Pyx_memviewslice __py
   /* "bencode/_bencode.pyx":77
  * cdef Py_ssize_t bytes_index(const uint8_t[::1] data, int c, Py_ssize_t offset) nogil:
  *     cdef char* substring = strchr(<const char *>&data[offset], c)
- *     return <Py_ssize_t>(substring - &data[0])             # <<<<<<<<<<<<<<
+ *     return <Py_ssize_t>(substring - <char*>&data[0])             # <<<<<<<<<<<<<<
  * 
  * cdef Py_ssize_t decode_int(const uint8_t[::1] x, Py_ssize_t *f) except? 0:
  */
   __pyx_t_1 = 0;
-  __pyx_r = ((Py_ssize_t)(__pyx_v_substring - (&(*((uint8_t const  *) ( /* dim=0 */ ((char *) (((uint8_t const  *) __pyx_v_data.data) + __pyx_t_1)) ))))));
+  __pyx_r = ((Py_ssize_t)(__pyx_v_substring - ((char *)(&(*((uint8_t const  *) ( /* dim=0 */ ((char *) (((uint8_t const  *) __pyx_v_data.data) + __pyx_t_1)) )))))));
   goto __pyx_L0;
 
   /* "bencode/_bencode.pyx":75
@@ -2346,7 +2346,7 @@ static Py_ssize_t __pyx_f_7bencode_8_bencode_bytes_index(__Pyx_memviewslice __py
  * # bytes.index
  * cdef Py_ssize_t bytes_index(const uint8_t[::1] data, int c, Py_ssize_t offset) nogil:             # <<<<<<<<<<<<<<
  *     cdef char* substring = strchr(<const char *>&data[offset], c)
- *     return <Py_ssize_t>(substring - &data[0])
+ *     return <Py_ssize_t>(substring - <char*>&data[0])
  */
 
   /* function exit code */
@@ -2355,7 +2355,7 @@ static Py_ssize_t __pyx_f_7bencode_8_bencode_bytes_index(__Pyx_memviewslice __py
 }
 
 /* "bencode/_bencode.pyx":79
- *     return <Py_ssize_t>(substring - &data[0])
+ *     return <Py_ssize_t>(substring - <char*>&data[0])
  * 
  * cdef Py_ssize_t decode_int(const uint8_t[::1] x, Py_ssize_t *f) except? 0:             # <<<<<<<<<<<<<<
  *     """
@@ -2515,7 +2515,7 @@ static Py_ssize_t __pyx_f_7bencode_8_bencode_decode_int(__Pyx_memviewslice __pyx
   goto __pyx_L0;
 
   /* "bencode/_bencode.pyx":79
- *     return <Py_ssize_t>(substring - &data[0])
+ *     return <Py_ssize_t>(substring - <char*>&data[0])
  * 
  * cdef Py_ssize_t decode_int(const uint8_t[::1] x, Py_ssize_t *f) except? 0:             # <<<<<<<<<<<<<<
  *     """
@@ -4218,7 +4218,7 @@ static PyObject *__pyx_f_7bencode_8_bencode_encode_int(int __pyx_v_data, sds *__
  *     # cdef char buf[20]
  *     cdef sds newsds = sdsMakeRoomFor(r[0], 20)             # <<<<<<<<<<<<<<
  *     r[0] = newsds
- *     cdef int count = PyOS_snprintf(newsds+sdslen(newsds), 20,"i%de", data)
+ *     cdef int count = PyOS_snprintf(newsds+sdslen(newsds), 20,"i%lde", data)
  */
   __pyx_v_newsds = sdsMakeRoomFor((__pyx_v_r[0]), 20);
 
@@ -4226,7 +4226,7 @@ static PyObject *__pyx_f_7bencode_8_bencode_encode_int(int __pyx_v_data, sds *__
  *     # cdef char buf[20]
  *     cdef sds newsds = sdsMakeRoomFor(r[0], 20)
  *     r[0] = newsds             # <<<<<<<<<<<<<<
- *     cdef int count = PyOS_snprintf(newsds+sdslen(newsds), 20,"i%de", data)
+ *     cdef int count = PyOS_snprintf(newsds+sdslen(newsds), 20,"i%lde", data)
  *     # r.write(<bytes>buf[:count])
  */
   (__pyx_v_r[0]) = __pyx_v_newsds;
@@ -4234,14 +4234,14 @@ static PyObject *__pyx_f_7bencode_8_bencode_encode_int(int __pyx_v_data, sds *__
   /* "bencode/_bencode.pyx":254
  *     cdef sds newsds = sdsMakeRoomFor(r[0], 20)
  *     r[0] = newsds
- *     cdef int count = PyOS_snprintf(newsds+sdslen(newsds), 20,"i%de", data)             # <<<<<<<<<<<<<<
+ *     cdef int count = PyOS_snprintf(newsds+sdslen(newsds), 20,"i%lde", data)             # <<<<<<<<<<<<<<
  *     # r.write(<bytes>buf[:count])
  *     sdsIncrLen(newsds, <ssize_t> count)
  */
-  __pyx_v_count = PyOS_snprintf((__pyx_v_newsds + sdslen(__pyx_v_newsds)), 20, ((char const *)"i%de"), __pyx_v_data);
+  __pyx_v_count = PyOS_snprintf((__pyx_v_newsds + sdslen(__pyx_v_newsds)), 20, ((char const *)"i%lde"), __pyx_v_data);
 
   /* "bencode/_bencode.pyx":256
- *     cdef int count = PyOS_snprintf(newsds+sdslen(newsds), 20,"i%de", data)
+ *     cdef int count = PyOS_snprintf(newsds+sdslen(newsds), 20,"i%lde", data)
  *     # r.write(<bytes>buf[:count])
  *     sdsIncrLen(newsds, <ssize_t> count)             # <<<<<<<<<<<<<<
  * 
@@ -4439,7 +4439,7 @@ static int __pyx_f_7bencode_8_bencode_encode_bytes(__Pyx_memviewslice __pyx_v_da
  *         int count
  *     cdef sds newsds = sdsMakeRoomFor(r[0], <size_t>size + 30)             # <<<<<<<<<<<<<<
  *     r[0] = newsds
- *     count = PyOS_snprintf(newsds+sdslen(newsds), <size_t>size + 30, "%d:", size)
+ *     count = PyOS_snprintf(newsds+sdslen(newsds), <size_t>size + 30, "%ld:", size)
  */
   __pyx_v_newsds = sdsMakeRoomFor((__pyx_v_r[0]), (((size_t)__pyx_v_size) + 30));
 
@@ -4447,7 +4447,7 @@ static int __pyx_f_7bencode_8_bencode_encode_bytes(__Pyx_memviewslice __pyx_v_da
  *         int count
  *     cdef sds newsds = sdsMakeRoomFor(r[0], <size_t>size + 30)
  *     r[0] = newsds             # <<<<<<<<<<<<<<
- *     count = PyOS_snprintf(newsds+sdslen(newsds), <size_t>size + 30, "%d:", size)
+ *     count = PyOS_snprintf(newsds+sdslen(newsds), <size_t>size + 30, "%ld:", size)
  *     sdsIncrLen(newsds, <ssize_t> count)
  */
   (__pyx_v_r[0]) = __pyx_v_newsds;
@@ -4455,15 +4455,15 @@ static int __pyx_f_7bencode_8_bencode_encode_bytes(__Pyx_memviewslice __pyx_v_da
   /* "bencode/_bencode.pyx":286
  *     cdef sds newsds = sdsMakeRoomFor(r[0], <size_t>size + 30)
  *     r[0] = newsds
- *     count = PyOS_snprintf(newsds+sdslen(newsds), <size_t>size + 30, "%d:", size)             # <<<<<<<<<<<<<<
+ *     count = PyOS_snprintf(newsds+sdslen(newsds), <size_t>size + 30, "%ld:", size)             # <<<<<<<<<<<<<<
  *     sdsIncrLen(newsds, <ssize_t> count)
  *     # print(f"in encode_bytes, count = {count}")
  */
-  __pyx_v_count = PyOS_snprintf((__pyx_v_newsds + sdslen(__pyx_v_newsds)), (((size_t)__pyx_v_size) + 30), ((char const *)"%d:"), __pyx_v_size);
+  __pyx_v_count = PyOS_snprintf((__pyx_v_newsds + sdslen(__pyx_v_newsds)), (((size_t)__pyx_v_size) + 30), ((char const *)"%ld:"), __pyx_v_size);
 
   /* "bencode/_bencode.pyx":287
  *     r[0] = newsds
- *     count = PyOS_snprintf(newsds+sdslen(newsds), <size_t>size + 30, "%d:", size)
+ *     count = PyOS_snprintf(newsds+sdslen(newsds), <size_t>size + 30, "%ld:", size)
  *     sdsIncrLen(newsds, <ssize_t> count)             # <<<<<<<<<<<<<<
  *     # print(f"in encode_bytes, count = {count}")
  *     memcpy(newsds+sdslen(newsds), &data[0], <size_t>size)

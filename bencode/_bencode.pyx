@@ -74,7 +74,7 @@ ctypedef fused string:
 # bytes.index
 cdef Py_ssize_t bytes_index(const uint8_t[::1] data, int c, Py_ssize_t offset) nogil:
     cdef char* substring = strchr(<const char *>&data[offset], c)
-    return <Py_ssize_t>(substring - &data[0])
+    return <Py_ssize_t>(substring - <char*>&data[0])
 
 cdef Py_ssize_t decode_int(const uint8_t[::1] x, Py_ssize_t *f) except? 0:
     """
@@ -283,7 +283,7 @@ cdef int encode_bytes(const uint8_t[::1] data, sds* r) except? -1:
         int count
     cdef sds newsds = sdsMakeRoomFor(r[0], <size_t>size + 30)
     r[0] = newsds
-    count = PyOS_snprintf(newsds+sdslen(newsds), <size_t>size + 30, "%d:", size)
+    count = PyOS_snprintf(newsds+sdslen(newsds), <size_t>size + 30, "%ld:", size)
     sdsIncrLen(newsds, <ssize_t> count)
     # print(f"in encode_bytes, count = {count}")
     memcpy(newsds+sdslen(newsds), &data[0], <size_t>size)
