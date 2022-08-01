@@ -4,4 +4,8 @@ try:
 except ImportError:
     from bencode.bencode import BTFailure, bdecode, bencode
 
-__all__ = ["bencode", "bdecode"]
+loads = bdecode
+dumps = bencode
+
+
+__all__ = ["bdecode", "bencode", "loads", "dumps"]
