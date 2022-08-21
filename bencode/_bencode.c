@@ -1096,7 +1096,7 @@ struct __pyx_MemviewEnum_obj;
 struct __pyx_memoryview_obj;
 struct __pyx_memoryviewslice_obj;
 
-/* "bencode/_bencode.pyx":236
+/* "bencode/_bencode.pyx":232
  * 
  * 
  * cdef class Bencached:             # <<<<<<<<<<<<<<
@@ -2055,11 +2055,9 @@ static const char __pyx_k_O[] = "O";
 static const char __pyx_k_c[] = "c";
 static const char __pyx_k_s[] = "s";
 static const char __pyx_k_id[] = "id";
-static const char __pyx_k_io[] = "io";
 static const char __pyx_k_doc[] = "__doc__";
 static const char __pyx_k_new[] = "__new__";
 static const char __pyx_k_obj[] = "obj";
-static const char __pyx_k_List[] = "List";
 static const char __pyx_k_base[] = "base";
 static const char __pyx_k_dict[] = "__dict__";
 static const char __pyx_k_main[] = "__main__";
@@ -2072,7 +2070,6 @@ static const char __pyx_k_step[] = "step";
 static const char __pyx_k_stop[] = "stop";
 static const char __pyx_k_test[] = "__test__";
 static const char __pyx_k_ASCII[] = "ASCII";
-static const char __pyx_k_Tuple[] = "Tuple";
 static const char __pyx_k_class[] = "__class__";
 static const char __pyx_k_error[] = "error";
 static const char __pyx_k_flags[] = "flags";
@@ -2088,10 +2085,8 @@ static const char __pyx_k_name_2[] = "__name__";
 static const char __pyx_k_pickle[] = "pickle";
 static const char __pyx_k_reduce[] = "__reduce__";
 static const char __pyx_k_struct[] = "struct";
-static const char __pyx_k_typing[] = "typing";
 static const char __pyx_k_unpack[] = "unpack";
 static const char __pyx_k_update[] = "update";
-static const char __pyx_k_BytesIO[] = "BytesIO";
 static const char __pyx_k_fortran[] = "fortran";
 static const char __pyx_k_memview[] = "memview";
 static const char __pyx_k_prepare[] = "__prepare__";
@@ -2158,7 +2153,6 @@ static PyObject *__pyx_n_s_ASCII;
 static PyObject *__pyx_n_s_BTFailure;
 static PyObject *__pyx_n_s_Bencached;
 static PyObject *__pyx_kp_s_Buffer_view_does_not_expose_stri;
-static PyObject *__pyx_n_s_BytesIO;
 static PyObject *__pyx_kp_s_Can_only_create_a_buffer_that_is;
 static PyObject *__pyx_kp_s_Cannot_assign_to_read_only_memor;
 static PyObject *__pyx_kp_s_Cannot_create_writable_memory_vi;
@@ -2171,14 +2165,12 @@ static PyObject *__pyx_kp_s_Indirect_dimensions_not_supporte;
 static PyObject *__pyx_kp_s_Invalid_mode_expected_c_or_fortr;
 static PyObject *__pyx_kp_s_Invalid_shape_in_axis_d_d;
 static PyObject *__pyx_n_s_KeyError;
-static PyObject *__pyx_n_s_List;
 static PyObject *__pyx_n_s_MemoryError;
 static PyObject *__pyx_kp_s_MemoryView_of_r_at_0x_x;
 static PyObject *__pyx_kp_s_MemoryView_of_r_object;
 static PyObject *__pyx_n_b_O;
 static PyObject *__pyx_kp_s_Out_of_bounds_on_buffer_access_a;
 static PyObject *__pyx_n_s_PickleError;
-static PyObject *__pyx_n_s_Tuple;
 static PyObject *__pyx_n_s_TypeError;
 static PyObject *__pyx_kp_s_Unable_to_convert_item_to_object;
 static PyObject *__pyx_n_s_UnicodeDecodeError;
@@ -2208,7 +2200,6 @@ static PyObject *__pyx_kp_s_got_differing_extents_in_dimensi;
 static PyObject *__pyx_n_s_id;
 static PyObject *__pyx_n_s_import;
 static PyObject *__pyx_kp_u_invalid_bencoded_value_data_afte;
-static PyObject *__pyx_n_s_io;
 static PyObject *__pyx_n_s_items;
 static PyObject *__pyx_n_s_itemsize;
 static PyObject *__pyx_kp_s_itemsize_0_for_cython_array;
@@ -2254,7 +2245,6 @@ static PyObject *__pyx_kp_s_strided_and_indirect;
 static PyObject *__pyx_kp_s_stringsource;
 static PyObject *__pyx_n_s_struct;
 static PyObject *__pyx_n_s_test;
-static PyObject *__pyx_n_s_typing;
 static PyObject *__pyx_kp_s_unable_to_allocate_array_data;
 static PyObject *__pyx_kp_s_unable_to_allocate_shape_and_str;
 static PyObject *__pyx_n_s_unpack;
@@ -2351,7 +2341,7 @@ static PyObject *__pyx_tuple__27;
 static PyObject *__pyx_codeobj__28;
 /* Late includes */
 
-/* "bencode/_bencode.pyx":76
+/* "bencode/_bencode.pyx":72
  * 
  * # bytes.index
  * cdef Py_ssize_t bytes_index(const uint8_t[::1] data, int c, Py_ssize_t offset) nogil:             # <<<<<<<<<<<<<<
@@ -2364,7 +2354,7 @@ static Py_ssize_t __pyx_f_7bencode_8_bencode_bytes_index(__Pyx_memviewslice __py
   Py_ssize_t __pyx_r;
   Py_ssize_t __pyx_t_1;
 
-  /* "bencode/_bencode.pyx":77
+  /* "bencode/_bencode.pyx":73
  * # bytes.index
  * cdef Py_ssize_t bytes_index(const uint8_t[::1] data, int c, Py_ssize_t offset) nogil:
  *     cdef char* substring = strchr(<const char *>&data[offset], c)             # <<<<<<<<<<<<<<
@@ -2374,7 +2364,7 @@ static Py_ssize_t __pyx_f_7bencode_8_bencode_bytes_index(__Pyx_memviewslice __py
   __pyx_t_1 = __pyx_v_offset;
   __pyx_v_substring = strchr(((char const *)(&(*((uint8_t const  *) ( /* dim=0 */ ((char *) (((uint8_t const  *) __pyx_v_data.data) + __pyx_t_1)) ))))), __pyx_v_c);
 
-  /* "bencode/_bencode.pyx":78
+  /* "bencode/_bencode.pyx":74
  * cdef Py_ssize_t bytes_index(const uint8_t[::1] data, int c, Py_ssize_t offset) nogil:
  *     cdef char* substring = strchr(<const char *>&data[offset], c)
  *     return <Py_ssize_t>(substring - <char*>&data[0])             # <<<<<<<<<<<<<<
@@ -2385,7 +2375,7 @@ static Py_ssize_t __pyx_f_7bencode_8_bencode_bytes_index(__Pyx_memviewslice __py
   __pyx_r = ((Py_ssize_t)(__pyx_v_substring - ((char *)(&(*((uint8_t const  *) ( /* dim=0 */ ((char *) (((uint8_t const  *) __pyx_v_data.data) + __pyx_t_1)) )))))));
   goto __pyx_L0;
 
-  /* "bencode/_bencode.pyx":76
+  /* "bencode/_bencode.pyx":72
  * 
  * # bytes.index
  * cdef Py_ssize_t bytes_index(const uint8_t[::1] data, int c, Py_ssize_t offset) nogil:             # <<<<<<<<<<<<<<
@@ -2398,7 +2388,7 @@ static Py_ssize_t __pyx_f_7bencode_8_bencode_bytes_index(__Pyx_memviewslice __py
   return __pyx_r;
 }
 
-/* "bencode/_bencode.pyx":80
+/* "bencode/_bencode.pyx":76
  *     return <Py_ssize_t>(substring - <char*>&data[0])
  * 
  * cdef Py_ssize_t decode_int(const uint8_t[::1] x, Py_ssize_t *f) except? 0:             # <<<<<<<<<<<<<<
@@ -2420,7 +2410,7 @@ static Py_ssize_t __pyx_f_7bencode_8_bencode_decode_int(__Pyx_memviewslice __pyx
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("decode_int", 0);
 
-  /* "bencode/_bencode.pyx":88
+  /* "bencode/_bencode.pyx":84
  *     """
  *     # assert data[offset] == "i"
  *     f[0] += 1             # <<<<<<<<<<<<<<
@@ -2430,7 +2420,7 @@ static Py_ssize_t __pyx_f_7bencode_8_bencode_decode_int(__Pyx_memviewslice __pyx
   __pyx_t_1 = 0;
   (__pyx_v_f[__pyx_t_1]) = ((__pyx_v_f[__pyx_t_1]) + 1);
 
-  /* "bencode/_bencode.pyx":90
+  /* "bencode/_bencode.pyx":86
  *     f[0] += 1
  *     # end = data.index(b'e', offset)
  *     cdef Py_ssize_t end = bytes_index(x, 101, f[0])             # <<<<<<<<<<<<<<
@@ -2439,7 +2429,7 @@ static Py_ssize_t __pyx_f_7bencode_8_bencode_decode_int(__Pyx_memviewslice __pyx
  */
   __pyx_v_end = __pyx_f_7bencode_8_bencode_bytes_index(__pyx_v_x, 0x65, (__pyx_v_f[0]));
 
-  /* "bencode/_bencode.pyx":93
+  /* "bencode/_bencode.pyx":89
  *     # number = int(data[offset:end])
  *     cdef int64_t n
  *     CM_Atoi(<char*>&x[f[0]], <int>(end-f[0]), &n)  # fixme use custom one             # <<<<<<<<<<<<<<
@@ -2449,7 +2439,7 @@ static Py_ssize_t __pyx_f_7bencode_8_bencode_decode_int(__Pyx_memviewslice __pyx
   __pyx_t_2 = (__pyx_v_f[0]);
   (void)(CM_Atoi(((char *)(&(*((uint8_t const  *) ( /* dim=0 */ ((char *) (((uint8_t const  *) __pyx_v_x.data) + __pyx_t_2)) ))))), ((int)(__pyx_v_end - (__pyx_v_f[0]))), (&__pyx_v_n)));
 
-  /* "bencode/_bencode.pyx":94
+  /* "bencode/_bencode.pyx":90
  *     cdef int64_t n
  *     CM_Atoi(<char*>&x[f[0]], <int>(end-f[0]), &n)  # fixme use custom one
  *     if x[f[0]] == 45:  # '-'             # <<<<<<<<<<<<<<
@@ -2460,7 +2450,7 @@ static Py_ssize_t __pyx_f_7bencode_8_bencode_decode_int(__Pyx_memviewslice __pyx
   __pyx_t_3 = (((*((uint8_t const  *) ( /* dim=0 */ ((char *) (((uint8_t const  *) __pyx_v_x.data) + __pyx_t_2)) ))) == 45) != 0);
   if (__pyx_t_3) {
 
-    /* "bencode/_bencode.pyx":95
+    /* "bencode/_bencode.pyx":91
  *     CM_Atoi(<char*>&x[f[0]], <int>(end-f[0]), &n)  # fixme use custom one
  *     if x[f[0]] == 45:  # '-'
  *         if x[f[0] + 1] == 48:  # ord('0')  # can not be negative             # <<<<<<<<<<<<<<
@@ -2471,7 +2461,7 @@ static Py_ssize_t __pyx_f_7bencode_8_bencode_decode_int(__Pyx_memviewslice __pyx
     __pyx_t_3 = (((*((uint8_t const  *) ( /* dim=0 */ ((char *) (((uint8_t const  *) __pyx_v_x.data) + __pyx_t_2)) ))) == 48) != 0);
     if (unlikely(__pyx_t_3)) {
 
-      /* "bencode/_bencode.pyx":96
+      /* "bencode/_bencode.pyx":92
  *     if x[f[0]] == 45:  # '-'
  *         if x[f[0] + 1] == 48:  # ord('0')  # can not be negative
  *             raise ValueError             # <<<<<<<<<<<<<<
@@ -2479,9 +2469,9 @@ static Py_ssize_t __pyx_f_7bencode_8_bencode_decode_int(__Pyx_memviewslice __pyx
  *         raise ValueError
  */
       __Pyx_Raise(__pyx_builtin_ValueError, 0, 0, 0);
-      __PYX_ERR(0, 96, __pyx_L1_error)
+      __PYX_ERR(0, 92, __pyx_L1_error)
 
-      /* "bencode/_bencode.pyx":95
+      /* "bencode/_bencode.pyx":91
  *     CM_Atoi(<char*>&x[f[0]], <int>(end-f[0]), &n)  # fixme use custom one
  *     if x[f[0]] == 45:  # '-'
  *         if x[f[0] + 1] == 48:  # ord('0')  # can not be negative             # <<<<<<<<<<<<<<
@@ -2490,7 +2480,7 @@ static Py_ssize_t __pyx_f_7bencode_8_bencode_decode_int(__Pyx_memviewslice __pyx
  */
     }
 
-    /* "bencode/_bencode.pyx":94
+    /* "bencode/_bencode.pyx":90
  *     cdef int64_t n
  *     CM_Atoi(<char*>&x[f[0]], <int>(end-f[0]), &n)  # fixme use custom one
  *     if x[f[0]] == 45:  # '-'             # <<<<<<<<<<<<<<
@@ -2500,7 +2490,7 @@ static Py_ssize_t __pyx_f_7bencode_8_bencode_decode_int(__Pyx_memviewslice __pyx
     goto __pyx_L3;
   }
 
-  /* "bencode/_bencode.pyx":97
+  /* "bencode/_bencode.pyx":93
  *         if x[f[0] + 1] == 48:  # ord('0')  # can not be negative
  *             raise ValueError
  *     elif x[f[0]] == 48 and end != f[0] + 1:  # 0             # <<<<<<<<<<<<<<
@@ -2519,7 +2509,7 @@ static Py_ssize_t __pyx_f_7bencode_8_bencode_decode_int(__Pyx_memviewslice __pyx
   __pyx_L5_bool_binop_done:;
   if (unlikely(__pyx_t_3)) {
 
-    /* "bencode/_bencode.pyx":98
+    /* "bencode/_bencode.pyx":94
  *             raise ValueError
  *     elif x[f[0]] == 48 and end != f[0] + 1:  # 0
  *         raise ValueError             # <<<<<<<<<<<<<<
@@ -2527,9 +2517,9 @@ static Py_ssize_t __pyx_f_7bencode_8_bencode_decode_int(__Pyx_memviewslice __pyx
  *     return <Py_ssize_t>n
  */
     __Pyx_Raise(__pyx_builtin_ValueError, 0, 0, 0);
-    __PYX_ERR(0, 98, __pyx_L1_error)
+    __PYX_ERR(0, 94, __pyx_L1_error)
 
-    /* "bencode/_bencode.pyx":97
+    /* "bencode/_bencode.pyx":93
  *         if x[f[0] + 1] == 48:  # ord('0')  # can not be negative
  *             raise ValueError
  *     elif x[f[0]] == 48 and end != f[0] + 1:  # 0             # <<<<<<<<<<<<<<
@@ -2539,7 +2529,7 @@ static Py_ssize_t __pyx_f_7bencode_8_bencode_decode_int(__Pyx_memviewslice __pyx
   }
   __pyx_L3:;
 
-  /* "bencode/_bencode.pyx":99
+  /* "bencode/_bencode.pyx":95
  *     elif x[f[0]] == 48 and end != f[0] + 1:  # 0
  *         raise ValueError
  *     f[0] = end + 1             # <<<<<<<<<<<<<<
@@ -2548,7 +2538,7 @@ static Py_ssize_t __pyx_f_7bencode_8_bencode_decode_int(__Pyx_memviewslice __pyx
  */
   (__pyx_v_f[0]) = (__pyx_v_end + 1);
 
-  /* "bencode/_bencode.pyx":100
+  /* "bencode/_bencode.pyx":96
  *         raise ValueError
  *     f[0] = end + 1
  *     return <Py_ssize_t>n             # <<<<<<<<<<<<<<
@@ -2558,7 +2548,7 @@ static Py_ssize_t __pyx_f_7bencode_8_bencode_decode_int(__Pyx_memviewslice __pyx
   __pyx_r = ((Py_ssize_t)__pyx_v_n);
   goto __pyx_L0;
 
-  /* "bencode/_bencode.pyx":80
+  /* "bencode/_bencode.pyx":76
  *     return <Py_ssize_t>(substring - <char*>&data[0])
  * 
  * cdef Py_ssize_t decode_int(const uint8_t[::1] x, Py_ssize_t *f) except? 0:             # <<<<<<<<<<<<<<
@@ -2575,7 +2565,7 @@ static Py_ssize_t __pyx_f_7bencode_8_bencode_decode_int(__Pyx_memviewslice __pyx
   return __pyx_r;
 }
 
-/* "bencode/_bencode.pyx":103
+/* "bencode/_bencode.pyx":99
  * 
  * 
  * cdef object decode_string(const uint8_t[::1] data , Py_ssize_t* offset):  # todo fused types             # <<<<<<<<<<<<<<
@@ -2604,7 +2594,7 @@ static PyObject *__pyx_f_7bencode_8_bencode_decode_string(__Pyx_memviewslice __p
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("decode_string", 0);
 
-  /* "bencode/_bencode.pyx":111
+  /* "bencode/_bencode.pyx":107
  *     # colon = data.index(b':', offset)  #
  *     # print(f"offset {offset[0]}") # todo del
  *     cdef Py_ssize_t colon = bytes_index(data, 58, offset[0])             # <<<<<<<<<<<<<<
@@ -2613,7 +2603,7 @@ static PyObject *__pyx_f_7bencode_8_bencode_decode_string(__Pyx_memviewslice __p
  */
   __pyx_v_colon = __pyx_f_7bencode_8_bencode_bytes_index(__pyx_v_data, 58, (__pyx_v_offset[0]));
 
-  /* "bencode/_bencode.pyx":115
+  /* "bencode/_bencode.pyx":111
  *     cdef int64_t length
  *     # cdef Py_ssize_t length = int(data[offset:colon])  #  fixme use custom one
  *     CM_Atoi(<char*>&data[offset[0]], <int>(colon-offset[0]), &length)             # <<<<<<<<<<<<<<
@@ -2623,7 +2613,7 @@ static PyObject *__pyx_f_7bencode_8_bencode_decode_string(__Pyx_memviewslice __p
   __pyx_t_1 = (__pyx_v_offset[0]);
   (void)(CM_Atoi(((char *)(&(*((uint8_t const  *) ( /* dim=0 */ ((char *) (((uint8_t const  *) __pyx_v_data.data) + __pyx_t_1)) ))))), ((int)(__pyx_v_colon - (__pyx_v_offset[0]))), (&__pyx_v_length)));
 
-  /* "bencode/_bencode.pyx":116
+  /* "bencode/_bencode.pyx":112
  *     # cdef Py_ssize_t length = int(data[offset:colon])  #  fixme use custom one
  *     CM_Atoi(<char*>&data[offset[0]], <int>(colon-offset[0]), &length)
  *     if data[offset[0]] == 48 and colon != offset[0] + 1:             # <<<<<<<<<<<<<<
@@ -2642,7 +2632,7 @@ static PyObject *__pyx_f_7bencode_8_bencode_decode_string(__Pyx_memviewslice __p
   __pyx_L4_bool_binop_done:;
   if (unlikely(__pyx_t_2)) {
 
-    /* "bencode/_bencode.pyx":117
+    /* "bencode/_bencode.pyx":113
  *     CM_Atoi(<char*>&data[offset[0]], <int>(colon-offset[0]), &length)
  *     if data[offset[0]] == 48 and colon != offset[0] + 1:
  *         raise ValueError             # <<<<<<<<<<<<<<
@@ -2650,9 +2640,9 @@ static PyObject *__pyx_f_7bencode_8_bencode_decode_string(__Pyx_memviewslice __p
  *     offset[0] = colon + <Py_ssize_t>length
  */
     __Pyx_Raise(__pyx_builtin_ValueError, 0, 0, 0);
-    __PYX_ERR(0, 117, __pyx_L1_error)
+    __PYX_ERR(0, 113, __pyx_L1_error)
 
-    /* "bencode/_bencode.pyx":116
+    /* "bencode/_bencode.pyx":112
  *     # cdef Py_ssize_t length = int(data[offset:colon])  #  fixme use custom one
  *     CM_Atoi(<char*>&data[offset[0]], <int>(colon-offset[0]), &length)
  *     if data[offset[0]] == 48 and colon != offset[0] + 1:             # <<<<<<<<<<<<<<
@@ -2661,7 +2651,7 @@ static PyObject *__pyx_f_7bencode_8_bencode_decode_string(__Pyx_memviewslice __p
  */
   }
 
-  /* "bencode/_bencode.pyx":118
+  /* "bencode/_bencode.pyx":114
  *     if data[offset[0]] == 48 and colon != offset[0] + 1:
  *         raise ValueError
  *     colon += 1             # <<<<<<<<<<<<<<
@@ -2670,7 +2660,7 @@ static PyObject *__pyx_f_7bencode_8_bencode_decode_string(__Pyx_memviewslice __p
  */
   __pyx_v_colon = (__pyx_v_colon + 1);
 
-  /* "bencode/_bencode.pyx":119
+  /* "bencode/_bencode.pyx":115
  *         raise ValueError
  *     colon += 1
  *     offset[0] = colon + <Py_ssize_t>length             # <<<<<<<<<<<<<<
@@ -2679,7 +2669,7 @@ static PyObject *__pyx_f_7bencode_8_bencode_decode_string(__Pyx_memviewslice __p
  */
   (__pyx_v_offset[0]) = (__pyx_v_colon + ((Py_ssize_t)__pyx_v_length));
 
-  /* "bencode/_bencode.pyx":120
+  /* "bencode/_bencode.pyx":116
  *     colon += 1
  *     offset[0] = colon + <Py_ssize_t>length
  *     cdef bytes tmp = PyBytes_FromStringAndSize(<char*>&data[colon], length)             # <<<<<<<<<<<<<<
@@ -2687,12 +2677,12 @@ static PyObject *__pyx_f_7bencode_8_bencode_decode_string(__Pyx_memviewslice __p
  *         # return (<bytes>data[colon:colon + length]).decode()
  */
   __pyx_t_1 = __pyx_v_colon;
-  __pyx_t_4 = PyBytes_FromStringAndSize(((char *)(&(*((uint8_t const  *) ( /* dim=0 */ ((char *) (((uint8_t const  *) __pyx_v_data.data) + __pyx_t_1)) ))))), __pyx_v_length); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 120, __pyx_L1_error)
+  __pyx_t_4 = PyBytes_FromStringAndSize(((char *)(&(*((uint8_t const  *) ( /* dim=0 */ ((char *) (((uint8_t const  *) __pyx_v_data.data) + __pyx_t_1)) ))))), __pyx_v_length); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __pyx_v_tmp = ((PyObject*)__pyx_t_4);
   __pyx_t_4 = 0;
 
-  /* "bencode/_bencode.pyx":121
+  /* "bencode/_bencode.pyx":117
  *     offset[0] = colon + <Py_ssize_t>length
  *     cdef bytes tmp = PyBytes_FromStringAndSize(<char*>&data[colon], length)
  *     try:             # <<<<<<<<<<<<<<
@@ -2708,7 +2698,7 @@ static PyObject *__pyx_f_7bencode_8_bencode_decode_string(__Pyx_memviewslice __p
     __Pyx_XGOTREF(__pyx_t_7);
     /*try:*/ {
 
-      /* "bencode/_bencode.pyx":123
+      /* "bencode/_bencode.pyx":119
  *     try:
  *         # return (<bytes>data[colon:colon + length]).decode()
  *         return tmp.decode()             # <<<<<<<<<<<<<<
@@ -2718,15 +2708,15 @@ static PyObject *__pyx_f_7bencode_8_bencode_decode_string(__Pyx_memviewslice __p
       __Pyx_XDECREF(__pyx_r);
       if (unlikely(__pyx_v_tmp == Py_None)) {
         PyErr_Format(PyExc_AttributeError, "'NoneType' object has no attribute '%.30s'", "decode");
-        __PYX_ERR(0, 123, __pyx_L6_error)
+        __PYX_ERR(0, 119, __pyx_L6_error)
       }
-      __pyx_t_4 = __Pyx_decode_bytes(__pyx_v_tmp, 0, PY_SSIZE_T_MAX, NULL, NULL, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 123, __pyx_L6_error)
+      __pyx_t_4 = __Pyx_decode_bytes(__pyx_v_tmp, 0, PY_SSIZE_T_MAX, NULL, NULL, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 119, __pyx_L6_error)
       __Pyx_GOTREF(__pyx_t_4);
       __pyx_r = __pyx_t_4;
       __pyx_t_4 = 0;
       goto __pyx_L10_try_return;
 
-      /* "bencode/_bencode.pyx":121
+      /* "bencode/_bencode.pyx":117
  *     offset[0] = colon + <Py_ssize_t>length
  *     cdef bytes tmp = PyBytes_FromStringAndSize(<char*>&data[colon], length)
  *     try:             # <<<<<<<<<<<<<<
@@ -2737,7 +2727,7 @@ static PyObject *__pyx_f_7bencode_8_bencode_decode_string(__Pyx_memviewslice __p
     __pyx_L6_error:;
     __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-    /* "bencode/_bencode.pyx":124
+    /* "bencode/_bencode.pyx":120
  *         # return (<bytes>data[colon:colon + length]).decode()
  *         return tmp.decode()
  *     except UnicodeDecodeError:             # <<<<<<<<<<<<<<
@@ -2747,12 +2737,12 @@ static PyObject *__pyx_f_7bencode_8_bencode_decode_string(__Pyx_memviewslice __p
     __pyx_t_8 = __Pyx_PyErr_ExceptionMatches(__pyx_builtin_UnicodeDecodeError);
     if (__pyx_t_8) {
       __Pyx_AddTraceback("bencode._bencode.decode_string", __pyx_clineno, __pyx_lineno, __pyx_filename);
-      if (__Pyx_GetException(&__pyx_t_4, &__pyx_t_9, &__pyx_t_10) < 0) __PYX_ERR(0, 124, __pyx_L8_except_error)
+      if (__Pyx_GetException(&__pyx_t_4, &__pyx_t_9, &__pyx_t_10) < 0) __PYX_ERR(0, 120, __pyx_L8_except_error)
       __Pyx_GOTREF(__pyx_t_4);
       __Pyx_GOTREF(__pyx_t_9);
       __Pyx_GOTREF(__pyx_t_10);
 
-      /* "bencode/_bencode.pyx":125
+      /* "bencode/_bencode.pyx":121
  *         return tmp.decode()
  *     except UnicodeDecodeError:
  *         return tmp             # <<<<<<<<<<<<<<
@@ -2770,7 +2760,7 @@ static PyObject *__pyx_f_7bencode_8_bencode_decode_string(__Pyx_memviewslice __p
     goto __pyx_L8_except_error;
     __pyx_L8_except_error:;
 
-    /* "bencode/_bencode.pyx":121
+    /* "bencode/_bencode.pyx":117
  *     offset[0] = colon + <Py_ssize_t>length
  *     cdef bytes tmp = PyBytes_FromStringAndSize(<char*>&data[colon], length)
  *     try:             # <<<<<<<<<<<<<<
@@ -2796,7 +2786,7 @@ static PyObject *__pyx_f_7bencode_8_bencode_decode_string(__Pyx_memviewslice __p
     goto __pyx_L0;
   }
 
-  /* "bencode/_bencode.pyx":103
+  /* "bencode/_bencode.pyx":99
  * 
  * 
  * cdef object decode_string(const uint8_t[::1] data , Py_ssize_t* offset):  # todo fused types             # <<<<<<<<<<<<<<
@@ -2818,7 +2808,7 @@ static PyObject *__pyx_f_7bencode_8_bencode_decode_string(__Pyx_memviewslice __p
   return __pyx_r;
 }
 
-/* "bencode/_bencode.pyx":127
+/* "bencode/_bencode.pyx":123
  *         return tmp
  * 
  * cdef list decode_list(const uint8_t[::1] data,  Py_ssize_t* offset):             # <<<<<<<<<<<<<<
@@ -2844,7 +2834,7 @@ static PyObject *__pyx_f_7bencode_8_bencode_decode_list(__Pyx_memviewslice __pyx
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("decode_list", 0);
 
-  /* "bencode/_bencode.pyx":136
+  /* "bencode/_bencode.pyx":132
  *     # assert data[offset] == "l"
  *     # ret, offset = [], offset + 1
  *     offset[0] += 1             # <<<<<<<<<<<<<<
@@ -2854,19 +2844,19 @@ static PyObject *__pyx_f_7bencode_8_bencode_decode_list(__Pyx_memviewslice __pyx
   __pyx_t_1 = 0;
   (__pyx_v_offset[__pyx_t_1]) = ((__pyx_v_offset[__pyx_t_1]) + 1);
 
-  /* "bencode/_bencode.pyx":138
+  /* "bencode/_bencode.pyx":134
  *     offset[0] += 1
  *     cdef:
  *         list ret = []             # <<<<<<<<<<<<<<
  *         uint8_t tmp
  *     tmp = data[offset[0]]
  */
-  __pyx_t_2 = PyList_New(0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 138, __pyx_L1_error)
+  __pyx_t_2 = PyList_New(0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 134, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_v_ret = ((PyObject*)__pyx_t_2);
   __pyx_t_2 = 0;
 
-  /* "bencode/_bencode.pyx":140
+  /* "bencode/_bencode.pyx":136
  *         list ret = []
  *         uint8_t tmp
  *     tmp = data[offset[0]]             # <<<<<<<<<<<<<<
@@ -2876,7 +2866,7 @@ static PyObject *__pyx_f_7bencode_8_bencode_decode_list(__Pyx_memviewslice __pyx
   __pyx_t_3 = (__pyx_v_offset[0]);
   __pyx_v_tmp = (*((uint8_t const  *) ( /* dim=0 */ ((char *) (((uint8_t const  *) __pyx_v_data.data) + __pyx_t_3)) )));
 
-  /* "bencode/_bencode.pyx":141
+  /* "bencode/_bencode.pyx":137
  *         uint8_t tmp
  *     tmp = data[offset[0]]
  *     while tmp != 101:             # <<<<<<<<<<<<<<
@@ -2887,7 +2877,7 @@ static PyObject *__pyx_f_7bencode_8_bencode_decode_list(__Pyx_memviewslice __pyx
     __pyx_t_4 = ((__pyx_v_tmp != 0x65) != 0);
     if (!__pyx_t_4) break;
 
-    /* "bencode/_bencode.pyx":143
+    /* "bencode/_bencode.pyx":139
  *     while tmp != 101:
  *         # v, offset = decode_func[data[offset[0]]](data, offset)
  *         if tmp == 108:             # <<<<<<<<<<<<<<
@@ -2897,19 +2887,19 @@ static PyObject *__pyx_f_7bencode_8_bencode_decode_list(__Pyx_memviewslice __pyx
     __pyx_t_4 = ((__pyx_v_tmp == 0x6C) != 0);
     if (__pyx_t_4) {
 
-      /* "bencode/_bencode.pyx":144
+      /* "bencode/_bencode.pyx":140
  *         # v, offset = decode_func[data[offset[0]]](data, offset)
  *         if tmp == 108:
  *             v = decode_list(data, offset)             # <<<<<<<<<<<<<<
  *         elif tmp == 100:
  *             v = decode_dict(data, offset)
  */
-      __pyx_t_2 = __pyx_f_7bencode_8_bencode_decode_list(__pyx_v_data, __pyx_v_offset); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 144, __pyx_L1_error)
+      __pyx_t_2 = __pyx_f_7bencode_8_bencode_decode_list(__pyx_v_data, __pyx_v_offset); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 140, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_XDECREF_SET(__pyx_v_v, __pyx_t_2);
       __pyx_t_2 = 0;
 
-      /* "bencode/_bencode.pyx":143
+      /* "bencode/_bencode.pyx":139
  *     while tmp != 101:
  *         # v, offset = decode_func[data[offset[0]]](data, offset)
  *         if tmp == 108:             # <<<<<<<<<<<<<<
@@ -2919,7 +2909,7 @@ static PyObject *__pyx_f_7bencode_8_bencode_decode_list(__Pyx_memviewslice __pyx
       goto __pyx_L5;
     }
 
-    /* "bencode/_bencode.pyx":145
+    /* "bencode/_bencode.pyx":141
  *         if tmp == 108:
  *             v = decode_list(data, offset)
  *         elif tmp == 100:             # <<<<<<<<<<<<<<
@@ -2929,19 +2919,19 @@ static PyObject *__pyx_f_7bencode_8_bencode_decode_list(__Pyx_memviewslice __pyx
     __pyx_t_4 = ((__pyx_v_tmp == 0x64) != 0);
     if (__pyx_t_4) {
 
-      /* "bencode/_bencode.pyx":146
+      /* "bencode/_bencode.pyx":142
  *             v = decode_list(data, offset)
  *         elif tmp == 100:
  *             v = decode_dict(data, offset)             # <<<<<<<<<<<<<<
  *         elif tmp ==105:
  *             v = decode_int(data, offset)
  */
-      __pyx_t_2 = __pyx_f_7bencode_8_bencode_decode_dict(__pyx_v_data, __pyx_v_offset); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 146, __pyx_L1_error)
+      __pyx_t_2 = __pyx_f_7bencode_8_bencode_decode_dict(__pyx_v_data, __pyx_v_offset); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 142, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_XDECREF_SET(__pyx_v_v, __pyx_t_2);
       __pyx_t_2 = 0;
 
-      /* "bencode/_bencode.pyx":145
+      /* "bencode/_bencode.pyx":141
  *         if tmp == 108:
  *             v = decode_list(data, offset)
  *         elif tmp == 100:             # <<<<<<<<<<<<<<
@@ -2951,7 +2941,7 @@ static PyObject *__pyx_f_7bencode_8_bencode_decode_list(__Pyx_memviewslice __pyx
       goto __pyx_L5;
     }
 
-    /* "bencode/_bencode.pyx":147
+    /* "bencode/_bencode.pyx":143
  *         elif tmp == 100:
  *             v = decode_dict(data, offset)
  *         elif tmp ==105:             # <<<<<<<<<<<<<<
@@ -2961,20 +2951,20 @@ static PyObject *__pyx_f_7bencode_8_bencode_decode_list(__Pyx_memviewslice __pyx
     __pyx_t_4 = ((__pyx_v_tmp == 0x69) != 0);
     if (__pyx_t_4) {
 
-      /* "bencode/_bencode.pyx":148
+      /* "bencode/_bencode.pyx":144
  *             v = decode_dict(data, offset)
  *         elif tmp ==105:
  *             v = decode_int(data, offset)             # <<<<<<<<<<<<<<
  *         elif 48 <=tmp <=57:
  *             v = decode_string(data ,offset)
  */
-      __pyx_t_5 = __pyx_f_7bencode_8_bencode_decode_int(__pyx_v_data, __pyx_v_offset); if (unlikely(__pyx_t_5 == ((Py_ssize_t)0) && PyErr_Occurred())) __PYX_ERR(0, 148, __pyx_L1_error)
-      __pyx_t_2 = PyInt_FromSsize_t(__pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 148, __pyx_L1_error)
+      __pyx_t_5 = __pyx_f_7bencode_8_bencode_decode_int(__pyx_v_data, __pyx_v_offset); if (unlikely(__pyx_t_5 == ((Py_ssize_t)0) && PyErr_Occurred())) __PYX_ERR(0, 144, __pyx_L1_error)
+      __pyx_t_2 = PyInt_FromSsize_t(__pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 144, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_XDECREF_SET(__pyx_v_v, __pyx_t_2);
       __pyx_t_2 = 0;
 
-      /* "bencode/_bencode.pyx":147
+      /* "bencode/_bencode.pyx":143
  *         elif tmp == 100:
  *             v = decode_dict(data, offset)
  *         elif tmp ==105:             # <<<<<<<<<<<<<<
@@ -2984,7 +2974,7 @@ static PyObject *__pyx_f_7bencode_8_bencode_decode_list(__Pyx_memviewslice __pyx
       goto __pyx_L5;
     }
 
-    /* "bencode/_bencode.pyx":149
+    /* "bencode/_bencode.pyx":145
  *         elif tmp ==105:
  *             v = decode_int(data, offset)
  *         elif 48 <=tmp <=57:             # <<<<<<<<<<<<<<
@@ -2998,19 +2988,19 @@ static PyObject *__pyx_f_7bencode_8_bencode_decode_list(__Pyx_memviewslice __pyx
     __pyx_t_6 = (__pyx_t_4 != 0);
     if (likely(__pyx_t_6)) {
 
-      /* "bencode/_bencode.pyx":150
+      /* "bencode/_bencode.pyx":146
  *             v = decode_int(data, offset)
  *         elif 48 <=tmp <=57:
  *             v = decode_string(data ,offset)             # <<<<<<<<<<<<<<
  *         else:
  *             raise ValueError
  */
-      __pyx_t_2 = __pyx_f_7bencode_8_bencode_decode_string(__pyx_v_data, __pyx_v_offset); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 150, __pyx_L1_error)
+      __pyx_t_2 = __pyx_f_7bencode_8_bencode_decode_string(__pyx_v_data, __pyx_v_offset); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 146, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_XDECREF_SET(__pyx_v_v, __pyx_t_2);
       __pyx_t_2 = 0;
 
-      /* "bencode/_bencode.pyx":149
+      /* "bencode/_bencode.pyx":145
  *         elif tmp ==105:
  *             v = decode_int(data, offset)
  *         elif 48 <=tmp <=57:             # <<<<<<<<<<<<<<
@@ -3020,7 +3010,7 @@ static PyObject *__pyx_f_7bencode_8_bencode_decode_list(__Pyx_memviewslice __pyx
       goto __pyx_L5;
     }
 
-    /* "bencode/_bencode.pyx":152
+    /* "bencode/_bencode.pyx":148
  *             v = decode_string(data ,offset)
  *         else:
  *             raise ValueError             # <<<<<<<<<<<<<<
@@ -3029,11 +3019,11 @@ static PyObject *__pyx_f_7bencode_8_bencode_decode_list(__Pyx_memviewslice __pyx
  */
     /*else*/ {
       __Pyx_Raise(__pyx_builtin_ValueError, 0, 0, 0);
-      __PYX_ERR(0, 152, __pyx_L1_error)
+      __PYX_ERR(0, 148, __pyx_L1_error)
     }
     __pyx_L5:;
 
-    /* "bencode/_bencode.pyx":153
+    /* "bencode/_bencode.pyx":149
  *         else:
  *             raise ValueError
  *         tmp = data[offset[0]]             # <<<<<<<<<<<<<<
@@ -3043,17 +3033,17 @@ static PyObject *__pyx_f_7bencode_8_bencode_decode_list(__Pyx_memviewslice __pyx
     __pyx_t_3 = (__pyx_v_offset[0]);
     __pyx_v_tmp = (*((uint8_t const  *) ( /* dim=0 */ ((char *) (((uint8_t const  *) __pyx_v_data.data) + __pyx_t_3)) )));
 
-    /* "bencode/_bencode.pyx":154
+    /* "bencode/_bencode.pyx":150
  *             raise ValueError
  *         tmp = data[offset[0]]
  *         ret.append(v)             # <<<<<<<<<<<<<<
  *     offset[0] += 1
  *     return ret
  */
-    __pyx_t_7 = __Pyx_PyList_Append(__pyx_v_ret, __pyx_v_v); if (unlikely(__pyx_t_7 == ((int)-1))) __PYX_ERR(0, 154, __pyx_L1_error)
+    __pyx_t_7 = __Pyx_PyList_Append(__pyx_v_ret, __pyx_v_v); if (unlikely(__pyx_t_7 == ((int)-1))) __PYX_ERR(0, 150, __pyx_L1_error)
   }
 
-  /* "bencode/_bencode.pyx":155
+  /* "bencode/_bencode.pyx":151
  *         tmp = data[offset[0]]
  *         ret.append(v)
  *     offset[0] += 1             # <<<<<<<<<<<<<<
@@ -3063,7 +3053,7 @@ static PyObject *__pyx_f_7bencode_8_bencode_decode_list(__Pyx_memviewslice __pyx
   __pyx_t_1 = 0;
   (__pyx_v_offset[__pyx_t_1]) = ((__pyx_v_offset[__pyx_t_1]) + 1);
 
-  /* "bencode/_bencode.pyx":156
+  /* "bencode/_bencode.pyx":152
  *         ret.append(v)
  *     offset[0] += 1
  *     return ret             # <<<<<<<<<<<<<<
@@ -3075,7 +3065,7 @@ static PyObject *__pyx_f_7bencode_8_bencode_decode_list(__Pyx_memviewslice __pyx
   __pyx_r = __pyx_v_ret;
   goto __pyx_L0;
 
-  /* "bencode/_bencode.pyx":127
+  /* "bencode/_bencode.pyx":123
  *         return tmp
  * 
  * cdef list decode_list(const uint8_t[::1] data,  Py_ssize_t* offset):             # <<<<<<<<<<<<<<
@@ -3096,7 +3086,7 @@ static PyObject *__pyx_f_7bencode_8_bencode_decode_list(__Pyx_memviewslice __pyx
   return __pyx_r;
 }
 
-/* "bencode/_bencode.pyx":159
+/* "bencode/_bencode.pyx":155
  * 
  * 
  * cdef dict decode_dict(const uint8_t[::1] data ,  Py_ssize_t* offset):             # <<<<<<<<<<<<<<
@@ -3122,19 +3112,19 @@ static PyObject *__pyx_f_7bencode_8_bencode_decode_dict(__Pyx_memviewslice __pyx
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("decode_dict", 0);
 
-  /* "bencode/_bencode.pyx":167
+  /* "bencode/_bencode.pyx":163
  *     """
  *     cdef:
  *         dict ret = {}             # <<<<<<<<<<<<<<
  *         uint8_t tmp
  *     offset[0]+=1
  */
-  __pyx_t_1 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 167, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 163, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_ret = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "bencode/_bencode.pyx":169
+  /* "bencode/_bencode.pyx":165
  *         dict ret = {}
  *         uint8_t tmp
  *     offset[0]+=1             # <<<<<<<<<<<<<<
@@ -3144,7 +3134,7 @@ static PyObject *__pyx_f_7bencode_8_bencode_decode_dict(__Pyx_memviewslice __pyx
   __pyx_t_2 = 0;
   (__pyx_v_offset[__pyx_t_2]) = ((__pyx_v_offset[__pyx_t_2]) + 1);
 
-  /* "bencode/_bencode.pyx":171
+  /* "bencode/_bencode.pyx":167
  *     offset[0]+=1
  *     # print(f"in decode_dict offset: {offset[0]}")  # todo del
  *     tmp = data[offset[0]]             # <<<<<<<<<<<<<<
@@ -3154,7 +3144,7 @@ static PyObject *__pyx_f_7bencode_8_bencode_decode_dict(__Pyx_memviewslice __pyx
   __pyx_t_3 = (__pyx_v_offset[0]);
   __pyx_v_tmp = (*((uint8_t const  *) ( /* dim=0 */ ((char *) (((uint8_t const  *) __pyx_v_data.data) + __pyx_t_3)) )));
 
-  /* "bencode/_bencode.pyx":172
+  /* "bencode/_bencode.pyx":168
  *     # print(f"in decode_dict offset: {offset[0]}")  # todo del
  *     tmp = data[offset[0]]
  *     while tmp != 101:  # dict e  ord(e)             # <<<<<<<<<<<<<<
@@ -3165,19 +3155,19 @@ static PyObject *__pyx_f_7bencode_8_bencode_decode_dict(__Pyx_memviewslice __pyx
     __pyx_t_4 = ((__pyx_v_tmp != 0x65) != 0);
     if (!__pyx_t_4) break;
 
-    /* "bencode/_bencode.pyx":173
+    /* "bencode/_bencode.pyx":169
  *     tmp = data[offset[0]]
  *     while tmp != 101:  # dict e  ord(e)
  *         key =  decode_string(data, offset)             # <<<<<<<<<<<<<<
  *         # print(f"dict got key {key}") # todo del
  *         # print(f"now  offset is {offset[0]}")
  */
-    __pyx_t_1 = __pyx_f_7bencode_8_bencode_decode_string(__pyx_v_data, __pyx_v_offset); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 173, __pyx_L1_error)
+    __pyx_t_1 = __pyx_f_7bencode_8_bencode_decode_string(__pyx_v_data, __pyx_v_offset); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 169, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_XDECREF_SET(__pyx_v_key, __pyx_t_1);
     __pyx_t_1 = 0;
 
-    /* "bencode/_bencode.pyx":176
+    /* "bencode/_bencode.pyx":172
  *         # print(f"dict got key {key}") # todo del
  *         # print(f"now  offset is {offset[0]}")
  *         tmp = data[offset[0]]             # <<<<<<<<<<<<<<
@@ -3187,7 +3177,7 @@ static PyObject *__pyx_f_7bencode_8_bencode_decode_dict(__Pyx_memviewslice __pyx
     __pyx_t_3 = (__pyx_v_offset[0]);
     __pyx_v_tmp = (*((uint8_t const  *) ( /* dim=0 */ ((char *) (((uint8_t const  *) __pyx_v_data.data) + __pyx_t_3)) )));
 
-    /* "bencode/_bencode.pyx":177
+    /* "bencode/_bencode.pyx":173
  *         # print(f"now  offset is {offset[0]}")
  *         tmp = data[offset[0]]
  *         if tmp == 108:             # <<<<<<<<<<<<<<
@@ -3197,19 +3187,19 @@ static PyObject *__pyx_f_7bencode_8_bencode_decode_dict(__Pyx_memviewslice __pyx
     __pyx_t_4 = ((__pyx_v_tmp == 0x6C) != 0);
     if (__pyx_t_4) {
 
-      /* "bencode/_bencode.pyx":178
+      /* "bencode/_bencode.pyx":174
  *         tmp = data[offset[0]]
  *         if tmp == 108:
  *             v = decode_list(data, offset)             # <<<<<<<<<<<<<<
  *         elif tmp == 100:
  *             v = decode_dict(data, offset)
  */
-      __pyx_t_1 = __pyx_f_7bencode_8_bencode_decode_list(__pyx_v_data, __pyx_v_offset); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 178, __pyx_L1_error)
+      __pyx_t_1 = __pyx_f_7bencode_8_bencode_decode_list(__pyx_v_data, __pyx_v_offset); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 174, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_XDECREF_SET(__pyx_v_v, __pyx_t_1);
       __pyx_t_1 = 0;
 
-      /* "bencode/_bencode.pyx":177
+      /* "bencode/_bencode.pyx":173
  *         # print(f"now  offset is {offset[0]}")
  *         tmp = data[offset[0]]
  *         if tmp == 108:             # <<<<<<<<<<<<<<
@@ -3219,7 +3209,7 @@ static PyObject *__pyx_f_7bencode_8_bencode_decode_dict(__Pyx_memviewslice __pyx
       goto __pyx_L5;
     }
 
-    /* "bencode/_bencode.pyx":179
+    /* "bencode/_bencode.pyx":175
  *         if tmp == 108:
  *             v = decode_list(data, offset)
  *         elif tmp == 100:             # <<<<<<<<<<<<<<
@@ -3229,19 +3219,19 @@ static PyObject *__pyx_f_7bencode_8_bencode_decode_dict(__Pyx_memviewslice __pyx
     __pyx_t_4 = ((__pyx_v_tmp == 0x64) != 0);
     if (__pyx_t_4) {
 
-      /* "bencode/_bencode.pyx":180
+      /* "bencode/_bencode.pyx":176
  *             v = decode_list(data, offset)
  *         elif tmp == 100:
  *             v = decode_dict(data, offset)             # <<<<<<<<<<<<<<
  *         elif tmp ==105:
  *             v = decode_int(data, offset)
  */
-      __pyx_t_1 = __pyx_f_7bencode_8_bencode_decode_dict(__pyx_v_data, __pyx_v_offset); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 180, __pyx_L1_error)
+      __pyx_t_1 = __pyx_f_7bencode_8_bencode_decode_dict(__pyx_v_data, __pyx_v_offset); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 176, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_XDECREF_SET(__pyx_v_v, __pyx_t_1);
       __pyx_t_1 = 0;
 
-      /* "bencode/_bencode.pyx":179
+      /* "bencode/_bencode.pyx":175
  *         if tmp == 108:
  *             v = decode_list(data, offset)
  *         elif tmp == 100:             # <<<<<<<<<<<<<<
@@ -3251,7 +3241,7 @@ static PyObject *__pyx_f_7bencode_8_bencode_decode_dict(__Pyx_memviewslice __pyx
       goto __pyx_L5;
     }
 
-    /* "bencode/_bencode.pyx":181
+    /* "bencode/_bencode.pyx":177
  *         elif tmp == 100:
  *             v = decode_dict(data, offset)
  *         elif tmp ==105:             # <<<<<<<<<<<<<<
@@ -3261,20 +3251,20 @@ static PyObject *__pyx_f_7bencode_8_bencode_decode_dict(__Pyx_memviewslice __pyx
     __pyx_t_4 = ((__pyx_v_tmp == 0x69) != 0);
     if (__pyx_t_4) {
 
-      /* "bencode/_bencode.pyx":182
+      /* "bencode/_bencode.pyx":178
  *             v = decode_dict(data, offset)
  *         elif tmp ==105:
  *             v = decode_int(data, offset)             # <<<<<<<<<<<<<<
  *         elif 48 <=tmp <=57:
  *             v = decode_string(data ,offset)
  */
-      __pyx_t_5 = __pyx_f_7bencode_8_bencode_decode_int(__pyx_v_data, __pyx_v_offset); if (unlikely(__pyx_t_5 == ((Py_ssize_t)0) && PyErr_Occurred())) __PYX_ERR(0, 182, __pyx_L1_error)
-      __pyx_t_1 = PyInt_FromSsize_t(__pyx_t_5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 182, __pyx_L1_error)
+      __pyx_t_5 = __pyx_f_7bencode_8_bencode_decode_int(__pyx_v_data, __pyx_v_offset); if (unlikely(__pyx_t_5 == ((Py_ssize_t)0) && PyErr_Occurred())) __PYX_ERR(0, 178, __pyx_L1_error)
+      __pyx_t_1 = PyInt_FromSsize_t(__pyx_t_5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 178, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_XDECREF_SET(__pyx_v_v, __pyx_t_1);
       __pyx_t_1 = 0;
 
-      /* "bencode/_bencode.pyx":181
+      /* "bencode/_bencode.pyx":177
  *         elif tmp == 100:
  *             v = decode_dict(data, offset)
  *         elif tmp ==105:             # <<<<<<<<<<<<<<
@@ -3284,7 +3274,7 @@ static PyObject *__pyx_f_7bencode_8_bencode_decode_dict(__Pyx_memviewslice __pyx
       goto __pyx_L5;
     }
 
-    /* "bencode/_bencode.pyx":183
+    /* "bencode/_bencode.pyx":179
  *         elif tmp ==105:
  *             v = decode_int(data, offset)
  *         elif 48 <=tmp <=57:             # <<<<<<<<<<<<<<
@@ -3298,19 +3288,19 @@ static PyObject *__pyx_f_7bencode_8_bencode_decode_dict(__Pyx_memviewslice __pyx
     __pyx_t_6 = (__pyx_t_4 != 0);
     if (likely(__pyx_t_6)) {
 
-      /* "bencode/_bencode.pyx":184
+      /* "bencode/_bencode.pyx":180
  *             v = decode_int(data, offset)
  *         elif 48 <=tmp <=57:
  *             v = decode_string(data ,offset)             # <<<<<<<<<<<<<<
  *         else:
  *             raise ValueError
  */
-      __pyx_t_1 = __pyx_f_7bencode_8_bencode_decode_string(__pyx_v_data, __pyx_v_offset); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 184, __pyx_L1_error)
+      __pyx_t_1 = __pyx_f_7bencode_8_bencode_decode_string(__pyx_v_data, __pyx_v_offset); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 180, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_XDECREF_SET(__pyx_v_v, __pyx_t_1);
       __pyx_t_1 = 0;
 
-      /* "bencode/_bencode.pyx":183
+      /* "bencode/_bencode.pyx":179
  *         elif tmp ==105:
  *             v = decode_int(data, offset)
  *         elif 48 <=tmp <=57:             # <<<<<<<<<<<<<<
@@ -3320,7 +3310,7 @@ static PyObject *__pyx_f_7bencode_8_bencode_decode_dict(__Pyx_memviewslice __pyx
       goto __pyx_L5;
     }
 
-    /* "bencode/_bencode.pyx":186
+    /* "bencode/_bencode.pyx":182
  *             v = decode_string(data ,offset)
  *         else:
  *             raise ValueError             # <<<<<<<<<<<<<<
@@ -3329,11 +3319,11 @@ static PyObject *__pyx_f_7bencode_8_bencode_decode_dict(__Pyx_memviewslice __pyx
  */
     /*else*/ {
       __Pyx_Raise(__pyx_builtin_ValueError, 0, 0, 0);
-      __PYX_ERR(0, 186, __pyx_L1_error)
+      __PYX_ERR(0, 182, __pyx_L1_error)
     }
     __pyx_L5:;
 
-    /* "bencode/_bencode.pyx":187
+    /* "bencode/_bencode.pyx":183
  *         else:
  *             raise ValueError
  *         tmp = data[offset[0]]             # <<<<<<<<<<<<<<
@@ -3343,17 +3333,17 @@ static PyObject *__pyx_f_7bencode_8_bencode_decode_dict(__Pyx_memviewslice __pyx
     __pyx_t_3 = (__pyx_v_offset[0]);
     __pyx_v_tmp = (*((uint8_t const  *) ( /* dim=0 */ ((char *) (((uint8_t const  *) __pyx_v_data.data) + __pyx_t_3)) )));
 
-    /* "bencode/_bencode.pyx":188
+    /* "bencode/_bencode.pyx":184
  *             raise ValueError
  *         tmp = data[offset[0]]
  *         ret[key] = v             # <<<<<<<<<<<<<<
  *     offset[0] += 1
  *     return ret
  */
-    if (unlikely(PyDict_SetItem(__pyx_v_ret, __pyx_v_key, __pyx_v_v) < 0)) __PYX_ERR(0, 188, __pyx_L1_error)
+    if (unlikely(PyDict_SetItem(__pyx_v_ret, __pyx_v_key, __pyx_v_v) < 0)) __PYX_ERR(0, 184, __pyx_L1_error)
   }
 
-  /* "bencode/_bencode.pyx":189
+  /* "bencode/_bencode.pyx":185
  *         tmp = data[offset[0]]
  *         ret[key] = v
  *     offset[0] += 1             # <<<<<<<<<<<<<<
@@ -3363,7 +3353,7 @@ static PyObject *__pyx_f_7bencode_8_bencode_decode_dict(__Pyx_memviewslice __pyx
   __pyx_t_2 = 0;
   (__pyx_v_offset[__pyx_t_2]) = ((__pyx_v_offset[__pyx_t_2]) + 1);
 
-  /* "bencode/_bencode.pyx":190
+  /* "bencode/_bencode.pyx":186
  *         ret[key] = v
  *     offset[0] += 1
  *     return ret             # <<<<<<<<<<<<<<
@@ -3375,7 +3365,7 @@ static PyObject *__pyx_f_7bencode_8_bencode_decode_dict(__Pyx_memviewslice __pyx
   __pyx_r = __pyx_v_ret;
   goto __pyx_L0;
 
-  /* "bencode/_bencode.pyx":159
+  /* "bencode/_bencode.pyx":155
  * 
  * 
  * cdef dict decode_dict(const uint8_t[::1] data ,  Py_ssize_t* offset):             # <<<<<<<<<<<<<<
@@ -3397,7 +3387,7 @@ static PyObject *__pyx_f_7bencode_8_bencode_decode_dict(__Pyx_memviewslice __pyx
   return __pyx_r;
 }
 
-/* "bencode/_bencode.pyx":209
+/* "bencode/_bencode.pyx":205
  * 
  * 
  * cpdef object bdecode(const uint8_t[::1] data):             # <<<<<<<<<<<<<<
@@ -3431,7 +3421,7 @@ static PyObject *__pyx_f_7bencode_8_bencode_bdecode(__Pyx_memviewslice __pyx_v_d
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("bdecode", 0);
 
-  /* "bencode/_bencode.pyx":215
+  /* "bencode/_bencode.pyx":211
  *     """
  *     cdef:
  *         Py_ssize_t offset = 0             # <<<<<<<<<<<<<<
@@ -3440,7 +3430,7 @@ static PyObject *__pyx_f_7bencode_8_bencode_bdecode(__Pyx_memviewslice __pyx_v_d
  */
   __pyx_v_offset = 0;
 
-  /* "bencode/_bencode.pyx":217
+  /* "bencode/_bencode.pyx":213
  *         Py_ssize_t offset = 0
  *         uint8_t tmp
  *     tmp = data[0]             # <<<<<<<<<<<<<<
@@ -3450,7 +3440,7 @@ static PyObject *__pyx_f_7bencode_8_bencode_bdecode(__Pyx_memviewslice __pyx_v_d
   __pyx_t_1 = 0;
   __pyx_v_tmp = (*((uint8_t const  *) ( /* dim=0 */ ((char *) (((uint8_t const  *) __pyx_v_data.data) + __pyx_t_1)) )));
 
-  /* "bencode/_bencode.pyx":218
+  /* "bencode/_bencode.pyx":214
  *         uint8_t tmp
  *     tmp = data[0]
  *     try:             # <<<<<<<<<<<<<<
@@ -3466,7 +3456,7 @@ static PyObject *__pyx_f_7bencode_8_bencode_bdecode(__Pyx_memviewslice __pyx_v_d
     __Pyx_XGOTREF(__pyx_t_4);
     /*try:*/ {
 
-      /* "bencode/_bencode.pyx":219
+      /* "bencode/_bencode.pyx":215
  *     tmp = data[0]
  *     try:
  *         if tmp == 108:             # <<<<<<<<<<<<<<
@@ -3476,19 +3466,19 @@ static PyObject *__pyx_f_7bencode_8_bencode_bdecode(__Pyx_memviewslice __pyx_v_d
       __pyx_t_5 = ((__pyx_v_tmp == 0x6C) != 0);
       if (__pyx_t_5) {
 
-        /* "bencode/_bencode.pyx":220
+        /* "bencode/_bencode.pyx":216
  *     try:
  *         if tmp == 108:
  *             v = decode_list(data, &offset)             # <<<<<<<<<<<<<<
  *         elif tmp == 100:
  *             v = decode_dict(data, &offset)
  */
-        __pyx_t_6 = __pyx_f_7bencode_8_bencode_decode_list(__pyx_v_data, (&__pyx_v_offset)); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 220, __pyx_L3_error)
+        __pyx_t_6 = __pyx_f_7bencode_8_bencode_decode_list(__pyx_v_data, (&__pyx_v_offset)); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 216, __pyx_L3_error)
         __Pyx_GOTREF(__pyx_t_6);
         __pyx_v_v = __pyx_t_6;
         __pyx_t_6 = 0;
 
-        /* "bencode/_bencode.pyx":219
+        /* "bencode/_bencode.pyx":215
  *     tmp = data[0]
  *     try:
  *         if tmp == 108:             # <<<<<<<<<<<<<<
@@ -3498,7 +3488,7 @@ static PyObject *__pyx_f_7bencode_8_bencode_bdecode(__Pyx_memviewslice __pyx_v_d
         goto __pyx_L9;
       }
 
-      /* "bencode/_bencode.pyx":221
+      /* "bencode/_bencode.pyx":217
  *         if tmp == 108:
  *             v = decode_list(data, &offset)
  *         elif tmp == 100:             # <<<<<<<<<<<<<<
@@ -3508,19 +3498,19 @@ static PyObject *__pyx_f_7bencode_8_bencode_bdecode(__Pyx_memviewslice __pyx_v_d
       __pyx_t_5 = ((__pyx_v_tmp == 0x64) != 0);
       if (__pyx_t_5) {
 
-        /* "bencode/_bencode.pyx":222
+        /* "bencode/_bencode.pyx":218
  *             v = decode_list(data, &offset)
  *         elif tmp == 100:
  *             v = decode_dict(data, &offset)             # <<<<<<<<<<<<<<
  *         elif tmp == 105:
  *             v = decode_int(data, &offset)
  */
-        __pyx_t_6 = __pyx_f_7bencode_8_bencode_decode_dict(__pyx_v_data, (&__pyx_v_offset)); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 222, __pyx_L3_error)
+        __pyx_t_6 = __pyx_f_7bencode_8_bencode_decode_dict(__pyx_v_data, (&__pyx_v_offset)); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 218, __pyx_L3_error)
         __Pyx_GOTREF(__pyx_t_6);
         __pyx_v_v = __pyx_t_6;
         __pyx_t_6 = 0;
 
-        /* "bencode/_bencode.pyx":221
+        /* "bencode/_bencode.pyx":217
  *         if tmp == 108:
  *             v = decode_list(data, &offset)
  *         elif tmp == 100:             # <<<<<<<<<<<<<<
@@ -3530,7 +3520,7 @@ static PyObject *__pyx_f_7bencode_8_bencode_bdecode(__Pyx_memviewslice __pyx_v_d
         goto __pyx_L9;
       }
 
-      /* "bencode/_bencode.pyx":223
+      /* "bencode/_bencode.pyx":219
  *         elif tmp == 100:
  *             v = decode_dict(data, &offset)
  *         elif tmp == 105:             # <<<<<<<<<<<<<<
@@ -3540,20 +3530,20 @@ static PyObject *__pyx_f_7bencode_8_bencode_bdecode(__Pyx_memviewslice __pyx_v_d
       __pyx_t_5 = ((__pyx_v_tmp == 0x69) != 0);
       if (__pyx_t_5) {
 
-        /* "bencode/_bencode.pyx":224
+        /* "bencode/_bencode.pyx":220
  *             v = decode_dict(data, &offset)
  *         elif tmp == 105:
  *             v = decode_int(data, &offset)             # <<<<<<<<<<<<<<
  *         elif 48 <= tmp <= 57:
  *             v = decode_string(data, &offset)
  */
-        __pyx_t_7 = __pyx_f_7bencode_8_bencode_decode_int(__pyx_v_data, (&__pyx_v_offset)); if (unlikely(__pyx_t_7 == ((Py_ssize_t)0) && PyErr_Occurred())) __PYX_ERR(0, 224, __pyx_L3_error)
-        __pyx_t_6 = PyInt_FromSsize_t(__pyx_t_7); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 224, __pyx_L3_error)
+        __pyx_t_7 = __pyx_f_7bencode_8_bencode_decode_int(__pyx_v_data, (&__pyx_v_offset)); if (unlikely(__pyx_t_7 == ((Py_ssize_t)0) && PyErr_Occurred())) __PYX_ERR(0, 220, __pyx_L3_error)
+        __pyx_t_6 = PyInt_FromSsize_t(__pyx_t_7); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 220, __pyx_L3_error)
         __Pyx_GOTREF(__pyx_t_6);
         __pyx_v_v = __pyx_t_6;
         __pyx_t_6 = 0;
 
-        /* "bencode/_bencode.pyx":223
+        /* "bencode/_bencode.pyx":219
  *         elif tmp == 100:
  *             v = decode_dict(data, &offset)
  *         elif tmp == 105:             # <<<<<<<<<<<<<<
@@ -3563,7 +3553,7 @@ static PyObject *__pyx_f_7bencode_8_bencode_bdecode(__Pyx_memviewslice __pyx_v_d
         goto __pyx_L9;
       }
 
-      /* "bencode/_bencode.pyx":225
+      /* "bencode/_bencode.pyx":221
  *         elif tmp == 105:
  *             v = decode_int(data, &offset)
  *         elif 48 <= tmp <= 57:             # <<<<<<<<<<<<<<
@@ -3577,19 +3567,19 @@ static PyObject *__pyx_f_7bencode_8_bencode_bdecode(__Pyx_memviewslice __pyx_v_d
       __pyx_t_8 = (__pyx_t_5 != 0);
       if (likely(__pyx_t_8)) {
 
-        /* "bencode/_bencode.pyx":226
+        /* "bencode/_bencode.pyx":222
  *             v = decode_int(data, &offset)
  *         elif 48 <= tmp <= 57:
  *             v = decode_string(data, &offset)             # <<<<<<<<<<<<<<
  *         else:
  *             raise ValueError
  */
-        __pyx_t_6 = __pyx_f_7bencode_8_bencode_decode_string(__pyx_v_data, (&__pyx_v_offset)); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 226, __pyx_L3_error)
+        __pyx_t_6 = __pyx_f_7bencode_8_bencode_decode_string(__pyx_v_data, (&__pyx_v_offset)); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 222, __pyx_L3_error)
         __Pyx_GOTREF(__pyx_t_6);
         __pyx_v_v = __pyx_t_6;
         __pyx_t_6 = 0;
 
-        /* "bencode/_bencode.pyx":225
+        /* "bencode/_bencode.pyx":221
  *         elif tmp == 105:
  *             v = decode_int(data, &offset)
  *         elif 48 <= tmp <= 57:             # <<<<<<<<<<<<<<
@@ -3599,7 +3589,7 @@ static PyObject *__pyx_f_7bencode_8_bencode_bdecode(__Pyx_memviewslice __pyx_v_d
         goto __pyx_L9;
       }
 
-      /* "bencode/_bencode.pyx":228
+      /* "bencode/_bencode.pyx":224
  *             v = decode_string(data, &offset)
  *         else:
  *             raise ValueError             # <<<<<<<<<<<<<<
@@ -3608,11 +3598,11 @@ static PyObject *__pyx_f_7bencode_8_bencode_bdecode(__Pyx_memviewslice __pyx_v_d
  */
       /*else*/ {
         __Pyx_Raise(__pyx_builtin_ValueError, 0, 0, 0);
-        __PYX_ERR(0, 228, __pyx_L3_error)
+        __PYX_ERR(0, 224, __pyx_L3_error)
       }
       __pyx_L9:;
 
-      /* "bencode/_bencode.pyx":218
+      /* "bencode/_bencode.pyx":214
  *         uint8_t tmp
  *     tmp = data[0]
  *     try:             # <<<<<<<<<<<<<<
@@ -3627,7 +3617,7 @@ static PyObject *__pyx_f_7bencode_8_bencode_bdecode(__Pyx_memviewslice __pyx_v_d
     __pyx_L3_error:;
     __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
 
-    /* "bencode/_bencode.pyx":229
+    /* "bencode/_bencode.pyx":225
  *         else:
  *             raise ValueError
  *     except (IndexError, KeyError, ValueError):             # <<<<<<<<<<<<<<
@@ -3637,19 +3627,19 @@ static PyObject *__pyx_f_7bencode_8_bencode_bdecode(__Pyx_memviewslice __pyx_v_d
     __pyx_t_9 = __Pyx_PyErr_ExceptionMatches(__pyx_builtin_IndexError) || __Pyx_PyErr_ExceptionMatches(__pyx_builtin_KeyError) || __Pyx_PyErr_ExceptionMatches(__pyx_builtin_ValueError);
     if (__pyx_t_9) {
       __Pyx_AddTraceback("bencode._bencode.bdecode", __pyx_clineno, __pyx_lineno, __pyx_filename);
-      if (__Pyx_GetException(&__pyx_t_6, &__pyx_t_10, &__pyx_t_11) < 0) __PYX_ERR(0, 229, __pyx_L5_except_error)
+      if (__Pyx_GetException(&__pyx_t_6, &__pyx_t_10, &__pyx_t_11) < 0) __PYX_ERR(0, 225, __pyx_L5_except_error)
       __Pyx_GOTREF(__pyx_t_6);
       __Pyx_GOTREF(__pyx_t_10);
       __Pyx_GOTREF(__pyx_t_11);
 
-      /* "bencode/_bencode.pyx":230
+      /* "bencode/_bencode.pyx":226
  *             raise ValueError
  *     except (IndexError, KeyError, ValueError):
  *         raise BTFailure("not a valid bencoded string")             # <<<<<<<<<<<<<<
  *     if offset != data.shape[0]:
  *         raise BTFailure("invalid bencoded value (data after valid prefix)")
  */
-      __Pyx_GetModuleGlobalName(__pyx_t_13, __pyx_n_s_BTFailure); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 230, __pyx_L5_except_error)
+      __Pyx_GetModuleGlobalName(__pyx_t_13, __pyx_n_s_BTFailure); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 226, __pyx_L5_except_error)
       __Pyx_GOTREF(__pyx_t_13);
       __pyx_t_14 = NULL;
       if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_13))) {
@@ -3663,17 +3653,17 @@ static PyObject *__pyx_f_7bencode_8_bencode_bdecode(__Pyx_memviewslice __pyx_v_d
       }
       __pyx_t_12 = (__pyx_t_14) ? __Pyx_PyObject_Call2Args(__pyx_t_13, __pyx_t_14, __pyx_kp_u_not_a_valid_bencoded_string) : __Pyx_PyObject_CallOneArg(__pyx_t_13, __pyx_kp_u_not_a_valid_bencoded_string);
       __Pyx_XDECREF(__pyx_t_14); __pyx_t_14 = 0;
-      if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 230, __pyx_L5_except_error)
+      if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 226, __pyx_L5_except_error)
       __Pyx_GOTREF(__pyx_t_12);
       __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
       __Pyx_Raise(__pyx_t_12, 0, 0, 0);
       __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
-      __PYX_ERR(0, 230, __pyx_L5_except_error)
+      __PYX_ERR(0, 226, __pyx_L5_except_error)
     }
     goto __pyx_L5_except_error;
     __pyx_L5_except_error:;
 
-    /* "bencode/_bencode.pyx":218
+    /* "bencode/_bencode.pyx":214
  *         uint8_t tmp
  *     tmp = data[0]
  *     try:             # <<<<<<<<<<<<<<
@@ -3688,7 +3678,7 @@ static PyObject *__pyx_f_7bencode_8_bencode_bdecode(__Pyx_memviewslice __pyx_v_d
     __pyx_L8_try_end:;
   }
 
-  /* "bencode/_bencode.pyx":231
+  /* "bencode/_bencode.pyx":227
  *     except (IndexError, KeyError, ValueError):
  *         raise BTFailure("not a valid bencoded string")
  *     if offset != data.shape[0]:             # <<<<<<<<<<<<<<
@@ -3698,14 +3688,14 @@ static PyObject *__pyx_f_7bencode_8_bencode_bdecode(__Pyx_memviewslice __pyx_v_d
   __pyx_t_8 = ((__pyx_v_offset != (__pyx_v_data.shape[0])) != 0);
   if (unlikely(__pyx_t_8)) {
 
-    /* "bencode/_bencode.pyx":232
+    /* "bencode/_bencode.pyx":228
  *         raise BTFailure("not a valid bencoded string")
  *     if offset != data.shape[0]:
  *         raise BTFailure("invalid bencoded value (data after valid prefix)")             # <<<<<<<<<<<<<<
  *     return v
  * 
  */
-    __Pyx_GetModuleGlobalName(__pyx_t_10, __pyx_n_s_BTFailure); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 232, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_10, __pyx_n_s_BTFailure); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 228, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_10);
     __pyx_t_6 = NULL;
     if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_10))) {
@@ -3719,14 +3709,14 @@ static PyObject *__pyx_f_7bencode_8_bencode_bdecode(__Pyx_memviewslice __pyx_v_d
     }
     __pyx_t_11 = (__pyx_t_6) ? __Pyx_PyObject_Call2Args(__pyx_t_10, __pyx_t_6, __pyx_kp_u_invalid_bencoded_value_data_afte) : __Pyx_PyObject_CallOneArg(__pyx_t_10, __pyx_kp_u_invalid_bencoded_value_data_afte);
     __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
-    if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 232, __pyx_L1_error)
+    if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 228, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_11);
     __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
     __Pyx_Raise(__pyx_t_11, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
-    __PYX_ERR(0, 232, __pyx_L1_error)
+    __PYX_ERR(0, 228, __pyx_L1_error)
 
-    /* "bencode/_bencode.pyx":231
+    /* "bencode/_bencode.pyx":227
  *     except (IndexError, KeyError, ValueError):
  *         raise BTFailure("not a valid bencoded string")
  *     if offset != data.shape[0]:             # <<<<<<<<<<<<<<
@@ -3735,7 +3725,7 @@ static PyObject *__pyx_f_7bencode_8_bencode_bdecode(__Pyx_memviewslice __pyx_v_d
  */
   }
 
-  /* "bencode/_bencode.pyx":233
+  /* "bencode/_bencode.pyx":229
  *     if offset != data.shape[0]:
  *         raise BTFailure("invalid bencoded value (data after valid prefix)")
  *     return v             # <<<<<<<<<<<<<<
@@ -3747,7 +3737,7 @@ static PyObject *__pyx_f_7bencode_8_bencode_bdecode(__Pyx_memviewslice __pyx_v_d
   __pyx_r = __pyx_v_v;
   goto __pyx_L0;
 
-  /* "bencode/_bencode.pyx":209
+  /* "bencode/_bencode.pyx":205
  * 
  * 
  * cpdef object bdecode(const uint8_t[::1] data):             # <<<<<<<<<<<<<<
@@ -3784,7 +3774,7 @@ static PyObject *__pyx_pw_7bencode_8_bencode_1bdecode(PyObject *__pyx_self, PyOb
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("bdecode (wrapper)", 0);
   assert(__pyx_arg_data); {
-    __pyx_v_data = __Pyx_PyObject_to_MemoryviewSlice_dc_nn_uint8_t__const__(__pyx_arg_data, 0); if (unlikely(!__pyx_v_data.memview)) __PYX_ERR(0, 209, __pyx_L3_error)
+    __pyx_v_data = __Pyx_PyObject_to_MemoryviewSlice_dc_nn_uint8_t__const__(__pyx_arg_data, 0); if (unlikely(!__pyx_v_data.memview)) __PYX_ERR(0, 205, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -3808,8 +3798,8 @@ static PyObject *__pyx_pf_7bencode_8_bencode_bdecode(CYTHON_UNUSED PyObject *__p
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("bdecode", 0);
   __Pyx_XDECREF(__pyx_r);
-  if (unlikely(!__pyx_v_data.memview)) { __Pyx_RaiseUnboundLocalError("data"); __PYX_ERR(0, 209, __pyx_L1_error) }
-  __pyx_t_1 = __pyx_f_7bencode_8_bencode_bdecode(__pyx_v_data, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 209, __pyx_L1_error)
+  if (unlikely(!__pyx_v_data.memview)) { __Pyx_RaiseUnboundLocalError("data"); __PYX_ERR(0, 205, __pyx_L1_error) }
+  __pyx_t_1 = __pyx_f_7bencode_8_bencode_bdecode(__pyx_v_data, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 205, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -3827,7 +3817,7 @@ static PyObject *__pyx_pf_7bencode_8_bencode_bdecode(CYTHON_UNUSED PyObject *__p
   return __pyx_r;
 }
 
-/* "bencode/_bencode.pyx":239
+/* "bencode/_bencode.pyx":235
  *     cdef public bytes bencoded
  * 
  *     def __cinit__(self, bytes s):             # <<<<<<<<<<<<<<
@@ -3864,7 +3854,7 @@ static int __pyx_pw_7bencode_8_bencode_9Bencached_1__cinit__(PyObject *__pyx_v_s
         else goto __pyx_L5_argtuple_error;
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__cinit__") < 0)) __PYX_ERR(0, 239, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__cinit__") < 0)) __PYX_ERR(0, 235, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 1) {
       goto __pyx_L5_argtuple_error;
@@ -3875,13 +3865,13 @@ static int __pyx_pw_7bencode_8_bencode_9Bencached_1__cinit__(PyObject *__pyx_v_s
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 1, 1, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 239, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 1, 1, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 235, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("bencode._bencode.Bencached.__cinit__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return -1;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_s), (&PyBytes_Type), 1, "s", 1))) __PYX_ERR(0, 239, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_s), (&PyBytes_Type), 1, "s", 1))) __PYX_ERR(0, 235, __pyx_L1_error)
   __pyx_r = __pyx_pf_7bencode_8_bencode_9Bencached___cinit__(((struct __pyx_obj_7bencode_8_bencode_Bencached *)__pyx_v_self), __pyx_v_s);
 
   /* function exit code */
@@ -3898,7 +3888,7 @@ static int __pyx_pf_7bencode_8_bencode_9Bencached___cinit__(struct __pyx_obj_7be
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__cinit__", 0);
 
-  /* "bencode/_bencode.pyx":240
+  /* "bencode/_bencode.pyx":236
  * 
  *     def __cinit__(self, bytes s):
  *         self.bencoded = s  # type: bytes             # <<<<<<<<<<<<<<
@@ -3911,7 +3901,7 @@ static int __pyx_pf_7bencode_8_bencode_9Bencached___cinit__(struct __pyx_obj_7be
   __Pyx_DECREF(__pyx_v_self->bencoded);
   __pyx_v_self->bencoded = __pyx_v_s;
 
-  /* "bencode/_bencode.pyx":239
+  /* "bencode/_bencode.pyx":235
  *     cdef public bytes bencoded
  * 
  *     def __cinit__(self, bytes s):             # <<<<<<<<<<<<<<
@@ -3925,7 +3915,7 @@ static int __pyx_pf_7bencode_8_bencode_9Bencached___cinit__(struct __pyx_obj_7be
   return __pyx_r;
 }
 
-/* "bencode/_bencode.pyx":237
+/* "bencode/_bencode.pyx":233
  * 
  * cdef class Bencached:
  *     cdef public bytes bencoded             # <<<<<<<<<<<<<<
@@ -3983,7 +3973,7 @@ static int __pyx_pf_7bencode_8_bencode_9Bencached_8bencoded_2__set__(struct __py
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__set__", 0);
-  if (!(likely(PyBytes_CheckExact(__pyx_v_value))||((__pyx_v_value) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "bytes", Py_TYPE(__pyx_v_value)->tp_name), 0))) __PYX_ERR(0, 237, __pyx_L1_error)
+  if (!(likely(PyBytes_CheckExact(__pyx_v_value))||((__pyx_v_value) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "bytes", Py_TYPE(__pyx_v_value)->tp_name), 0))) __PYX_ERR(0, 233, __pyx_L1_error)
   __pyx_t_1 = __pyx_v_value;
   __Pyx_INCREF(__pyx_t_1);
   __Pyx_GIVEREF(__pyx_t_1);
@@ -4148,7 +4138,7 @@ static PyObject *__pyx_pf_7bencode_8_bencode_9Bencached_4__setstate_cython__(CYT
   return __pyx_r;
 }
 
-/* "bencode/_bencode.pyx":243
+/* "bencode/_bencode.pyx":239
  * 
  * 
  * cdef encode_bencached(Bencached data, sds* r):             # <<<<<<<<<<<<<<
@@ -4168,7 +4158,7 @@ static PyObject *__pyx_f_7bencode_8_bencode_encode_bencached(struct __pyx_obj_7b
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("encode_bencached", 0);
 
-  /* "bencode/_bencode.pyx":244
+  /* "bencode/_bencode.pyx":240
  * 
  * cdef encode_bencached(Bencached data, sds* r):
  *     cdef Py_ssize_t data_size = PyBytes_GET_SIZE(data.bencoded)             # <<<<<<<<<<<<<<
@@ -4180,7 +4170,7 @@ static PyObject *__pyx_f_7bencode_8_bencode_encode_bencached(struct __pyx_obj_7b
   __pyx_v_data_size = PyBytes_GET_SIZE(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "bencode/_bencode.pyx":245
+  /* "bencode/_bencode.pyx":241
  * cdef encode_bencached(Bencached data, sds* r):
  *     cdef Py_ssize_t data_size = PyBytes_GET_SIZE(data.bencoded)
  *     cdef sds newsds = sdsMakeRoomFor(r[0], <size_t>data_size)             # <<<<<<<<<<<<<<
@@ -4189,7 +4179,7 @@ static PyObject *__pyx_f_7bencode_8_bencode_encode_bencached(struct __pyx_obj_7b
  */
   __pyx_v_newsds = sdsMakeRoomFor((__pyx_v_r[0]), ((size_t)__pyx_v_data_size));
 
-  /* "bencode/_bencode.pyx":246
+  /* "bencode/_bencode.pyx":242
  *     cdef Py_ssize_t data_size = PyBytes_GET_SIZE(data.bencoded)
  *     cdef sds newsds = sdsMakeRoomFor(r[0], <size_t>data_size)
  *     r[0] = newsds             # <<<<<<<<<<<<<<
@@ -4198,7 +4188,7 @@ static PyObject *__pyx_f_7bencode_8_bencode_encode_bencached(struct __pyx_obj_7b
  */
   (__pyx_v_r[0]) = __pyx_v_newsds;
 
-  /* "bencode/_bencode.pyx":247
+  /* "bencode/_bencode.pyx":243
  *     cdef sds newsds = sdsMakeRoomFor(r[0], <size_t>data_size)
  *     r[0] = newsds
  *     memcpy(newsds+sdslen(newsds), <char*>data.bencoded, <size_t>data_size)             # <<<<<<<<<<<<<<
@@ -4207,12 +4197,12 @@ static PyObject *__pyx_f_7bencode_8_bencode_encode_bencached(struct __pyx_obj_7b
  */
   if (unlikely(__pyx_v_data->bencoded == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "expected bytes, NoneType found");
-    __PYX_ERR(0, 247, __pyx_L1_error)
+    __PYX_ERR(0, 243, __pyx_L1_error)
   }
-  __pyx_t_2 = __Pyx_PyBytes_AsWritableString(__pyx_v_data->bencoded); if (unlikely((!__pyx_t_2) && PyErr_Occurred())) __PYX_ERR(0, 247, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyBytes_AsWritableString(__pyx_v_data->bencoded); if (unlikely((!__pyx_t_2) && PyErr_Occurred())) __PYX_ERR(0, 243, __pyx_L1_error)
   (void)(memcpy((__pyx_v_newsds + sdslen(__pyx_v_newsds)), ((char *)__pyx_t_2), ((size_t)__pyx_v_data_size)));
 
-  /* "bencode/_bencode.pyx":248
+  /* "bencode/_bencode.pyx":244
  *     r[0] = newsds
  *     memcpy(newsds+sdslen(newsds), <char*>data.bencoded, <size_t>data_size)
  *     sdsIncrLen(newsds, <ssize_t>data_size)             # <<<<<<<<<<<<<<
@@ -4221,7 +4211,7 @@ static PyObject *__pyx_f_7bencode_8_bencode_encode_bencached(struct __pyx_obj_7b
  */
   sdsIncrLen(__pyx_v_newsds, ((Py_ssize_t)__pyx_v_data_size));
 
-  /* "bencode/_bencode.pyx":243
+  /* "bencode/_bencode.pyx":239
  * 
  * 
  * cdef encode_bencached(Bencached data, sds* r):             # <<<<<<<<<<<<<<
@@ -4242,7 +4232,7 @@ static PyObject *__pyx_f_7bencode_8_bencode_encode_bencached(struct __pyx_obj_7b
   return __pyx_r;
 }
 
-/* "bencode/_bencode.pyx":251
+/* "bencode/_bencode.pyx":247
  * 
  * 
  * cdef encode_int(Py_ssize_t data, sds* r):             # <<<<<<<<<<<<<<
@@ -4257,7 +4247,7 @@ static PyObject *__pyx_f_7bencode_8_bencode_encode_int(Py_ssize_t __pyx_v_data, 
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("encode_int", 0);
 
-  /* "bencode/_bencode.pyx":253
+  /* "bencode/_bencode.pyx":249
  * cdef encode_int(Py_ssize_t data, sds* r):
  *     # cdef char buf[20]
  *     cdef sds newsds = sdsMakeRoomFor(r[0], 20)             # <<<<<<<<<<<<<<
@@ -4266,7 +4256,7 @@ static PyObject *__pyx_f_7bencode_8_bencode_encode_int(Py_ssize_t __pyx_v_data, 
  */
   __pyx_v_newsds = sdsMakeRoomFor((__pyx_v_r[0]), 20);
 
-  /* "bencode/_bencode.pyx":254
+  /* "bencode/_bencode.pyx":250
  *     # cdef char buf[20]
  *     cdef sds newsds = sdsMakeRoomFor(r[0], 20)
  *     r[0] = newsds             # <<<<<<<<<<<<<<
@@ -4275,7 +4265,7 @@ static PyObject *__pyx_f_7bencode_8_bencode_encode_int(Py_ssize_t __pyx_v_data, 
  */
   (__pyx_v_r[0]) = __pyx_v_newsds;
 
-  /* "bencode/_bencode.pyx":255
+  /* "bencode/_bencode.pyx":251
  *     cdef sds newsds = sdsMakeRoomFor(r[0], 20)
  *     r[0] = newsds
  *     cdef int count = PyOS_snprintf(newsds+sdslen(newsds), 20,"i%lde", data)             # <<<<<<<<<<<<<<
@@ -4284,7 +4274,7 @@ static PyObject *__pyx_f_7bencode_8_bencode_encode_int(Py_ssize_t __pyx_v_data, 
  */
   __pyx_v_count = PyOS_snprintf((__pyx_v_newsds + sdslen(__pyx_v_newsds)), 20, ((char const *)"i%lde"), __pyx_v_data);
 
-  /* "bencode/_bencode.pyx":257
+  /* "bencode/_bencode.pyx":253
  *     cdef int count = PyOS_snprintf(newsds+sdslen(newsds), 20,"i%lde", data)
  *     # r.write(<bytes>buf[:count])
  *     sdsIncrLen(newsds, <ssize_t> count)             # <<<<<<<<<<<<<<
@@ -4293,7 +4283,7 @@ static PyObject *__pyx_f_7bencode_8_bencode_encode_int(Py_ssize_t __pyx_v_data, 
  */
   sdsIncrLen(__pyx_v_newsds, ((Py_ssize_t)__pyx_v_count));
 
-  /* "bencode/_bencode.pyx":251
+  /* "bencode/_bencode.pyx":247
  * 
  * 
  * cdef encode_int(Py_ssize_t data, sds* r):             # <<<<<<<<<<<<<<
@@ -4308,7 +4298,7 @@ static PyObject *__pyx_f_7bencode_8_bencode_encode_int(Py_ssize_t __pyx_v_data, 
   return __pyx_r;
 }
 
-/* "bencode/_bencode.pyx":259
+/* "bencode/_bencode.pyx":255
  *     sdsIncrLen(newsds, <ssize_t> count)
  * 
  * cdef encode_bool(bint data, sds* r):             # <<<<<<<<<<<<<<
@@ -4326,7 +4316,7 @@ static PyObject *__pyx_f_7bencode_8_bencode_encode_bool(int __pyx_v_data, sds *_
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("encode_bool", 0);
 
-  /* "bencode/_bencode.pyx":260
+  /* "bencode/_bencode.pyx":256
  * 
  * cdef encode_bool(bint data, sds* r):
  *     if data:             # <<<<<<<<<<<<<<
@@ -4336,18 +4326,18 @@ static PyObject *__pyx_f_7bencode_8_bencode_encode_bool(int __pyx_v_data, sds *_
   __pyx_t_1 = (__pyx_v_data != 0);
   if (__pyx_t_1) {
 
-    /* "bencode/_bencode.pyx":261
+    /* "bencode/_bencode.pyx":257
  * cdef encode_bool(bint data, sds* r):
  *     if data:
  *         encode_int(1, r)             # <<<<<<<<<<<<<<
  *     else:
  *         encode_int(0, r)
  */
-    __pyx_t_2 = __pyx_f_7bencode_8_bencode_encode_int(1, __pyx_v_r); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 261, __pyx_L1_error)
+    __pyx_t_2 = __pyx_f_7bencode_8_bencode_encode_int(1, __pyx_v_r); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 257, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-    /* "bencode/_bencode.pyx":260
+    /* "bencode/_bencode.pyx":256
  * 
  * cdef encode_bool(bint data, sds* r):
  *     if data:             # <<<<<<<<<<<<<<
@@ -4357,7 +4347,7 @@ static PyObject *__pyx_f_7bencode_8_bencode_encode_bool(int __pyx_v_data, sds *_
     goto __pyx_L3;
   }
 
-  /* "bencode/_bencode.pyx":263
+  /* "bencode/_bencode.pyx":259
  *         encode_int(1, r)
  *     else:
  *         encode_int(0, r)             # <<<<<<<<<<<<<<
@@ -4365,13 +4355,13 @@ static PyObject *__pyx_f_7bencode_8_bencode_encode_bool(int __pyx_v_data, sds *_
  * 
  */
   /*else*/ {
-    __pyx_t_2 = __pyx_f_7bencode_8_bencode_encode_int(0, __pyx_v_r); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 263, __pyx_L1_error)
+    __pyx_t_2 = __pyx_f_7bencode_8_bencode_encode_int(0, __pyx_v_r); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 259, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   }
   __pyx_L3:;
 
-  /* "bencode/_bencode.pyx":259
+  /* "bencode/_bencode.pyx":255
  *     sdsIncrLen(newsds, <ssize_t> count)
  * 
  * cdef encode_bool(bint data, sds* r):             # <<<<<<<<<<<<<<
@@ -4392,7 +4382,7 @@ static PyObject *__pyx_f_7bencode_8_bencode_encode_bool(int __pyx_v_data, sds *_
   return __pyx_r;
 }
 
-/* "bencode/_bencode.pyx":266
+/* "bencode/_bencode.pyx":262
  * 
  * 
  * cdef int encode_string(str data, sds* r) except? -1:             # <<<<<<<<<<<<<<
@@ -4411,7 +4401,7 @@ static int __pyx_f_7bencode_8_bencode_encode_string(PyObject *__pyx_v_data, sds 
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("encode_string", 0);
 
-  /* "bencode/_bencode.pyx":279
+  /* "bencode/_bencode.pyx":275
  *     # finally:
  *     #     PyMem_Free(buf)
  *     return encode_bytes(data.encode(), r)             # <<<<<<<<<<<<<<
@@ -4420,20 +4410,20 @@ static int __pyx_f_7bencode_8_bencode_encode_string(PyObject *__pyx_v_data, sds 
  */
   if (unlikely(__pyx_v_data == Py_None)) {
     PyErr_Format(PyExc_AttributeError, "'NoneType' object has no attribute '%.30s'", "encode");
-    __PYX_ERR(0, 279, __pyx_L1_error)
+    __PYX_ERR(0, 275, __pyx_L1_error)
   }
-  __pyx_t_1 = PyUnicode_AsEncodedString(__pyx_v_data, NULL, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 279, __pyx_L1_error)
+  __pyx_t_1 = PyUnicode_AsEncodedString(__pyx_v_data, NULL, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 275, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_to_MemoryviewSlice_dc_nn_uint8_t__const__(__pyx_t_1, 0); if (unlikely(!__pyx_t_2.memview)) __PYX_ERR(0, 279, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_to_MemoryviewSlice_dc_nn_uint8_t__const__(__pyx_t_1, 0); if (unlikely(!__pyx_t_2.memview)) __PYX_ERR(0, 275, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_3 = __pyx_f_7bencode_8_bencode_encode_bytes(__pyx_t_2, __pyx_v_r); if (unlikely(__pyx_t_3 == ((int)-1) && PyErr_Occurred())) __PYX_ERR(0, 279, __pyx_L1_error)
+  __pyx_t_3 = __pyx_f_7bencode_8_bencode_encode_bytes(__pyx_t_2, __pyx_v_r); if (unlikely(__pyx_t_3 == ((int)-1) && PyErr_Occurred())) __PYX_ERR(0, 275, __pyx_L1_error)
   __PYX_XDEC_MEMVIEW(&__pyx_t_2, 1);
   __pyx_t_2.memview = NULL;
   __pyx_t_2.data = NULL;
   __pyx_r = __pyx_t_3;
   goto __pyx_L0;
 
-  /* "bencode/_bencode.pyx":266
+  /* "bencode/_bencode.pyx":262
  * 
  * 
  * cdef int encode_string(str data, sds* r) except? -1:             # <<<<<<<<<<<<<<
@@ -4452,7 +4442,7 @@ static int __pyx_f_7bencode_8_bencode_encode_string(PyObject *__pyx_v_data, sds 
   return __pyx_r;
 }
 
-/* "bencode/_bencode.pyx":281
+/* "bencode/_bencode.pyx":277
  *     return encode_bytes(data.encode(), r)
  * 
  * cdef int encode_bytes(const uint8_t[::1] data, sds* r) except? -1:             # <<<<<<<<<<<<<<
@@ -4469,7 +4459,7 @@ static int __pyx_f_7bencode_8_bencode_encode_bytes(__Pyx_memviewslice __pyx_v_da
   Py_ssize_t __pyx_t_1;
   __Pyx_RefNannySetupContext("encode_bytes", 0);
 
-  /* "bencode/_bencode.pyx":283
+  /* "bencode/_bencode.pyx":279
  * cdef int encode_bytes(const uint8_t[::1] data, sds* r) except? -1:
  *     cdef:
  *         Py_ssize_t size = data.shape[0]             # <<<<<<<<<<<<<<
@@ -4478,7 +4468,7 @@ static int __pyx_f_7bencode_8_bencode_encode_bytes(__Pyx_memviewslice __pyx_v_da
  */
   __pyx_v_size = (__pyx_v_data.shape[0]);
 
-  /* "bencode/_bencode.pyx":285
+  /* "bencode/_bencode.pyx":281
  *         Py_ssize_t size = data.shape[0]
  *         int count
  *     cdef sds newsds = sdsMakeRoomFor(r[0], <size_t>size + 30)             # <<<<<<<<<<<<<<
@@ -4487,7 +4477,7 @@ static int __pyx_f_7bencode_8_bencode_encode_bytes(__Pyx_memviewslice __pyx_v_da
  */
   __pyx_v_newsds = sdsMakeRoomFor((__pyx_v_r[0]), (((size_t)__pyx_v_size) + 30));
 
-  /* "bencode/_bencode.pyx":286
+  /* "bencode/_bencode.pyx":282
  *         int count
  *     cdef sds newsds = sdsMakeRoomFor(r[0], <size_t>size + 30)
  *     r[0] = newsds             # <<<<<<<<<<<<<<
@@ -4496,7 +4486,7 @@ static int __pyx_f_7bencode_8_bencode_encode_bytes(__Pyx_memviewslice __pyx_v_da
  */
   (__pyx_v_r[0]) = __pyx_v_newsds;
 
-  /* "bencode/_bencode.pyx":287
+  /* "bencode/_bencode.pyx":283
  *     cdef sds newsds = sdsMakeRoomFor(r[0], <size_t>size + 30)
  *     r[0] = newsds
  *     count = PyOS_snprintf(newsds+sdslen(newsds), <size_t>size + 30, "%ld:", size)             # <<<<<<<<<<<<<<
@@ -4505,7 +4495,7 @@ static int __pyx_f_7bencode_8_bencode_encode_bytes(__Pyx_memviewslice __pyx_v_da
  */
   __pyx_v_count = PyOS_snprintf((__pyx_v_newsds + sdslen(__pyx_v_newsds)), (((size_t)__pyx_v_size) + 30), ((char const *)"%ld:"), __pyx_v_size);
 
-  /* "bencode/_bencode.pyx":288
+  /* "bencode/_bencode.pyx":284
  *     r[0] = newsds
  *     count = PyOS_snprintf(newsds+sdslen(newsds), <size_t>size + 30, "%ld:", size)
  *     sdsIncrLen(newsds, <ssize_t> count)             # <<<<<<<<<<<<<<
@@ -4514,7 +4504,7 @@ static int __pyx_f_7bencode_8_bencode_encode_bytes(__Pyx_memviewslice __pyx_v_da
  */
   sdsIncrLen(__pyx_v_newsds, ((Py_ssize_t)__pyx_v_count));
 
-  /* "bencode/_bencode.pyx":290
+  /* "bencode/_bencode.pyx":286
  *     sdsIncrLen(newsds, <ssize_t> count)
  *     # print(f"in encode_bytes, count = {count}")
  *     memcpy(newsds+sdslen(newsds), &data[0], <size_t>size)             # <<<<<<<<<<<<<<
@@ -4524,7 +4514,7 @@ static int __pyx_f_7bencode_8_bencode_encode_bytes(__Pyx_memviewslice __pyx_v_da
   __pyx_t_1 = 0;
   (void)(memcpy((__pyx_v_newsds + sdslen(__pyx_v_newsds)), (&(*((uint8_t const  *) ( /* dim=0 */ ((char *) (((uint8_t const  *) __pyx_v_data.data) + __pyx_t_1)) )))), ((size_t)__pyx_v_size)));
 
-  /* "bencode/_bencode.pyx":292
+  /* "bencode/_bencode.pyx":288
  *     memcpy(newsds+sdslen(newsds), &data[0], <size_t>size)
  *     # r.write(<bytes>buf[:count+<int>size])
  *     sdsIncrLen(newsds, <ssize_t> size)             # <<<<<<<<<<<<<<
@@ -4533,7 +4523,7 @@ static int __pyx_f_7bencode_8_bencode_encode_bytes(__Pyx_memviewslice __pyx_v_da
  */
   sdsIncrLen(__pyx_v_newsds, ((Py_ssize_t)__pyx_v_size));
 
-  /* "bencode/_bencode.pyx":281
+  /* "bencode/_bencode.pyx":277
  *     return encode_bytes(data.encode(), r)
  * 
  * cdef int encode_bytes(const uint8_t[::1] data, sds* r) except? -1:             # <<<<<<<<<<<<<<
@@ -4547,7 +4537,7 @@ static int __pyx_f_7bencode_8_bencode_encode_bytes(__Pyx_memviewslice __pyx_v_da
   return __pyx_r;
 }
 
-/* "bencode/_bencode.pyx":296
+/* "bencode/_bencode.pyx":292
  * 
  * 
  * cdef int encode_list(list data, sds* r) except? -1:             # <<<<<<<<<<<<<<
@@ -4573,7 +4563,7 @@ static int __pyx_f_7bencode_8_bencode_encode_list(PyObject *__pyx_v_data, sds *_
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("encode_list", 0);
 
-  /* "bencode/_bencode.pyx":298
+  /* "bencode/_bencode.pyx":294
  * cdef int encode_list(list data, sds* r) except? -1:
  *     # r.write(b'l')
  *     r[0] = sdscat(r[0], 'l')             # <<<<<<<<<<<<<<
@@ -4582,7 +4572,7 @@ static int __pyx_f_7bencode_8_bencode_encode_list(PyObject *__pyx_v_data, sds *_
  */
   (__pyx_v_r[0]) = sdscat((__pyx_v_r[0]), ((char *)"l"));
 
-  /* "bencode/_bencode.pyx":299
+  /* "bencode/_bencode.pyx":295
  *     # r.write(b'l')
  *     r[0] = sdscat(r[0], 'l')
  *     for i in data:             # <<<<<<<<<<<<<<
@@ -4591,21 +4581,21 @@ static int __pyx_f_7bencode_8_bencode_encode_list(PyObject *__pyx_v_data, sds *_
  */
   if (unlikely(__pyx_v_data == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "'NoneType' object is not iterable");
-    __PYX_ERR(0, 299, __pyx_L1_error)
+    __PYX_ERR(0, 295, __pyx_L1_error)
   }
   __pyx_t_1 = __pyx_v_data; __Pyx_INCREF(__pyx_t_1); __pyx_t_2 = 0;
   for (;;) {
     if (__pyx_t_2 >= PyList_GET_SIZE(__pyx_t_1)) break;
     #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-    __pyx_t_3 = PyList_GET_ITEM(__pyx_t_1, __pyx_t_2); __Pyx_INCREF(__pyx_t_3); __pyx_t_2++; if (unlikely(0 < 0)) __PYX_ERR(0, 299, __pyx_L1_error)
+    __pyx_t_3 = PyList_GET_ITEM(__pyx_t_1, __pyx_t_2); __Pyx_INCREF(__pyx_t_3); __pyx_t_2++; if (unlikely(0 < 0)) __PYX_ERR(0, 295, __pyx_L1_error)
     #else
-    __pyx_t_3 = PySequence_ITEM(__pyx_t_1, __pyx_t_2); __pyx_t_2++; if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 299, __pyx_L1_error)
+    __pyx_t_3 = PySequence_ITEM(__pyx_t_1, __pyx_t_2); __pyx_t_2++; if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 295, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     #endif
     __Pyx_XDECREF_SET(__pyx_v_i, __pyx_t_3);
     __pyx_t_3 = 0;
 
-    /* "bencode/_bencode.pyx":301
+    /* "bencode/_bencode.pyx":297
  *     for i in data:
  *         # encode_func[type(i)](i, r)
  *         tp = type(i)             # <<<<<<<<<<<<<<
@@ -4615,31 +4605,31 @@ static int __pyx_f_7bencode_8_bencode_encode_list(PyObject *__pyx_v_data, sds *_
     __Pyx_INCREF(((PyObject *)Py_TYPE(__pyx_v_i)));
     __Pyx_XDECREF_SET(__pyx_v_tp, ((PyTypeObject*)((PyObject *)Py_TYPE(__pyx_v_i))));
 
-    /* "bencode/_bencode.pyx":302
+    /* "bencode/_bencode.pyx":298
  *         # encode_func[type(i)](i, r)
  *         tp = type(i)
  *         if tp == Bencached:             # <<<<<<<<<<<<<<
  *             encode_bencached(i, r)
  *         elif PyLong_Check(i):
  */
-    __pyx_t_3 = PyObject_RichCompare(((PyObject *)__pyx_v_tp), ((PyObject *)__pyx_ptype_7bencode_8_bencode_Bencached), Py_EQ); __Pyx_XGOTREF(__pyx_t_3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 302, __pyx_L1_error)
-    __pyx_t_4 = __Pyx_PyObject_IsTrue(__pyx_t_3); if (unlikely(__pyx_t_4 < 0)) __PYX_ERR(0, 302, __pyx_L1_error)
+    __pyx_t_3 = PyObject_RichCompare(((PyObject *)__pyx_v_tp), ((PyObject *)__pyx_ptype_7bencode_8_bencode_Bencached), Py_EQ); __Pyx_XGOTREF(__pyx_t_3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 298, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyObject_IsTrue(__pyx_t_3); if (unlikely(__pyx_t_4 < 0)) __PYX_ERR(0, 298, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     if (__pyx_t_4) {
 
-      /* "bencode/_bencode.pyx":303
+      /* "bencode/_bencode.pyx":299
  *         tp = type(i)
  *         if tp == Bencached:
  *             encode_bencached(i, r)             # <<<<<<<<<<<<<<
  *         elif PyLong_Check(i):
  *             encode_int(i, r)
  */
-      if (!(likely(((__pyx_v_i) == Py_None) || likely(__Pyx_TypeTest(__pyx_v_i, __pyx_ptype_7bencode_8_bencode_Bencached))))) __PYX_ERR(0, 303, __pyx_L1_error)
-      __pyx_t_3 = __pyx_f_7bencode_8_bencode_encode_bencached(((struct __pyx_obj_7bencode_8_bencode_Bencached *)__pyx_v_i), __pyx_v_r); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 303, __pyx_L1_error)
+      if (!(likely(((__pyx_v_i) == Py_None) || likely(__Pyx_TypeTest(__pyx_v_i, __pyx_ptype_7bencode_8_bencode_Bencached))))) __PYX_ERR(0, 299, __pyx_L1_error)
+      __pyx_t_3 = __pyx_f_7bencode_8_bencode_encode_bencached(((struct __pyx_obj_7bencode_8_bencode_Bencached *)__pyx_v_i), __pyx_v_r); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 299, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-      /* "bencode/_bencode.pyx":302
+      /* "bencode/_bencode.pyx":298
  *         # encode_func[type(i)](i, r)
  *         tp = type(i)
  *         if tp == Bencached:             # <<<<<<<<<<<<<<
@@ -4649,7 +4639,7 @@ static int __pyx_f_7bencode_8_bencode_encode_list(PyObject *__pyx_v_data, sds *_
       goto __pyx_L5;
     }
 
-    /* "bencode/_bencode.pyx":304
+    /* "bencode/_bencode.pyx":300
  *         if tp == Bencached:
  *             encode_bencached(i, r)
  *         elif PyLong_Check(i):             # <<<<<<<<<<<<<<
@@ -4659,19 +4649,19 @@ static int __pyx_f_7bencode_8_bencode_encode_list(PyObject *__pyx_v_data, sds *_
     __pyx_t_4 = (PyLong_Check(__pyx_v_i) != 0);
     if (__pyx_t_4) {
 
-      /* "bencode/_bencode.pyx":305
+      /* "bencode/_bencode.pyx":301
  *             encode_bencached(i, r)
  *         elif PyLong_Check(i):
  *             encode_int(i, r)             # <<<<<<<<<<<<<<
  *         elif PyUnicode_Check(i):
  *             encode_string(i, r)
  */
-      __pyx_t_5 = __Pyx_PyIndex_AsSsize_t(__pyx_v_i); if (unlikely((__pyx_t_5 == (Py_ssize_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 305, __pyx_L1_error)
-      __pyx_t_3 = __pyx_f_7bencode_8_bencode_encode_int(__pyx_t_5, __pyx_v_r); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 305, __pyx_L1_error)
+      __pyx_t_5 = __Pyx_PyIndex_AsSsize_t(__pyx_v_i); if (unlikely((__pyx_t_5 == (Py_ssize_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 301, __pyx_L1_error)
+      __pyx_t_3 = __pyx_f_7bencode_8_bencode_encode_int(__pyx_t_5, __pyx_v_r); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 301, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-      /* "bencode/_bencode.pyx":304
+      /* "bencode/_bencode.pyx":300
  *         if tp == Bencached:
  *             encode_bencached(i, r)
  *         elif PyLong_Check(i):             # <<<<<<<<<<<<<<
@@ -4681,7 +4671,7 @@ static int __pyx_f_7bencode_8_bencode_encode_list(PyObject *__pyx_v_data, sds *_
       goto __pyx_L5;
     }
 
-    /* "bencode/_bencode.pyx":306
+    /* "bencode/_bencode.pyx":302
  *         elif PyLong_Check(i):
  *             encode_int(i, r)
  *         elif PyUnicode_Check(i):             # <<<<<<<<<<<<<<
@@ -4691,17 +4681,17 @@ static int __pyx_f_7bencode_8_bencode_encode_list(PyObject *__pyx_v_data, sds *_
     __pyx_t_4 = (PyUnicode_Check(__pyx_v_i) != 0);
     if (__pyx_t_4) {
 
-      /* "bencode/_bencode.pyx":307
+      /* "bencode/_bencode.pyx":303
  *             encode_int(i, r)
  *         elif PyUnicode_Check(i):
  *             encode_string(i, r)             # <<<<<<<<<<<<<<
  *         elif PyBytes_Check(i) or PyByteArray_Check(i):
  *             encode_bytes(i, r)
  */
-      if (!(likely(PyUnicode_CheckExact(__pyx_v_i))||((__pyx_v_i) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "unicode", Py_TYPE(__pyx_v_i)->tp_name), 0))) __PYX_ERR(0, 307, __pyx_L1_error)
-      __pyx_t_6 = __pyx_f_7bencode_8_bencode_encode_string(((PyObject*)__pyx_v_i), __pyx_v_r); if (unlikely(__pyx_t_6 == ((int)-1) && PyErr_Occurred())) __PYX_ERR(0, 307, __pyx_L1_error)
+      if (!(likely(PyUnicode_CheckExact(__pyx_v_i))||((__pyx_v_i) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "unicode", Py_TYPE(__pyx_v_i)->tp_name), 0))) __PYX_ERR(0, 303, __pyx_L1_error)
+      __pyx_t_6 = __pyx_f_7bencode_8_bencode_encode_string(((PyObject*)__pyx_v_i), __pyx_v_r); if (unlikely(__pyx_t_6 == ((int)-1) && PyErr_Occurred())) __PYX_ERR(0, 303, __pyx_L1_error)
 
-      /* "bencode/_bencode.pyx":306
+      /* "bencode/_bencode.pyx":302
  *         elif PyLong_Check(i):
  *             encode_int(i, r)
  *         elif PyUnicode_Check(i):             # <<<<<<<<<<<<<<
@@ -4711,7 +4701,7 @@ static int __pyx_f_7bencode_8_bencode_encode_list(PyObject *__pyx_v_data, sds *_
       goto __pyx_L5;
     }
 
-    /* "bencode/_bencode.pyx":308
+    /* "bencode/_bencode.pyx":304
  *         elif PyUnicode_Check(i):
  *             encode_string(i, r)
  *         elif PyBytes_Check(i) or PyByteArray_Check(i):             # <<<<<<<<<<<<<<
@@ -4729,20 +4719,20 @@ static int __pyx_f_7bencode_8_bencode_encode_list(PyObject *__pyx_v_data, sds *_
     __pyx_L6_bool_binop_done:;
     if (__pyx_t_4) {
 
-      /* "bencode/_bencode.pyx":309
+      /* "bencode/_bencode.pyx":305
  *             encode_string(i, r)
  *         elif PyBytes_Check(i) or PyByteArray_Check(i):
  *             encode_bytes(i, r)             # <<<<<<<<<<<<<<
  *         elif PyList_Check(i) or PyTuple_Check(i):
  *             encode_list(i ,r)
  */
-      __pyx_t_8 = __Pyx_PyObject_to_MemoryviewSlice_dc_nn_uint8_t__const__(__pyx_v_i, 0); if (unlikely(!__pyx_t_8.memview)) __PYX_ERR(0, 309, __pyx_L1_error)
-      __pyx_t_6 = __pyx_f_7bencode_8_bencode_encode_bytes(__pyx_t_8, __pyx_v_r); if (unlikely(__pyx_t_6 == ((int)-1) && PyErr_Occurred())) __PYX_ERR(0, 309, __pyx_L1_error)
+      __pyx_t_8 = __Pyx_PyObject_to_MemoryviewSlice_dc_nn_uint8_t__const__(__pyx_v_i, 0); if (unlikely(!__pyx_t_8.memview)) __PYX_ERR(0, 305, __pyx_L1_error)
+      __pyx_t_6 = __pyx_f_7bencode_8_bencode_encode_bytes(__pyx_t_8, __pyx_v_r); if (unlikely(__pyx_t_6 == ((int)-1) && PyErr_Occurred())) __PYX_ERR(0, 305, __pyx_L1_error)
       __PYX_XDEC_MEMVIEW(&__pyx_t_8, 1);
       __pyx_t_8.memview = NULL;
       __pyx_t_8.data = NULL;
 
-      /* "bencode/_bencode.pyx":308
+      /* "bencode/_bencode.pyx":304
  *         elif PyUnicode_Check(i):
  *             encode_string(i, r)
  *         elif PyBytes_Check(i) or PyByteArray_Check(i):             # <<<<<<<<<<<<<<
@@ -4752,7 +4742,7 @@ static int __pyx_f_7bencode_8_bencode_encode_list(PyObject *__pyx_v_data, sds *_
       goto __pyx_L5;
     }
 
-    /* "bencode/_bencode.pyx":310
+    /* "bencode/_bencode.pyx":306
  *         elif PyBytes_Check(i) or PyByteArray_Check(i):
  *             encode_bytes(i, r)
  *         elif PyList_Check(i) or PyTuple_Check(i):             # <<<<<<<<<<<<<<
@@ -4770,17 +4760,17 @@ static int __pyx_f_7bencode_8_bencode_encode_list(PyObject *__pyx_v_data, sds *_
     __pyx_L8_bool_binop_done:;
     if (__pyx_t_4) {
 
-      /* "bencode/_bencode.pyx":311
+      /* "bencode/_bencode.pyx":307
  *             encode_bytes(i, r)
  *         elif PyList_Check(i) or PyTuple_Check(i):
  *             encode_list(i ,r)             # <<<<<<<<<<<<<<
  *         elif PyDict_Check(i):
  *             encode_dict(i ,r)
  */
-      if (!(likely(PyList_CheckExact(__pyx_v_i))||((__pyx_v_i) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "list", Py_TYPE(__pyx_v_i)->tp_name), 0))) __PYX_ERR(0, 311, __pyx_L1_error)
-      __pyx_t_6 = __pyx_f_7bencode_8_bencode_encode_list(((PyObject*)__pyx_v_i), __pyx_v_r); if (unlikely(__pyx_t_6 == ((int)-1) && PyErr_Occurred())) __PYX_ERR(0, 311, __pyx_L1_error)
+      if (!(likely(PyList_CheckExact(__pyx_v_i))||((__pyx_v_i) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "list", Py_TYPE(__pyx_v_i)->tp_name), 0))) __PYX_ERR(0, 307, __pyx_L1_error)
+      __pyx_t_6 = __pyx_f_7bencode_8_bencode_encode_list(((PyObject*)__pyx_v_i), __pyx_v_r); if (unlikely(__pyx_t_6 == ((int)-1) && PyErr_Occurred())) __PYX_ERR(0, 307, __pyx_L1_error)
 
-      /* "bencode/_bencode.pyx":310
+      /* "bencode/_bencode.pyx":306
  *         elif PyBytes_Check(i) or PyByteArray_Check(i):
  *             encode_bytes(i, r)
  *         elif PyList_Check(i) or PyTuple_Check(i):             # <<<<<<<<<<<<<<
@@ -4790,7 +4780,7 @@ static int __pyx_f_7bencode_8_bencode_encode_list(PyObject *__pyx_v_data, sds *_
       goto __pyx_L5;
     }
 
-    /* "bencode/_bencode.pyx":312
+    /* "bencode/_bencode.pyx":308
  *         elif PyList_Check(i) or PyTuple_Check(i):
  *             encode_list(i ,r)
  *         elif PyDict_Check(i):             # <<<<<<<<<<<<<<
@@ -4800,17 +4790,17 @@ static int __pyx_f_7bencode_8_bencode_encode_list(PyObject *__pyx_v_data, sds *_
     __pyx_t_4 = (PyDict_Check(__pyx_v_i) != 0);
     if (__pyx_t_4) {
 
-      /* "bencode/_bencode.pyx":313
+      /* "bencode/_bencode.pyx":309
  *             encode_list(i ,r)
  *         elif PyDict_Check(i):
  *             encode_dict(i ,r)             # <<<<<<<<<<<<<<
  *         elif PyBool_Check(i):
  *             encode_bool(i, r)
  */
-      if (!(likely(PyDict_CheckExact(__pyx_v_i))||((__pyx_v_i) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "dict", Py_TYPE(__pyx_v_i)->tp_name), 0))) __PYX_ERR(0, 313, __pyx_L1_error)
-      __pyx_t_6 = __pyx_f_7bencode_8_bencode_encode_dict(((PyObject*)__pyx_v_i), __pyx_v_r); if (unlikely(__pyx_t_6 == ((int)-1) && PyErr_Occurred())) __PYX_ERR(0, 313, __pyx_L1_error)
+      if (!(likely(PyDict_CheckExact(__pyx_v_i))||((__pyx_v_i) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "dict", Py_TYPE(__pyx_v_i)->tp_name), 0))) __PYX_ERR(0, 309, __pyx_L1_error)
+      __pyx_t_6 = __pyx_f_7bencode_8_bencode_encode_dict(((PyObject*)__pyx_v_i), __pyx_v_r); if (unlikely(__pyx_t_6 == ((int)-1) && PyErr_Occurred())) __PYX_ERR(0, 309, __pyx_L1_error)
 
-      /* "bencode/_bencode.pyx":312
+      /* "bencode/_bencode.pyx":308
  *         elif PyList_Check(i) or PyTuple_Check(i):
  *             encode_list(i ,r)
  *         elif PyDict_Check(i):             # <<<<<<<<<<<<<<
@@ -4820,7 +4810,7 @@ static int __pyx_f_7bencode_8_bencode_encode_list(PyObject *__pyx_v_data, sds *_
       goto __pyx_L5;
     }
 
-    /* "bencode/_bencode.pyx":314
+    /* "bencode/_bencode.pyx":310
  *         elif PyDict_Check(i):
  *             encode_dict(i ,r)
  *         elif PyBool_Check(i):             # <<<<<<<<<<<<<<
@@ -4830,19 +4820,19 @@ static int __pyx_f_7bencode_8_bencode_encode_list(PyObject *__pyx_v_data, sds *_
     __pyx_t_4 = (PyBool_Check(__pyx_v_i) != 0);
     if (__pyx_t_4) {
 
-      /* "bencode/_bencode.pyx":315
+      /* "bencode/_bencode.pyx":311
  *             encode_dict(i ,r)
  *         elif PyBool_Check(i):
  *             encode_bool(i, r)             # <<<<<<<<<<<<<<
  *     r[0] = sdscat(r[0], 'e')
  * 
  */
-      __pyx_t_4 = __Pyx_PyObject_IsTrue(__pyx_v_i); if (unlikely((__pyx_t_4 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 315, __pyx_L1_error)
-      __pyx_t_3 = __pyx_f_7bencode_8_bencode_encode_bool(__pyx_t_4, __pyx_v_r); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 315, __pyx_L1_error)
+      __pyx_t_4 = __Pyx_PyObject_IsTrue(__pyx_v_i); if (unlikely((__pyx_t_4 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 311, __pyx_L1_error)
+      __pyx_t_3 = __pyx_f_7bencode_8_bencode_encode_bool(__pyx_t_4, __pyx_v_r); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 311, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-      /* "bencode/_bencode.pyx":314
+      /* "bencode/_bencode.pyx":310
  *         elif PyDict_Check(i):
  *             encode_dict(i ,r)
  *         elif PyBool_Check(i):             # <<<<<<<<<<<<<<
@@ -4852,7 +4842,7 @@ static int __pyx_f_7bencode_8_bencode_encode_list(PyObject *__pyx_v_data, sds *_
     }
     __pyx_L5:;
 
-    /* "bencode/_bencode.pyx":299
+    /* "bencode/_bencode.pyx":295
  *     # r.write(b'l')
  *     r[0] = sdscat(r[0], 'l')
  *     for i in data:             # <<<<<<<<<<<<<<
@@ -4862,7 +4852,7 @@ static int __pyx_f_7bencode_8_bencode_encode_list(PyObject *__pyx_v_data, sds *_
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "bencode/_bencode.pyx":316
+  /* "bencode/_bencode.pyx":312
  *         elif PyBool_Check(i):
  *             encode_bool(i, r)
  *     r[0] = sdscat(r[0], 'e')             # <<<<<<<<<<<<<<
@@ -4871,7 +4861,7 @@ static int __pyx_f_7bencode_8_bencode_encode_list(PyObject *__pyx_v_data, sds *_
  */
   (__pyx_v_r[0]) = sdscat((__pyx_v_r[0]), ((char *)"e"));
 
-  /* "bencode/_bencode.pyx":296
+  /* "bencode/_bencode.pyx":292
  * 
  * 
  * cdef int encode_list(list data, sds* r) except? -1:             # <<<<<<<<<<<<<<
@@ -4895,7 +4885,7 @@ static int __pyx_f_7bencode_8_bencode_encode_list(PyObject *__pyx_v_data, sds *_
   return __pyx_r;
 }
 
-/* "bencode/_bencode.pyx":319
+/* "bencode/_bencode.pyx":315
  * 
  * 
  * cdef int encode_dict(dict data,sds* ret) except? -1:             # <<<<<<<<<<<<<<
@@ -4928,7 +4918,7 @@ static int __pyx_f_7bencode_8_bencode_encode_dict(PyObject *__pyx_v_data, sds *_
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("encode_dict", 0);
 
-  /* "bencode/_bencode.pyx":320
+  /* "bencode/_bencode.pyx":316
  * 
  * cdef int encode_dict(dict data,sds* ret) except? -1:
  *     ret[0] = sdscat(ret[0], 'd')             # <<<<<<<<<<<<<<
@@ -4937,7 +4927,7 @@ static int __pyx_f_7bencode_8_bencode_encode_dict(PyObject *__pyx_v_data, sds *_
  */
   (__pyx_v_ret[0]) = sdscat((__pyx_v_ret[0]), ((char *)"d"));
 
-  /* "bencode/_bencode.pyx":321
+  /* "bencode/_bencode.pyx":317
  * cdef int encode_dict(dict data,sds* ret) except? -1:
  *     ret[0] = sdscat(ret[0], 'd')
  *     cdef list ilist = list(data.items()) # todo should we sort?             # <<<<<<<<<<<<<<
@@ -4946,26 +4936,26 @@ static int __pyx_f_7bencode_8_bencode_encode_dict(PyObject *__pyx_v_data, sds *_
  */
   if (unlikely(__pyx_v_data == Py_None)) {
     PyErr_Format(PyExc_AttributeError, "'NoneType' object has no attribute '%.30s'", "items");
-    __PYX_ERR(0, 321, __pyx_L1_error)
+    __PYX_ERR(0, 317, __pyx_L1_error)
   }
-  __pyx_t_1 = __Pyx_PyDict_Items(__pyx_v_data); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 321, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyDict_Items(__pyx_v_data); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 317, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PySequence_List(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 321, __pyx_L1_error)
+  __pyx_t_2 = PySequence_List(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 317, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_ilist = ((PyObject*)__pyx_t_2);
   __pyx_t_2 = 0;
 
-  /* "bencode/_bencode.pyx":322
+  /* "bencode/_bencode.pyx":318
  *     ret[0] = sdscat(ret[0], 'd')
  *     cdef list ilist = list(data.items()) # todo should we sort?
  *     ilist.sort()             # <<<<<<<<<<<<<<
  *     for key, v in ilist:
  *         # ret.write(b''.join((str(len(k)).encode(), b':', k.encode() if isinstance(k, str) else k)))
  */
-  __pyx_t_3 = PyList_Sort(__pyx_v_ilist); if (unlikely(__pyx_t_3 == ((int)-1))) __PYX_ERR(0, 322, __pyx_L1_error)
+  __pyx_t_3 = PyList_Sort(__pyx_v_ilist); if (unlikely(__pyx_t_3 == ((int)-1))) __PYX_ERR(0, 318, __pyx_L1_error)
 
-  /* "bencode/_bencode.pyx":323
+  /* "bencode/_bencode.pyx":319
  *     cdef list ilist = list(data.items()) # todo should we sort?
  *     ilist.sort()
  *     for key, v in ilist:             # <<<<<<<<<<<<<<
@@ -4976,9 +4966,9 @@ static int __pyx_f_7bencode_8_bencode_encode_dict(PyObject *__pyx_v_data, sds *_
   for (;;) {
     if (__pyx_t_4 >= PyList_GET_SIZE(__pyx_t_2)) break;
     #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-    __pyx_t_1 = PyList_GET_ITEM(__pyx_t_2, __pyx_t_4); __Pyx_INCREF(__pyx_t_1); __pyx_t_4++; if (unlikely(0 < 0)) __PYX_ERR(0, 323, __pyx_L1_error)
+    __pyx_t_1 = PyList_GET_ITEM(__pyx_t_2, __pyx_t_4); __Pyx_INCREF(__pyx_t_1); __pyx_t_4++; if (unlikely(0 < 0)) __PYX_ERR(0, 319, __pyx_L1_error)
     #else
-    __pyx_t_1 = PySequence_ITEM(__pyx_t_2, __pyx_t_4); __pyx_t_4++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 323, __pyx_L1_error)
+    __pyx_t_1 = PySequence_ITEM(__pyx_t_2, __pyx_t_4); __pyx_t_4++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 319, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     #endif
     if ((likely(PyTuple_CheckExact(__pyx_t_1))) || (PyList_CheckExact(__pyx_t_1))) {
@@ -4987,7 +4977,7 @@ static int __pyx_f_7bencode_8_bencode_encode_dict(PyObject *__pyx_v_data, sds *_
       if (unlikely(size != 2)) {
         if (size > 2) __Pyx_RaiseTooManyValuesError(2);
         else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-        __PYX_ERR(0, 323, __pyx_L1_error)
+        __PYX_ERR(0, 319, __pyx_L1_error)
       }
       #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
       if (likely(PyTuple_CheckExact(sequence))) {
@@ -5000,15 +4990,15 @@ static int __pyx_f_7bencode_8_bencode_encode_dict(PyObject *__pyx_v_data, sds *_
       __Pyx_INCREF(__pyx_t_5);
       __Pyx_INCREF(__pyx_t_6);
       #else
-      __pyx_t_5 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 323, __pyx_L1_error)
+      __pyx_t_5 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 319, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
-      __pyx_t_6 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 323, __pyx_L1_error)
+      __pyx_t_6 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 319, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_6);
       #endif
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     } else {
       Py_ssize_t index = -1;
-      __pyx_t_7 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 323, __pyx_L1_error)
+      __pyx_t_7 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 319, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_7);
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       __pyx_t_8 = Py_TYPE(__pyx_t_7)->tp_iternext;
@@ -5016,7 +5006,7 @@ static int __pyx_f_7bencode_8_bencode_encode_dict(PyObject *__pyx_v_data, sds *_
       __Pyx_GOTREF(__pyx_t_5);
       index = 1; __pyx_t_6 = __pyx_t_8(__pyx_t_7); if (unlikely(!__pyx_t_6)) goto __pyx_L5_unpacking_failed;
       __Pyx_GOTREF(__pyx_t_6);
-      if (__Pyx_IternextUnpackEndCheck(__pyx_t_8(__pyx_t_7), 2) < 0) __PYX_ERR(0, 323, __pyx_L1_error)
+      if (__Pyx_IternextUnpackEndCheck(__pyx_t_8(__pyx_t_7), 2) < 0) __PYX_ERR(0, 319, __pyx_L1_error)
       __pyx_t_8 = NULL;
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
       goto __pyx_L6_unpacking_done;
@@ -5024,7 +5014,7 @@ static int __pyx_f_7bencode_8_bencode_encode_dict(PyObject *__pyx_v_data, sds *_
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
       __pyx_t_8 = NULL;
       if (__Pyx_IterFinish() == 0) __Pyx_RaiseNeedMoreValuesError(index);
-      __PYX_ERR(0, 323, __pyx_L1_error)
+      __PYX_ERR(0, 319, __pyx_L1_error)
       __pyx_L6_unpacking_done:;
     }
     __Pyx_XDECREF_SET(__pyx_v_key, __pyx_t_5);
@@ -5032,7 +5022,7 @@ static int __pyx_f_7bencode_8_bencode_encode_dict(PyObject *__pyx_v_data, sds *_
     __Pyx_XDECREF_SET(__pyx_v_v, __pyx_t_6);
     __pyx_t_6 = 0;
 
-    /* "bencode/_bencode.pyx":325
+    /* "bencode/_bencode.pyx":321
  *     for key, v in ilist:
  *         # ret.write(b''.join((str(len(k)).encode(), b':', k.encode() if isinstance(k, str) else k)))
  *         if PyUnicode_Check(key):             # <<<<<<<<<<<<<<
@@ -5042,17 +5032,17 @@ static int __pyx_f_7bencode_8_bencode_encode_dict(PyObject *__pyx_v_data, sds *_
     __pyx_t_9 = (PyUnicode_Check(__pyx_v_key) != 0);
     if (__pyx_t_9) {
 
-      /* "bencode/_bencode.pyx":326
+      /* "bencode/_bencode.pyx":322
  *         # ret.write(b''.join((str(len(k)).encode(), b':', k.encode() if isinstance(k, str) else k)))
  *         if PyUnicode_Check(key):
  *             encode_string(key ,ret)             # <<<<<<<<<<<<<<
  *         else:
  *             encode_bytes(key, ret)
  */
-      if (!(likely(PyUnicode_CheckExact(__pyx_v_key))||((__pyx_v_key) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "unicode", Py_TYPE(__pyx_v_key)->tp_name), 0))) __PYX_ERR(0, 326, __pyx_L1_error)
-      __pyx_t_10 = __pyx_f_7bencode_8_bencode_encode_string(((PyObject*)__pyx_v_key), __pyx_v_ret); if (unlikely(__pyx_t_10 == ((int)-1) && PyErr_Occurred())) __PYX_ERR(0, 326, __pyx_L1_error)
+      if (!(likely(PyUnicode_CheckExact(__pyx_v_key))||((__pyx_v_key) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "unicode", Py_TYPE(__pyx_v_key)->tp_name), 0))) __PYX_ERR(0, 322, __pyx_L1_error)
+      __pyx_t_10 = __pyx_f_7bencode_8_bencode_encode_string(((PyObject*)__pyx_v_key), __pyx_v_ret); if (unlikely(__pyx_t_10 == ((int)-1) && PyErr_Occurred())) __PYX_ERR(0, 322, __pyx_L1_error)
 
-      /* "bencode/_bencode.pyx":325
+      /* "bencode/_bencode.pyx":321
  *     for key, v in ilist:
  *         # ret.write(b''.join((str(len(k)).encode(), b':', k.encode() if isinstance(k, str) else k)))
  *         if PyUnicode_Check(key):             # <<<<<<<<<<<<<<
@@ -5062,7 +5052,7 @@ static int __pyx_f_7bencode_8_bencode_encode_dict(PyObject *__pyx_v_data, sds *_
       goto __pyx_L7;
     }
 
-    /* "bencode/_bencode.pyx":328
+    /* "bencode/_bencode.pyx":324
  *             encode_string(key ,ret)
  *         else:
  *             encode_bytes(key, ret)             # <<<<<<<<<<<<<<
@@ -5070,15 +5060,15 @@ static int __pyx_f_7bencode_8_bencode_encode_dict(PyObject *__pyx_v_data, sds *_
  *         if tp == Bencached:
  */
     /*else*/ {
-      __pyx_t_11 = __Pyx_PyObject_to_MemoryviewSlice_dc_nn_uint8_t__const__(__pyx_v_key, 0); if (unlikely(!__pyx_t_11.memview)) __PYX_ERR(0, 328, __pyx_L1_error)
-      __pyx_t_10 = __pyx_f_7bencode_8_bencode_encode_bytes(__pyx_t_11, __pyx_v_ret); if (unlikely(__pyx_t_10 == ((int)-1) && PyErr_Occurred())) __PYX_ERR(0, 328, __pyx_L1_error)
+      __pyx_t_11 = __Pyx_PyObject_to_MemoryviewSlice_dc_nn_uint8_t__const__(__pyx_v_key, 0); if (unlikely(!__pyx_t_11.memview)) __PYX_ERR(0, 324, __pyx_L1_error)
+      __pyx_t_10 = __pyx_f_7bencode_8_bencode_encode_bytes(__pyx_t_11, __pyx_v_ret); if (unlikely(__pyx_t_10 == ((int)-1) && PyErr_Occurred())) __PYX_ERR(0, 324, __pyx_L1_error)
       __PYX_XDEC_MEMVIEW(&__pyx_t_11, 1);
       __pyx_t_11.memview = NULL;
       __pyx_t_11.data = NULL;
     }
     __pyx_L7:;
 
-    /* "bencode/_bencode.pyx":329
+    /* "bencode/_bencode.pyx":325
  *         else:
  *             encode_bytes(key, ret)
  *         tp = type(v)             # <<<<<<<<<<<<<<
@@ -5088,31 +5078,31 @@ static int __pyx_f_7bencode_8_bencode_encode_dict(PyObject *__pyx_v_data, sds *_
     __Pyx_INCREF(((PyObject *)Py_TYPE(__pyx_v_v)));
     __Pyx_XDECREF_SET(__pyx_v_tp, ((PyTypeObject*)((PyObject *)Py_TYPE(__pyx_v_v))));
 
-    /* "bencode/_bencode.pyx":330
+    /* "bencode/_bencode.pyx":326
  *             encode_bytes(key, ret)
  *         tp = type(v)
  *         if tp == Bencached:             # <<<<<<<<<<<<<<
  *             encode_bencached(v, ret)
  *         elif PyLong_Check(v):
  */
-    __pyx_t_1 = PyObject_RichCompare(((PyObject *)__pyx_v_tp), ((PyObject *)__pyx_ptype_7bencode_8_bencode_Bencached), Py_EQ); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 330, __pyx_L1_error)
-    __pyx_t_9 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_9 < 0)) __PYX_ERR(0, 330, __pyx_L1_error)
+    __pyx_t_1 = PyObject_RichCompare(((PyObject *)__pyx_v_tp), ((PyObject *)__pyx_ptype_7bencode_8_bencode_Bencached), Py_EQ); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 326, __pyx_L1_error)
+    __pyx_t_9 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_9 < 0)) __PYX_ERR(0, 326, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     if (__pyx_t_9) {
 
-      /* "bencode/_bencode.pyx":331
+      /* "bencode/_bencode.pyx":327
  *         tp = type(v)
  *         if tp == Bencached:
  *             encode_bencached(v, ret)             # <<<<<<<<<<<<<<
  *         elif PyLong_Check(v):
  *             encode_int(v, ret)
  */
-      if (!(likely(((__pyx_v_v) == Py_None) || likely(__Pyx_TypeTest(__pyx_v_v, __pyx_ptype_7bencode_8_bencode_Bencached))))) __PYX_ERR(0, 331, __pyx_L1_error)
-      __pyx_t_1 = __pyx_f_7bencode_8_bencode_encode_bencached(((struct __pyx_obj_7bencode_8_bencode_Bencached *)__pyx_v_v), __pyx_v_ret); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 331, __pyx_L1_error)
+      if (!(likely(((__pyx_v_v) == Py_None) || likely(__Pyx_TypeTest(__pyx_v_v, __pyx_ptype_7bencode_8_bencode_Bencached))))) __PYX_ERR(0, 327, __pyx_L1_error)
+      __pyx_t_1 = __pyx_f_7bencode_8_bencode_encode_bencached(((struct __pyx_obj_7bencode_8_bencode_Bencached *)__pyx_v_v), __pyx_v_ret); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 327, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-      /* "bencode/_bencode.pyx":330
+      /* "bencode/_bencode.pyx":326
  *             encode_bytes(key, ret)
  *         tp = type(v)
  *         if tp == Bencached:             # <<<<<<<<<<<<<<
@@ -5122,7 +5112,7 @@ static int __pyx_f_7bencode_8_bencode_encode_dict(PyObject *__pyx_v_data, sds *_
       goto __pyx_L8;
     }
 
-    /* "bencode/_bencode.pyx":332
+    /* "bencode/_bencode.pyx":328
  *         if tp == Bencached:
  *             encode_bencached(v, ret)
  *         elif PyLong_Check(v):             # <<<<<<<<<<<<<<
@@ -5132,19 +5122,19 @@ static int __pyx_f_7bencode_8_bencode_encode_dict(PyObject *__pyx_v_data, sds *_
     __pyx_t_9 = (PyLong_Check(__pyx_v_v) != 0);
     if (__pyx_t_9) {
 
-      /* "bencode/_bencode.pyx":333
+      /* "bencode/_bencode.pyx":329
  *             encode_bencached(v, ret)
  *         elif PyLong_Check(v):
  *             encode_int(v, ret)             # <<<<<<<<<<<<<<
  *         elif PyUnicode_Check(v):
  *             encode_string(v, ret)
  */
-      __pyx_t_12 = __Pyx_PyIndex_AsSsize_t(__pyx_v_v); if (unlikely((__pyx_t_12 == (Py_ssize_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 333, __pyx_L1_error)
-      __pyx_t_1 = __pyx_f_7bencode_8_bencode_encode_int(__pyx_t_12, __pyx_v_ret); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 333, __pyx_L1_error)
+      __pyx_t_12 = __Pyx_PyIndex_AsSsize_t(__pyx_v_v); if (unlikely((__pyx_t_12 == (Py_ssize_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 329, __pyx_L1_error)
+      __pyx_t_1 = __pyx_f_7bencode_8_bencode_encode_int(__pyx_t_12, __pyx_v_ret); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 329, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-      /* "bencode/_bencode.pyx":332
+      /* "bencode/_bencode.pyx":328
  *         if tp == Bencached:
  *             encode_bencached(v, ret)
  *         elif PyLong_Check(v):             # <<<<<<<<<<<<<<
@@ -5154,7 +5144,7 @@ static int __pyx_f_7bencode_8_bencode_encode_dict(PyObject *__pyx_v_data, sds *_
       goto __pyx_L8;
     }
 
-    /* "bencode/_bencode.pyx":334
+    /* "bencode/_bencode.pyx":330
  *         elif PyLong_Check(v):
  *             encode_int(v, ret)
  *         elif PyUnicode_Check(v):             # <<<<<<<<<<<<<<
@@ -5164,17 +5154,17 @@ static int __pyx_f_7bencode_8_bencode_encode_dict(PyObject *__pyx_v_data, sds *_
     __pyx_t_9 = (PyUnicode_Check(__pyx_v_v) != 0);
     if (__pyx_t_9) {
 
-      /* "bencode/_bencode.pyx":335
+      /* "bencode/_bencode.pyx":331
  *             encode_int(v, ret)
  *         elif PyUnicode_Check(v):
  *             encode_string(v, ret)             # <<<<<<<<<<<<<<
  *         elif PyBytes_Check(v) or PyByteArray_Check(v):
  *             encode_bytes(v, ret)
  */
-      if (!(likely(PyUnicode_CheckExact(__pyx_v_v))||((__pyx_v_v) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "unicode", Py_TYPE(__pyx_v_v)->tp_name), 0))) __PYX_ERR(0, 335, __pyx_L1_error)
-      __pyx_t_10 = __pyx_f_7bencode_8_bencode_encode_string(((PyObject*)__pyx_v_v), __pyx_v_ret); if (unlikely(__pyx_t_10 == ((int)-1) && PyErr_Occurred())) __PYX_ERR(0, 335, __pyx_L1_error)
+      if (!(likely(PyUnicode_CheckExact(__pyx_v_v))||((__pyx_v_v) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "unicode", Py_TYPE(__pyx_v_v)->tp_name), 0))) __PYX_ERR(0, 331, __pyx_L1_error)
+      __pyx_t_10 = __pyx_f_7bencode_8_bencode_encode_string(((PyObject*)__pyx_v_v), __pyx_v_ret); if (unlikely(__pyx_t_10 == ((int)-1) && PyErr_Occurred())) __PYX_ERR(0, 331, __pyx_L1_error)
 
-      /* "bencode/_bencode.pyx":334
+      /* "bencode/_bencode.pyx":330
  *         elif PyLong_Check(v):
  *             encode_int(v, ret)
  *         elif PyUnicode_Check(v):             # <<<<<<<<<<<<<<
@@ -5184,7 +5174,7 @@ static int __pyx_f_7bencode_8_bencode_encode_dict(PyObject *__pyx_v_data, sds *_
       goto __pyx_L8;
     }
 
-    /* "bencode/_bencode.pyx":336
+    /* "bencode/_bencode.pyx":332
  *         elif PyUnicode_Check(v):
  *             encode_string(v, ret)
  *         elif PyBytes_Check(v) or PyByteArray_Check(v):             # <<<<<<<<<<<<<<
@@ -5202,20 +5192,20 @@ static int __pyx_f_7bencode_8_bencode_encode_dict(PyObject *__pyx_v_data, sds *_
     __pyx_L9_bool_binop_done:;
     if (__pyx_t_9) {
 
-      /* "bencode/_bencode.pyx":337
+      /* "bencode/_bencode.pyx":333
  *             encode_string(v, ret)
  *         elif PyBytes_Check(v) or PyByteArray_Check(v):
  *             encode_bytes(v, ret)             # <<<<<<<<<<<<<<
  *         elif PyList_Check(v) or PyTuple_Check(v):
  *             encode_list(v, ret)
  */
-      __pyx_t_11 = __Pyx_PyObject_to_MemoryviewSlice_dc_nn_uint8_t__const__(__pyx_v_v, 0); if (unlikely(!__pyx_t_11.memview)) __PYX_ERR(0, 337, __pyx_L1_error)
-      __pyx_t_10 = __pyx_f_7bencode_8_bencode_encode_bytes(__pyx_t_11, __pyx_v_ret); if (unlikely(__pyx_t_10 == ((int)-1) && PyErr_Occurred())) __PYX_ERR(0, 337, __pyx_L1_error)
+      __pyx_t_11 = __Pyx_PyObject_to_MemoryviewSlice_dc_nn_uint8_t__const__(__pyx_v_v, 0); if (unlikely(!__pyx_t_11.memview)) __PYX_ERR(0, 333, __pyx_L1_error)
+      __pyx_t_10 = __pyx_f_7bencode_8_bencode_encode_bytes(__pyx_t_11, __pyx_v_ret); if (unlikely(__pyx_t_10 == ((int)-1) && PyErr_Occurred())) __PYX_ERR(0, 333, __pyx_L1_error)
       __PYX_XDEC_MEMVIEW(&__pyx_t_11, 1);
       __pyx_t_11.memview = NULL;
       __pyx_t_11.data = NULL;
 
-      /* "bencode/_bencode.pyx":336
+      /* "bencode/_bencode.pyx":332
  *         elif PyUnicode_Check(v):
  *             encode_string(v, ret)
  *         elif PyBytes_Check(v) or PyByteArray_Check(v):             # <<<<<<<<<<<<<<
@@ -5225,7 +5215,7 @@ static int __pyx_f_7bencode_8_bencode_encode_dict(PyObject *__pyx_v_data, sds *_
       goto __pyx_L8;
     }
 
-    /* "bencode/_bencode.pyx":338
+    /* "bencode/_bencode.pyx":334
  *         elif PyBytes_Check(v) or PyByteArray_Check(v):
  *             encode_bytes(v, ret)
  *         elif PyList_Check(v) or PyTuple_Check(v):             # <<<<<<<<<<<<<<
@@ -5243,17 +5233,17 @@ static int __pyx_f_7bencode_8_bencode_encode_dict(PyObject *__pyx_v_data, sds *_
     __pyx_L11_bool_binop_done:;
     if (__pyx_t_9) {
 
-      /* "bencode/_bencode.pyx":339
+      /* "bencode/_bencode.pyx":335
  *             encode_bytes(v, ret)
  *         elif PyList_Check(v) or PyTuple_Check(v):
  *             encode_list(v, ret)             # <<<<<<<<<<<<<<
  *         elif PyDict_Check(v):
  *             encode_dict(v, ret)
  */
-      if (!(likely(PyList_CheckExact(__pyx_v_v))||((__pyx_v_v) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "list", Py_TYPE(__pyx_v_v)->tp_name), 0))) __PYX_ERR(0, 339, __pyx_L1_error)
-      __pyx_t_10 = __pyx_f_7bencode_8_bencode_encode_list(((PyObject*)__pyx_v_v), __pyx_v_ret); if (unlikely(__pyx_t_10 == ((int)-1) && PyErr_Occurred())) __PYX_ERR(0, 339, __pyx_L1_error)
+      if (!(likely(PyList_CheckExact(__pyx_v_v))||((__pyx_v_v) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "list", Py_TYPE(__pyx_v_v)->tp_name), 0))) __PYX_ERR(0, 335, __pyx_L1_error)
+      __pyx_t_10 = __pyx_f_7bencode_8_bencode_encode_list(((PyObject*)__pyx_v_v), __pyx_v_ret); if (unlikely(__pyx_t_10 == ((int)-1) && PyErr_Occurred())) __PYX_ERR(0, 335, __pyx_L1_error)
 
-      /* "bencode/_bencode.pyx":338
+      /* "bencode/_bencode.pyx":334
  *         elif PyBytes_Check(v) or PyByteArray_Check(v):
  *             encode_bytes(v, ret)
  *         elif PyList_Check(v) or PyTuple_Check(v):             # <<<<<<<<<<<<<<
@@ -5263,7 +5253,7 @@ static int __pyx_f_7bencode_8_bencode_encode_dict(PyObject *__pyx_v_data, sds *_
       goto __pyx_L8;
     }
 
-    /* "bencode/_bencode.pyx":340
+    /* "bencode/_bencode.pyx":336
  *         elif PyList_Check(v) or PyTuple_Check(v):
  *             encode_list(v, ret)
  *         elif PyDict_Check(v):             # <<<<<<<<<<<<<<
@@ -5273,17 +5263,17 @@ static int __pyx_f_7bencode_8_bencode_encode_dict(PyObject *__pyx_v_data, sds *_
     __pyx_t_9 = (PyDict_Check(__pyx_v_v) != 0);
     if (__pyx_t_9) {
 
-      /* "bencode/_bencode.pyx":341
+      /* "bencode/_bencode.pyx":337
  *             encode_list(v, ret)
  *         elif PyDict_Check(v):
  *             encode_dict(v, ret)             # <<<<<<<<<<<<<<
  *         elif PyBool_Check(v):
  *             encode_bool(v, ret)
  */
-      if (!(likely(PyDict_CheckExact(__pyx_v_v))||((__pyx_v_v) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "dict", Py_TYPE(__pyx_v_v)->tp_name), 0))) __PYX_ERR(0, 341, __pyx_L1_error)
-      __pyx_t_10 = __pyx_f_7bencode_8_bencode_encode_dict(((PyObject*)__pyx_v_v), __pyx_v_ret); if (unlikely(__pyx_t_10 == ((int)-1) && PyErr_Occurred())) __PYX_ERR(0, 341, __pyx_L1_error)
+      if (!(likely(PyDict_CheckExact(__pyx_v_v))||((__pyx_v_v) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "dict", Py_TYPE(__pyx_v_v)->tp_name), 0))) __PYX_ERR(0, 337, __pyx_L1_error)
+      __pyx_t_10 = __pyx_f_7bencode_8_bencode_encode_dict(((PyObject*)__pyx_v_v), __pyx_v_ret); if (unlikely(__pyx_t_10 == ((int)-1) && PyErr_Occurred())) __PYX_ERR(0, 337, __pyx_L1_error)
 
-      /* "bencode/_bencode.pyx":340
+      /* "bencode/_bencode.pyx":336
  *         elif PyList_Check(v) or PyTuple_Check(v):
  *             encode_list(v, ret)
  *         elif PyDict_Check(v):             # <<<<<<<<<<<<<<
@@ -5293,7 +5283,7 @@ static int __pyx_f_7bencode_8_bencode_encode_dict(PyObject *__pyx_v_data, sds *_
       goto __pyx_L8;
     }
 
-    /* "bencode/_bencode.pyx":342
+    /* "bencode/_bencode.pyx":338
  *         elif PyDict_Check(v):
  *             encode_dict(v, ret)
  *         elif PyBool_Check(v):             # <<<<<<<<<<<<<<
@@ -5303,19 +5293,19 @@ static int __pyx_f_7bencode_8_bencode_encode_dict(PyObject *__pyx_v_data, sds *_
     __pyx_t_9 = (PyBool_Check(__pyx_v_v) != 0);
     if (__pyx_t_9) {
 
-      /* "bencode/_bencode.pyx":343
+      /* "bencode/_bencode.pyx":339
  *             encode_dict(v, ret)
  *         elif PyBool_Check(v):
  *             encode_bool(v, ret)             # <<<<<<<<<<<<<<
  *     ret[0] = sdscat(ret[0], 'e')
  * 
  */
-      __pyx_t_9 = __Pyx_PyObject_IsTrue(__pyx_v_v); if (unlikely((__pyx_t_9 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 343, __pyx_L1_error)
-      __pyx_t_1 = __pyx_f_7bencode_8_bencode_encode_bool(__pyx_t_9, __pyx_v_ret); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 343, __pyx_L1_error)
+      __pyx_t_9 = __Pyx_PyObject_IsTrue(__pyx_v_v); if (unlikely((__pyx_t_9 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 339, __pyx_L1_error)
+      __pyx_t_1 = __pyx_f_7bencode_8_bencode_encode_bool(__pyx_t_9, __pyx_v_ret); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 339, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-      /* "bencode/_bencode.pyx":342
+      /* "bencode/_bencode.pyx":338
  *         elif PyDict_Check(v):
  *             encode_dict(v, ret)
  *         elif PyBool_Check(v):             # <<<<<<<<<<<<<<
@@ -5325,7 +5315,7 @@ static int __pyx_f_7bencode_8_bencode_encode_dict(PyObject *__pyx_v_data, sds *_
     }
     __pyx_L8:;
 
-    /* "bencode/_bencode.pyx":323
+    /* "bencode/_bencode.pyx":319
  *     cdef list ilist = list(data.items()) # todo should we sort?
  *     ilist.sort()
  *     for key, v in ilist:             # <<<<<<<<<<<<<<
@@ -5335,7 +5325,7 @@ static int __pyx_f_7bencode_8_bencode_encode_dict(PyObject *__pyx_v_data, sds *_
   }
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "bencode/_bencode.pyx":344
+  /* "bencode/_bencode.pyx":340
  *         elif PyBool_Check(v):
  *             encode_bool(v, ret)
  *     ret[0] = sdscat(ret[0], 'e')             # <<<<<<<<<<<<<<
@@ -5344,7 +5334,7 @@ static int __pyx_f_7bencode_8_bencode_encode_dict(PyObject *__pyx_v_data, sds *_
  */
   (__pyx_v_ret[0]) = sdscat((__pyx_v_ret[0]), ((char *)"e"));
 
-  /* "bencode/_bencode.pyx":319
+  /* "bencode/_bencode.pyx":315
  * 
  * 
  * cdef int encode_dict(dict data,sds* ret) except? -1:             # <<<<<<<<<<<<<<
@@ -5373,7 +5363,7 @@ static int __pyx_f_7bencode_8_bencode_encode_dict(PyObject *__pyx_v_data, sds *_
   return __pyx_r;
 }
 
-/* "bencode/_bencode.pyx":358
+/* "bencode/_bencode.pyx":354
  * 
  * 
  * cpdef bytes bencode(object data):             # <<<<<<<<<<<<<<
@@ -5406,7 +5396,7 @@ static PyObject *__pyx_f_7bencode_8_bencode_bencode(PyObject *__pyx_v_data, CYTH
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("bencode", 0);
 
-  /* "bencode/_bencode.pyx":363
+  /* "bencode/_bencode.pyx":359
  * 
  *     """
  *     cdef sds ret =  sdsempty() # todo sds             # <<<<<<<<<<<<<<
@@ -5415,7 +5405,7 @@ static PyObject *__pyx_f_7bencode_8_bencode_bencode(PyObject *__pyx_v_data, CYTH
  */
   __pyx_v_ret = sdsempty();
 
-  /* "bencode/_bencode.pyx":364
+  /* "bencode/_bencode.pyx":360
  *     """
  *     cdef sds ret =  sdsempty() # todo sds
  *     if PyLong_Check(data):             # <<<<<<<<<<<<<<
@@ -5425,19 +5415,19 @@ static PyObject *__pyx_f_7bencode_8_bencode_bencode(PyObject *__pyx_v_data, CYTH
   __pyx_t_1 = (PyLong_Check(__pyx_v_data) != 0);
   if (__pyx_t_1) {
 
-    /* "bencode/_bencode.pyx":365
+    /* "bencode/_bencode.pyx":361
  *     cdef sds ret =  sdsempty() # todo sds
  *     if PyLong_Check(data):
  *         encode_int(data,  &ret)             # <<<<<<<<<<<<<<
  *     elif PyUnicode_Check(data):
  *         encode_string(data,  &ret)
  */
-    __pyx_t_2 = __Pyx_PyIndex_AsSsize_t(__pyx_v_data); if (unlikely((__pyx_t_2 == (Py_ssize_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 365, __pyx_L1_error)
-    __pyx_t_3 = __pyx_f_7bencode_8_bencode_encode_int(__pyx_t_2, (&__pyx_v_ret)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 365, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyIndex_AsSsize_t(__pyx_v_data); if (unlikely((__pyx_t_2 == (Py_ssize_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 361, __pyx_L1_error)
+    __pyx_t_3 = __pyx_f_7bencode_8_bencode_encode_int(__pyx_t_2, (&__pyx_v_ret)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 361, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-    /* "bencode/_bencode.pyx":364
+    /* "bencode/_bencode.pyx":360
  *     """
  *     cdef sds ret =  sdsempty() # todo sds
  *     if PyLong_Check(data):             # <<<<<<<<<<<<<<
@@ -5447,7 +5437,7 @@ static PyObject *__pyx_f_7bencode_8_bencode_bencode(PyObject *__pyx_v_data, CYTH
     goto __pyx_L3;
   }
 
-  /* "bencode/_bencode.pyx":366
+  /* "bencode/_bencode.pyx":362
  *     if PyLong_Check(data):
  *         encode_int(data,  &ret)
  *     elif PyUnicode_Check(data):             # <<<<<<<<<<<<<<
@@ -5457,17 +5447,17 @@ static PyObject *__pyx_f_7bencode_8_bencode_bencode(PyObject *__pyx_v_data, CYTH
   __pyx_t_1 = (PyUnicode_Check(__pyx_v_data) != 0);
   if (__pyx_t_1) {
 
-    /* "bencode/_bencode.pyx":367
+    /* "bencode/_bencode.pyx":363
  *         encode_int(data,  &ret)
  *     elif PyUnicode_Check(data):
  *         encode_string(data,  &ret)             # <<<<<<<<<<<<<<
  *     elif PyBytes_Check(data) or PyByteArray_Check(data):
  *         encode_bytes(data,  &ret)
  */
-    if (!(likely(PyUnicode_CheckExact(__pyx_v_data))||((__pyx_v_data) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "unicode", Py_TYPE(__pyx_v_data)->tp_name), 0))) __PYX_ERR(0, 367, __pyx_L1_error)
-    __pyx_t_4 = __pyx_f_7bencode_8_bencode_encode_string(((PyObject*)__pyx_v_data), (&__pyx_v_ret)); if (unlikely(__pyx_t_4 == ((int)-1) && PyErr_Occurred())) __PYX_ERR(0, 367, __pyx_L1_error)
+    if (!(likely(PyUnicode_CheckExact(__pyx_v_data))||((__pyx_v_data) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "unicode", Py_TYPE(__pyx_v_data)->tp_name), 0))) __PYX_ERR(0, 363, __pyx_L1_error)
+    __pyx_t_4 = __pyx_f_7bencode_8_bencode_encode_string(((PyObject*)__pyx_v_data), (&__pyx_v_ret)); if (unlikely(__pyx_t_4 == ((int)-1) && PyErr_Occurred())) __PYX_ERR(0, 363, __pyx_L1_error)
 
-    /* "bencode/_bencode.pyx":366
+    /* "bencode/_bencode.pyx":362
  *     if PyLong_Check(data):
  *         encode_int(data,  &ret)
  *     elif PyUnicode_Check(data):             # <<<<<<<<<<<<<<
@@ -5477,7 +5467,7 @@ static PyObject *__pyx_f_7bencode_8_bencode_bencode(PyObject *__pyx_v_data, CYTH
     goto __pyx_L3;
   }
 
-  /* "bencode/_bencode.pyx":368
+  /* "bencode/_bencode.pyx":364
  *     elif PyUnicode_Check(data):
  *         encode_string(data,  &ret)
  *     elif PyBytes_Check(data) or PyByteArray_Check(data):             # <<<<<<<<<<<<<<
@@ -5495,20 +5485,20 @@ static PyObject *__pyx_f_7bencode_8_bencode_bencode(PyObject *__pyx_v_data, CYTH
   __pyx_L4_bool_binop_done:;
   if (__pyx_t_1) {
 
-    /* "bencode/_bencode.pyx":369
+    /* "bencode/_bencode.pyx":365
  *         encode_string(data,  &ret)
  *     elif PyBytes_Check(data) or PyByteArray_Check(data):
  *         encode_bytes(data,  &ret)             # <<<<<<<<<<<<<<
  *     elif PyList_Check(data) or PyTuple_Check(data):
  *         encode_list(data,  &ret)
  */
-    __pyx_t_6 = __Pyx_PyObject_to_MemoryviewSlice_dc_nn_uint8_t__const__(__pyx_v_data, 0); if (unlikely(!__pyx_t_6.memview)) __PYX_ERR(0, 369, __pyx_L1_error)
-    __pyx_t_4 = __pyx_f_7bencode_8_bencode_encode_bytes(__pyx_t_6, (&__pyx_v_ret)); if (unlikely(__pyx_t_4 == ((int)-1) && PyErr_Occurred())) __PYX_ERR(0, 369, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyObject_to_MemoryviewSlice_dc_nn_uint8_t__const__(__pyx_v_data, 0); if (unlikely(!__pyx_t_6.memview)) __PYX_ERR(0, 365, __pyx_L1_error)
+    __pyx_t_4 = __pyx_f_7bencode_8_bencode_encode_bytes(__pyx_t_6, (&__pyx_v_ret)); if (unlikely(__pyx_t_4 == ((int)-1) && PyErr_Occurred())) __PYX_ERR(0, 365, __pyx_L1_error)
     __PYX_XDEC_MEMVIEW(&__pyx_t_6, 1);
     __pyx_t_6.memview = NULL;
     __pyx_t_6.data = NULL;
 
-    /* "bencode/_bencode.pyx":368
+    /* "bencode/_bencode.pyx":364
  *     elif PyUnicode_Check(data):
  *         encode_string(data,  &ret)
  *     elif PyBytes_Check(data) or PyByteArray_Check(data):             # <<<<<<<<<<<<<<
@@ -5518,7 +5508,7 @@ static PyObject *__pyx_f_7bencode_8_bencode_bencode(PyObject *__pyx_v_data, CYTH
     goto __pyx_L3;
   }
 
-  /* "bencode/_bencode.pyx":370
+  /* "bencode/_bencode.pyx":366
  *     elif PyBytes_Check(data) or PyByteArray_Check(data):
  *         encode_bytes(data,  &ret)
  *     elif PyList_Check(data) or PyTuple_Check(data):             # <<<<<<<<<<<<<<
@@ -5536,17 +5526,17 @@ static PyObject *__pyx_f_7bencode_8_bencode_bencode(PyObject *__pyx_v_data, CYTH
   __pyx_L6_bool_binop_done:;
   if (__pyx_t_1) {
 
-    /* "bencode/_bencode.pyx":371
+    /* "bencode/_bencode.pyx":367
  *         encode_bytes(data,  &ret)
  *     elif PyList_Check(data) or PyTuple_Check(data):
  *         encode_list(data,  &ret)             # <<<<<<<<<<<<<<
  *     elif PyDict_Check(data):
  *         encode_dict(data,  &ret)
  */
-    if (!(likely(PyList_CheckExact(__pyx_v_data))||((__pyx_v_data) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "list", Py_TYPE(__pyx_v_data)->tp_name), 0))) __PYX_ERR(0, 371, __pyx_L1_error)
-    __pyx_t_4 = __pyx_f_7bencode_8_bencode_encode_list(((PyObject*)__pyx_v_data), (&__pyx_v_ret)); if (unlikely(__pyx_t_4 == ((int)-1) && PyErr_Occurred())) __PYX_ERR(0, 371, __pyx_L1_error)
+    if (!(likely(PyList_CheckExact(__pyx_v_data))||((__pyx_v_data) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "list", Py_TYPE(__pyx_v_data)->tp_name), 0))) __PYX_ERR(0, 367, __pyx_L1_error)
+    __pyx_t_4 = __pyx_f_7bencode_8_bencode_encode_list(((PyObject*)__pyx_v_data), (&__pyx_v_ret)); if (unlikely(__pyx_t_4 == ((int)-1) && PyErr_Occurred())) __PYX_ERR(0, 367, __pyx_L1_error)
 
-    /* "bencode/_bencode.pyx":370
+    /* "bencode/_bencode.pyx":366
  *     elif PyBytes_Check(data) or PyByteArray_Check(data):
  *         encode_bytes(data,  &ret)
  *     elif PyList_Check(data) or PyTuple_Check(data):             # <<<<<<<<<<<<<<
@@ -5556,7 +5546,7 @@ static PyObject *__pyx_f_7bencode_8_bencode_bencode(PyObject *__pyx_v_data, CYTH
     goto __pyx_L3;
   }
 
-  /* "bencode/_bencode.pyx":372
+  /* "bencode/_bencode.pyx":368
  *     elif PyList_Check(data) or PyTuple_Check(data):
  *         encode_list(data,  &ret)
  *     elif PyDict_Check(data):             # <<<<<<<<<<<<<<
@@ -5566,17 +5556,17 @@ static PyObject *__pyx_f_7bencode_8_bencode_bencode(PyObject *__pyx_v_data, CYTH
   __pyx_t_1 = (PyDict_Check(__pyx_v_data) != 0);
   if (__pyx_t_1) {
 
-    /* "bencode/_bencode.pyx":373
+    /* "bencode/_bencode.pyx":369
  *         encode_list(data,  &ret)
  *     elif PyDict_Check(data):
  *         encode_dict(data,  &ret)             # <<<<<<<<<<<<<<
  *     elif PyBool_Check(data):
  *         encode_bool(data,  &ret)
  */
-    if (!(likely(PyDict_CheckExact(__pyx_v_data))||((__pyx_v_data) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "dict", Py_TYPE(__pyx_v_data)->tp_name), 0))) __PYX_ERR(0, 373, __pyx_L1_error)
-    __pyx_t_4 = __pyx_f_7bencode_8_bencode_encode_dict(((PyObject*)__pyx_v_data), (&__pyx_v_ret)); if (unlikely(__pyx_t_4 == ((int)-1) && PyErr_Occurred())) __PYX_ERR(0, 373, __pyx_L1_error)
+    if (!(likely(PyDict_CheckExact(__pyx_v_data))||((__pyx_v_data) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "dict", Py_TYPE(__pyx_v_data)->tp_name), 0))) __PYX_ERR(0, 369, __pyx_L1_error)
+    __pyx_t_4 = __pyx_f_7bencode_8_bencode_encode_dict(((PyObject*)__pyx_v_data), (&__pyx_v_ret)); if (unlikely(__pyx_t_4 == ((int)-1) && PyErr_Occurred())) __PYX_ERR(0, 369, __pyx_L1_error)
 
-    /* "bencode/_bencode.pyx":372
+    /* "bencode/_bencode.pyx":368
  *     elif PyList_Check(data) or PyTuple_Check(data):
  *         encode_list(data,  &ret)
  *     elif PyDict_Check(data):             # <<<<<<<<<<<<<<
@@ -5586,7 +5576,7 @@ static PyObject *__pyx_f_7bencode_8_bencode_bencode(PyObject *__pyx_v_data, CYTH
     goto __pyx_L3;
   }
 
-  /* "bencode/_bencode.pyx":374
+  /* "bencode/_bencode.pyx":370
  *     elif PyDict_Check(data):
  *         encode_dict(data,  &ret)
  *     elif PyBool_Check(data):             # <<<<<<<<<<<<<<
@@ -5596,19 +5586,19 @@ static PyObject *__pyx_f_7bencode_8_bencode_bencode(PyObject *__pyx_v_data, CYTH
   __pyx_t_1 = (PyBool_Check(__pyx_v_data) != 0);
   if (__pyx_t_1) {
 
-    /* "bencode/_bencode.pyx":375
+    /* "bencode/_bencode.pyx":371
  *         encode_dict(data,  &ret)
  *     elif PyBool_Check(data):
  *         encode_bool(data,  &ret)             # <<<<<<<<<<<<<<
  *     elif type(data) == Bencached:
  *         encode_bencached(data, &ret)  # this is not likely to happen
  */
-    __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_v_data); if (unlikely((__pyx_t_1 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 375, __pyx_L1_error)
-    __pyx_t_3 = __pyx_f_7bencode_8_bencode_encode_bool(__pyx_t_1, (&__pyx_v_ret)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 375, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_v_data); if (unlikely((__pyx_t_1 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 371, __pyx_L1_error)
+    __pyx_t_3 = __pyx_f_7bencode_8_bencode_encode_bool(__pyx_t_1, (&__pyx_v_ret)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 371, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-    /* "bencode/_bencode.pyx":374
+    /* "bencode/_bencode.pyx":370
  *     elif PyDict_Check(data):
  *         encode_dict(data,  &ret)
  *     elif PyBool_Check(data):             # <<<<<<<<<<<<<<
@@ -5618,31 +5608,31 @@ static PyObject *__pyx_f_7bencode_8_bencode_bencode(PyObject *__pyx_v_data, CYTH
     goto __pyx_L3;
   }
 
-  /* "bencode/_bencode.pyx":376
+  /* "bencode/_bencode.pyx":372
  *     elif PyBool_Check(data):
  *         encode_bool(data,  &ret)
  *     elif type(data) == Bencached:             # <<<<<<<<<<<<<<
  *         encode_bencached(data, &ret)  # this is not likely to happen
  *     try:
  */
-  __pyx_t_3 = PyObject_RichCompare(((PyObject *)Py_TYPE(__pyx_v_data)), ((PyObject *)__pyx_ptype_7bencode_8_bencode_Bencached), Py_EQ); __Pyx_XGOTREF(__pyx_t_3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 376, __pyx_L1_error)
-  __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_t_3); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 376, __pyx_L1_error)
+  __pyx_t_3 = PyObject_RichCompare(((PyObject *)Py_TYPE(__pyx_v_data)), ((PyObject *)__pyx_ptype_7bencode_8_bencode_Bencached), Py_EQ); __Pyx_XGOTREF(__pyx_t_3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 372, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_t_3); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 372, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   if (__pyx_t_1) {
 
-    /* "bencode/_bencode.pyx":377
+    /* "bencode/_bencode.pyx":373
  *         encode_bool(data,  &ret)
  *     elif type(data) == Bencached:
  *         encode_bencached(data, &ret)  # this is not likely to happen             # <<<<<<<<<<<<<<
  *     try:
  *         return PyBytes_FromStringAndSize(ret, <Py_ssize_t>sdslen(ret))
  */
-    if (!(likely(((__pyx_v_data) == Py_None) || likely(__Pyx_TypeTest(__pyx_v_data, __pyx_ptype_7bencode_8_bencode_Bencached))))) __PYX_ERR(0, 377, __pyx_L1_error)
-    __pyx_t_3 = __pyx_f_7bencode_8_bencode_encode_bencached(((struct __pyx_obj_7bencode_8_bencode_Bencached *)__pyx_v_data), (&__pyx_v_ret)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 377, __pyx_L1_error)
+    if (!(likely(((__pyx_v_data) == Py_None) || likely(__Pyx_TypeTest(__pyx_v_data, __pyx_ptype_7bencode_8_bencode_Bencached))))) __PYX_ERR(0, 373, __pyx_L1_error)
+    __pyx_t_3 = __pyx_f_7bencode_8_bencode_encode_bencached(((struct __pyx_obj_7bencode_8_bencode_Bencached *)__pyx_v_data), (&__pyx_v_ret)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 373, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-    /* "bencode/_bencode.pyx":376
+    /* "bencode/_bencode.pyx":372
  *     elif PyBool_Check(data):
  *         encode_bool(data,  &ret)
  *     elif type(data) == Bencached:             # <<<<<<<<<<<<<<
@@ -5652,7 +5642,7 @@ static PyObject *__pyx_f_7bencode_8_bencode_bencode(PyObject *__pyx_v_data, CYTH
   }
   __pyx_L3:;
 
-  /* "bencode/_bencode.pyx":378
+  /* "bencode/_bencode.pyx":374
  *     elif type(data) == Bencached:
  *         encode_bencached(data, &ret)  # this is not likely to happen
  *     try:             # <<<<<<<<<<<<<<
@@ -5661,7 +5651,7 @@ static PyObject *__pyx_f_7bencode_8_bencode_bencode(PyObject *__pyx_v_data, CYTH
  */
   /*try:*/ {
 
-    /* "bencode/_bencode.pyx":379
+    /* "bencode/_bencode.pyx":375
  *         encode_bencached(data, &ret)  # this is not likely to happen
  *     try:
  *         return PyBytes_FromStringAndSize(ret, <Py_ssize_t>sdslen(ret))             # <<<<<<<<<<<<<<
@@ -5669,17 +5659,18 @@ static PyObject *__pyx_f_7bencode_8_bencode_bencode(PyObject *__pyx_v_data, CYTH
  *         sdsfree(ret)
  */
     __Pyx_XDECREF(__pyx_r);
-    __pyx_t_3 = PyBytes_FromStringAndSize(__pyx_v_ret, ((Py_ssize_t)sdslen(__pyx_v_ret))); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 379, __pyx_L9_error)
+    __pyx_t_3 = PyBytes_FromStringAndSize(__pyx_v_ret, ((Py_ssize_t)sdslen(__pyx_v_ret))); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 375, __pyx_L9_error)
     __Pyx_GOTREF(__pyx_t_3);
     __pyx_r = ((PyObject*)__pyx_t_3);
     __pyx_t_3 = 0;
     goto __pyx_L8_return;
   }
 
-  /* "bencode/_bencode.pyx":381
+  /* "bencode/_bencode.pyx":377
  *         return PyBytes_FromStringAndSize(ret, <Py_ssize_t>sdslen(ret))
  *     finally:
  *         sdsfree(ret)             # <<<<<<<<<<<<<<
+ * 
  */
   /*finally:*/ {
     __pyx_L9_error:;
@@ -5725,7 +5716,7 @@ static PyObject *__pyx_f_7bencode_8_bencode_bencode(PyObject *__pyx_v_data, CYTH
     }
   }
 
-  /* "bencode/_bencode.pyx":358
+  /* "bencode/_bencode.pyx":354
  * 
  * 
  * cpdef bytes bencode(object data):             # <<<<<<<<<<<<<<
@@ -5768,7 +5759,7 @@ static PyObject *__pyx_pf_7bencode_8_bencode_2bencode(CYTHON_UNUSED PyObject *__
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("bencode", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __pyx_f_7bencode_8_bencode_bencode(__pyx_v_data, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 358, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_7bencode_8_bencode_bencode(__pyx_v_data, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 354, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -19730,7 +19721,6 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_BTFailure, __pyx_k_BTFailure, sizeof(__pyx_k_BTFailure), 0, 0, 1, 1},
   {&__pyx_n_s_Bencached, __pyx_k_Bencached, sizeof(__pyx_k_Bencached), 0, 0, 1, 1},
   {&__pyx_kp_s_Buffer_view_does_not_expose_stri, __pyx_k_Buffer_view_does_not_expose_stri, sizeof(__pyx_k_Buffer_view_does_not_expose_stri), 0, 0, 1, 0},
-  {&__pyx_n_s_BytesIO, __pyx_k_BytesIO, sizeof(__pyx_k_BytesIO), 0, 0, 1, 1},
   {&__pyx_kp_s_Can_only_create_a_buffer_that_is, __pyx_k_Can_only_create_a_buffer_that_is, sizeof(__pyx_k_Can_only_create_a_buffer_that_is), 0, 0, 1, 0},
   {&__pyx_kp_s_Cannot_assign_to_read_only_memor, __pyx_k_Cannot_assign_to_read_only_memor, sizeof(__pyx_k_Cannot_assign_to_read_only_memor), 0, 0, 1, 0},
   {&__pyx_kp_s_Cannot_create_writable_memory_vi, __pyx_k_Cannot_create_writable_memory_vi, sizeof(__pyx_k_Cannot_create_writable_memory_vi), 0, 0, 1, 0},
@@ -19743,14 +19733,12 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_kp_s_Invalid_mode_expected_c_or_fortr, __pyx_k_Invalid_mode_expected_c_or_fortr, sizeof(__pyx_k_Invalid_mode_expected_c_or_fortr), 0, 0, 1, 0},
   {&__pyx_kp_s_Invalid_shape_in_axis_d_d, __pyx_k_Invalid_shape_in_axis_d_d, sizeof(__pyx_k_Invalid_shape_in_axis_d_d), 0, 0, 1, 0},
   {&__pyx_n_s_KeyError, __pyx_k_KeyError, sizeof(__pyx_k_KeyError), 0, 0, 1, 1},
-  {&__pyx_n_s_List, __pyx_k_List, sizeof(__pyx_k_List), 0, 0, 1, 1},
   {&__pyx_n_s_MemoryError, __pyx_k_MemoryError, sizeof(__pyx_k_MemoryError), 0, 0, 1, 1},
   {&__pyx_kp_s_MemoryView_of_r_at_0x_x, __pyx_k_MemoryView_of_r_at_0x_x, sizeof(__pyx_k_MemoryView_of_r_at_0x_x), 0, 0, 1, 0},
   {&__pyx_kp_s_MemoryView_of_r_object, __pyx_k_MemoryView_of_r_object, sizeof(__pyx_k_MemoryView_of_r_object), 0, 0, 1, 0},
   {&__pyx_n_b_O, __pyx_k_O, sizeof(__pyx_k_O), 0, 0, 0, 1},
   {&__pyx_kp_s_Out_of_bounds_on_buffer_access_a, __pyx_k_Out_of_bounds_on_buffer_access_a, sizeof(__pyx_k_Out_of_bounds_on_buffer_access_a), 0, 0, 1, 0},
   {&__pyx_n_s_PickleError, __pyx_k_PickleError, sizeof(__pyx_k_PickleError), 0, 0, 1, 1},
-  {&__pyx_n_s_Tuple, __pyx_k_Tuple, sizeof(__pyx_k_Tuple), 0, 0, 1, 1},
   {&__pyx_n_s_TypeError, __pyx_k_TypeError, sizeof(__pyx_k_TypeError), 0, 0, 1, 1},
   {&__pyx_kp_s_Unable_to_convert_item_to_object, __pyx_k_Unable_to_convert_item_to_object, sizeof(__pyx_k_Unable_to_convert_item_to_object), 0, 0, 1, 0},
   {&__pyx_n_s_UnicodeDecodeError, __pyx_k_UnicodeDecodeError, sizeof(__pyx_k_UnicodeDecodeError), 0, 0, 1, 1},
@@ -19780,7 +19768,6 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_id, __pyx_k_id, sizeof(__pyx_k_id), 0, 0, 1, 1},
   {&__pyx_n_s_import, __pyx_k_import, sizeof(__pyx_k_import), 0, 0, 1, 1},
   {&__pyx_kp_u_invalid_bencoded_value_data_afte, __pyx_k_invalid_bencoded_value_data_afte, sizeof(__pyx_k_invalid_bencoded_value_data_afte), 0, 1, 0, 0},
-  {&__pyx_n_s_io, __pyx_k_io, sizeof(__pyx_k_io), 0, 0, 1, 1},
   {&__pyx_n_s_items, __pyx_k_items, sizeof(__pyx_k_items), 0, 0, 1, 1},
   {&__pyx_n_s_itemsize, __pyx_k_itemsize, sizeof(__pyx_k_itemsize), 0, 0, 1, 1},
   {&__pyx_kp_s_itemsize_0_for_cython_array, __pyx_k_itemsize_0_for_cython_array, sizeof(__pyx_k_itemsize_0_for_cython_array), 0, 0, 1, 0},
@@ -19826,7 +19813,6 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_kp_s_stringsource, __pyx_k_stringsource, sizeof(__pyx_k_stringsource), 0, 0, 1, 0},
   {&__pyx_n_s_struct, __pyx_k_struct, sizeof(__pyx_k_struct), 0, 0, 1, 1},
   {&__pyx_n_s_test, __pyx_k_test, sizeof(__pyx_k_test), 0, 0, 1, 1},
-  {&__pyx_n_s_typing, __pyx_k_typing, sizeof(__pyx_k_typing), 0, 0, 1, 1},
   {&__pyx_kp_s_unable_to_allocate_array_data, __pyx_k_unable_to_allocate_array_data, sizeof(__pyx_k_unable_to_allocate_array_data), 0, 0, 1, 0},
   {&__pyx_kp_s_unable_to_allocate_shape_and_str, __pyx_k_unable_to_allocate_shape_and_str, sizeof(__pyx_k_unable_to_allocate_shape_and_str), 0, 0, 1, 0},
   {&__pyx_n_s_unpack, __pyx_k_unpack, sizeof(__pyx_k_unpack), 0, 0, 1, 1},
@@ -19834,10 +19820,10 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {0, 0, 0, 0, 0, 0, 0}
 };
 static CYTHON_SMALL_CODE int __Pyx_InitCachedBuiltins(void) {
-  __pyx_builtin_ValueError = __Pyx_GetBuiltinName(__pyx_n_s_ValueError); if (!__pyx_builtin_ValueError) __PYX_ERR(0, 96, __pyx_L1_error)
-  __pyx_builtin_UnicodeDecodeError = __Pyx_GetBuiltinName(__pyx_n_s_UnicodeDecodeError); if (!__pyx_builtin_UnicodeDecodeError) __PYX_ERR(0, 124, __pyx_L1_error)
-  __pyx_builtin_IndexError = __Pyx_GetBuiltinName(__pyx_n_s_IndexError); if (!__pyx_builtin_IndexError) __PYX_ERR(0, 229, __pyx_L1_error)
-  __pyx_builtin_KeyError = __Pyx_GetBuiltinName(__pyx_n_s_KeyError); if (!__pyx_builtin_KeyError) __PYX_ERR(0, 229, __pyx_L1_error)
+  __pyx_builtin_ValueError = __Pyx_GetBuiltinName(__pyx_n_s_ValueError); if (!__pyx_builtin_ValueError) __PYX_ERR(0, 92, __pyx_L1_error)
+  __pyx_builtin_UnicodeDecodeError = __Pyx_GetBuiltinName(__pyx_n_s_UnicodeDecodeError); if (!__pyx_builtin_UnicodeDecodeError) __PYX_ERR(0, 120, __pyx_L1_error)
+  __pyx_builtin_IndexError = __Pyx_GetBuiltinName(__pyx_n_s_IndexError); if (!__pyx_builtin_IndexError) __PYX_ERR(0, 225, __pyx_L1_error)
+  __pyx_builtin_KeyError = __Pyx_GetBuiltinName(__pyx_n_s_KeyError); if (!__pyx_builtin_KeyError) __PYX_ERR(0, 225, __pyx_L1_error)
   __pyx_builtin_TypeError = __Pyx_GetBuiltinName(__pyx_n_s_TypeError); if (!__pyx_builtin_TypeError) __PYX_ERR(1, 2, __pyx_L1_error)
   __pyx_builtin_MemoryError = __Pyx_GetBuiltinName(__pyx_n_s_MemoryError); if (!__pyx_builtin_MemoryError) __PYX_ERR(1, 149, __pyx_L1_error)
   __pyx_builtin_enumerate = __Pyx_GetBuiltinName(__pyx_n_s_enumerate); if (!__pyx_builtin_enumerate) __PYX_ERR(1, 152, __pyx_L1_error)
@@ -20196,15 +20182,15 @@ static int __Pyx_modinit_type_init_code(void) {
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__Pyx_modinit_type_init_code", 0);
   /*--- Type init code ---*/
-  if (PyType_Ready(&__pyx_type_7bencode_8_bencode_Bencached) < 0) __PYX_ERR(0, 236, __pyx_L1_error)
+  if (PyType_Ready(&__pyx_type_7bencode_8_bencode_Bencached) < 0) __PYX_ERR(0, 232, __pyx_L1_error)
   #if PY_VERSION_HEX < 0x030800B1
   __pyx_type_7bencode_8_bencode_Bencached.tp_print = 0;
   #endif
   if ((CYTHON_USE_TYPE_SLOTS && CYTHON_USE_PYTYPE_LOOKUP) && likely(!__pyx_type_7bencode_8_bencode_Bencached.tp_dictoffset && __pyx_type_7bencode_8_bencode_Bencached.tp_getattro == PyObject_GenericGetAttr)) {
     __pyx_type_7bencode_8_bencode_Bencached.tp_getattro = __Pyx_PyObject_GenericGetAttr;
   }
-  if (PyObject_SetAttr(__pyx_m, __pyx_n_s_Bencached, (PyObject *)&__pyx_type_7bencode_8_bencode_Bencached) < 0) __PYX_ERR(0, 236, __pyx_L1_error)
-  if (__Pyx_setup_reduce((PyObject*)&__pyx_type_7bencode_8_bencode_Bencached) < 0) __PYX_ERR(0, 236, __pyx_L1_error)
+  if (PyObject_SetAttr(__pyx_m, __pyx_n_s_Bencached, (PyObject *)&__pyx_type_7bencode_8_bencode_Bencached) < 0) __PYX_ERR(0, 232, __pyx_L1_error)
+  if (__Pyx_setup_reduce((PyObject*)&__pyx_type_7bencode_8_bencode_Bencached) < 0) __PYX_ERR(0, 232, __pyx_L1_error)
   __pyx_ptype_7bencode_8_bencode_Bencached = &__pyx_type_7bencode_8_bencode_Bencached;
   __pyx_vtabptr_array = &__pyx_vtable_array;
   __pyx_vtable_array.get_memview = (PyObject *(*)(struct __pyx_array_obj *))__pyx_array_get_memview;
@@ -20519,71 +20505,22 @@ if (!__Pyx_RefNanny) {
   /* "bencode/_bencode.pyx":64
  * 
  * 
- * from io import BytesIO  # todo del             # <<<<<<<<<<<<<<
- * from typing import List, Tuple  # todo del
- * 
- */
-  __pyx_t_1 = PyList_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 64, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __Pyx_INCREF(__pyx_n_s_BytesIO);
-  __Pyx_GIVEREF(__pyx_n_s_BytesIO);
-  PyList_SET_ITEM(__pyx_t_1, 0, __pyx_n_s_BytesIO);
-  __pyx_t_2 = __Pyx_Import(__pyx_n_s_io, __pyx_t_1, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 64, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_ImportFrom(__pyx_t_2, __pyx_n_s_BytesIO); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 64, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_BytesIO, __pyx_t_1) < 0) __PYX_ERR(0, 64, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "bencode/_bencode.pyx":65
- * 
- * from io import BytesIO  # todo del
- * from typing import List, Tuple  # todo del             # <<<<<<<<<<<<<<
- * 
- * 
- */
-  __pyx_t_2 = PyList_New(2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 65, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_INCREF(__pyx_n_s_List);
-  __Pyx_GIVEREF(__pyx_n_s_List);
-  PyList_SET_ITEM(__pyx_t_2, 0, __pyx_n_s_List);
-  __Pyx_INCREF(__pyx_n_s_Tuple);
-  __Pyx_GIVEREF(__pyx_n_s_Tuple);
-  PyList_SET_ITEM(__pyx_t_2, 1, __pyx_n_s_Tuple);
-  __pyx_t_1 = __Pyx_Import(__pyx_n_s_typing, __pyx_t_2, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 65, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_ImportFrom(__pyx_t_1, __pyx_n_s_List); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 65, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_List, __pyx_t_2) < 0) __PYX_ERR(0, 65, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_ImportFrom(__pyx_t_1, __pyx_n_s_Tuple); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 65, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_Tuple, __pyx_t_2) < 0) __PYX_ERR(0, 65, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-
-  /* "bencode/_bencode.pyx":68
- * 
- * 
  * class BTFailure(Exception):             # <<<<<<<<<<<<<<
  *     pass
  * 
  */
-  __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 68, __pyx_L1_error)
+  __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 64, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_INCREF(((PyObject *)(&((PyTypeObject*)PyExc_Exception)[0])));
   __Pyx_GIVEREF(((PyObject *)(&((PyTypeObject*)PyExc_Exception)[0])));
   PyTuple_SET_ITEM(__pyx_t_1, 0, ((PyObject *)(&((PyTypeObject*)PyExc_Exception)[0])));
-  __pyx_t_2 = __Pyx_CalculateMetaclass(NULL, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 68, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CalculateMetaclass(NULL, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 64, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_Py3MetaclassPrepare(__pyx_t_2, __pyx_t_1, __pyx_n_s_BTFailure, __pyx_n_s_BTFailure, (PyObject *) NULL, __pyx_n_s_bencode__bencode, (PyObject *) NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 68, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_Py3MetaclassPrepare(__pyx_t_2, __pyx_t_1, __pyx_n_s_BTFailure, __pyx_n_s_BTFailure, (PyObject *) NULL, __pyx_n_s_bencode__bencode, (PyObject *) NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 64, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = __Pyx_Py3ClassCreate(__pyx_t_2, __pyx_n_s_BTFailure, __pyx_t_1, __pyx_t_3, NULL, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 68, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_Py3ClassCreate(__pyx_t_2, __pyx_n_s_BTFailure, __pyx_t_1, __pyx_t_3, NULL, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 64, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_BTFailure, __pyx_t_4) < 0) __PYX_ERR(0, 68, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_BTFailure, __pyx_t_4) < 0) __PYX_ERR(0, 64, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;

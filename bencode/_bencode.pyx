@@ -36,35 +36,31 @@ cdef extern from "sds.h" nogil:
     sds sdscatsds(sds s,  sds t)
     sds sdscpylen(sds s,  char *t, size_t len)
     sds sdscpy(sds s,  char *t)
-    sds sdscatfmt(sds s, char *fmt, ...);
-    sds sdstrim(sds s,  char *cset);
+    sds sdscatfmt(sds s, char *fmt, ...)
+    sds sdstrim(sds s,  char *cset)
     void sdsrange(sds s, ssize_t start, ssize_t end);
-    void sdsupdatelen(sds s);
-    void sdsclear(sds s);
-    int sdscmp( sds s1,  sds s2);
-    sds *sdssplitlen( char *s, ssize_t len,  char *sep, int seplen, int *count);
-    void sdsfreesplitres(sds *tokens, int count);
-    void sdstolower(sds s);
-    void sdstoupper(sds s);
-    sds sdsfromlonglong(long long value);
-    sds sdscatrepr(sds s,  char *p, size_t len_);
-    sds *sdssplitargs( char *line, int *argc);
-    sds sdsmapchars(sds s, char *from_,  char *to, size_t setlen);
-    sds sdsjoin(char **argv, int argc, char *sep);
-    sds sdsjoinsds(sds *argv, int argc,  char *sep, size_t seplen);
+    void sdsupdatelen(sds s)
+    void sdsclear(sds s)
+    int sdscmp( sds s1,  sds s2)
+    sds *sdssplitlen( char *s, ssize_t len,  char *sep, int seplen, int *count)
+    void sdsfreesplitres(sds *tokens, int count)
+    void sdstolower(sds s)
+    void sdstoupper(sds s)
+    sds sdsfromlonglong(long long value)
+    sds sdscatrepr(sds s,  char *p, size_t len_)
+    sds *sdssplitargs( char *line, int *argc)
+    sds sdsmapchars(sds s, char *from_,  char *to, size_t setlen)
+    sds sdsjoin(char **argv, int argc, char *sep)
+    sds sdsjoinsds(sds *argv, int argc,  char *sep, size_t seplen)
 
 
-    sds sdsMakeRoomFor(sds s, size_t addlen);
-    void sdsIncrLen(sds s, ssize_t incr);
-    sds sdsRemoveFreeSpace(sds s);
-    size_t sdsAllocSize(sds s);
-    void *sdsAllocPtr(sds s);
+    sds sdsMakeRoomFor(sds s, size_t addlen)
+    void sdsIncrLen(sds s, ssize_t incr)
+    sds sdsRemoveFreeSpace(sds s)
+    size_t sdsAllocSize(sds s)
+    void *sdsAllocPtr(sds s)
 
-
-from io import BytesIO  # todo del
-from typing import List, Tuple  # todo del
-
-
+    
 class BTFailure(Exception):
     pass
 
