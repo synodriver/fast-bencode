@@ -2,11 +2,12 @@
 Copyright (c) 2008-2022 synodriver <synodriver@gmail.com>
 """
 import time
+
+from bencode._bencode import bdecode as c_bdecode
+from bencode._bencode import bencode as c_bencode
 from bencode.bencode import bdecode, bencode
 
-from bencode._bencode import bencode as c_bencode, bdecode as c_bdecode
-
-with open('./[桜都字幕组]2021年03月合集.torrent.loaded', 'rb') as f:
+with open("./[桜都字幕组]2021年03月合集.torrent.loaded", "rb") as f:
     data = f.read()
 start = time.time()
 for i in range(1000):

@@ -361,10 +361,7 @@ cpdef bytes bencode(object data):
 
     """
     cdef sds ret =  sdsempty() # todo sds
-    tp = type(data)
-    if tp == Bencached:
-        encode_bencached(data, &ret)
-    elif PyLong_Check(data):
+    if PyLong_Check(data):
         encode_int(data,  &ret)
     elif PyUnicode_Check(data):
         encode_string(data,  &ret)
@@ -376,7 +373,8 @@ cpdef bytes bencode(object data):
         encode_dict(data,  &ret)
     elif PyBool_Check(data):
         encode_bool(data,  &ret)
-    # return ret.getvalue()
+    elif type(data) == Bencached:
+        encode_bencached(data, &ret)  # this is not likely to happen
     try:
         return PyBytes_FromStringAndSize(ret, <Py_ssize_t>sdslen(ret))
     finally:
