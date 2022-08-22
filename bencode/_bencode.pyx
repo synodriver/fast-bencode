@@ -236,49 +236,43 @@ cdef class Bencached:
         self.bencoded = s  # type: bytes
 
 
-cdef encode_bencached(Bencached data, sds* r):
+cdef int encode_bencached(Bencached data, sds* r) except -1:
     cdef Py_ssize_t data_size = PyBytes_GET_SIZE(data.bencoded)
     cdef sds newsds = sdsMakeRoomFor(r[0], <size_t>data_size)
+    if newsds == NULL:
+        raise MemoryError
     r[0] = newsds
     memcpy(newsds+sdslen(newsds), <char*>data.bencoded, <size_t>data_size)
     sdsIncrLen(newsds, <ssize_t>data_size)
 
 
-cdef encode_int(Py_ssize_t data, sds* r):
+cdef int encode_int(Py_ssize_t data, sds* r) except -1:
     # cdef char buf[20]
     cdef sds newsds = sdsMakeRoomFor(r[0], 20)
+    if newsds == NULL:
+        raise MemoryError
     r[0] = newsds
     cdef int count = PyOS_snprintf(newsds+sdslen(newsds), 20,"i%lde", data)
     # r.write(<bytes>buf[:count])
     sdsIncrLen(newsds, <ssize_t> count)
 
-cdef encode_bool(bint data, sds* r):
+cdef int encode_bool(bint data, sds* r) except -1:
     if data:
-        encode_int(1, r)
+        return encode_int(1, r)
     else:
-        encode_int(0, r)
+        return encode_int(0, r)
 
 
-cdef int encode_string(str data, sds* r) except? -1:
-    # cdef:
-    #     bytes d = data.encode()
-    #     Py_ssize_t size = PyBytes_GET_SIZE(d)
-    #     char* buf = <char*>PyMem_Malloc(<size_t>size + 30)
-    #     int count
-    # if not buf:
-    #     raise MemoryError
-    # try:
-    #     count = PyOS_snprintf(buf, <size_t>size + 30, "%d:%s", size, <char*>d)
-    #     r.write(<bytes>buf[:count-1])
-    # finally:
-    #     PyMem_Free(buf)
+cdef int encode_string(str data, sds* r) except -1:
     return encode_bytes(data.encode(), r)
 
-cdef int encode_bytes(const uint8_t[::1] data, sds* r) except? -1:
+cdef int encode_bytes(const uint8_t[::1] data, sds* r) except -1:
     cdef:
         Py_ssize_t size = data.shape[0]
         int count
     cdef sds newsds = sdsMakeRoomFor(r[0], <size_t>size + 30)
+    if newsds == NULL:
+        raise MemoryError
     r[0] = newsds
     count = PyOS_snprintf(newsds+sdslen(newsds), <size_t>size + 30, "%ld:", size)
     sdsIncrLen(newsds, <ssize_t> count)
@@ -289,9 +283,12 @@ cdef int encode_bytes(const uint8_t[::1] data, sds* r) except? -1:
     # r.write(b''.join((str(len(data)).encode(), b':', data)))
 
 
-cdef int encode_list(list data, sds* r) except? -1:
+cdef int encode_list(list data, sds* r) except -1:
     # r.write(b'l')
-    r[0] = sdscat(r[0], 'l')
+    cdef sds temp = sdscat(r[0], 'l')
+    if temp == NULL:
+        raise MemoryError
+    r[0] = temp
     for i in data:
         # encode_func[type(i)](i, r)
         tp = type(i)
@@ -309,11 +306,17 @@ cdef int encode_list(list data, sds* r) except? -1:
             encode_dict(i ,r)
         elif PyBool_Check(i):
             encode_bool(i, r)
-    r[0] = sdscat(r[0], 'e')
+    temp = sdscat(r[0], 'e')
+    if temp == NULL:
+        raise MemoryError
+    r[0] = temp
 
 
-cdef int encode_dict(dict data,sds* ret) except? -1:
-    ret[0] = sdscat(ret[0], 'd')
+cdef int encode_dict(dict data, sds* ret) except -1:
+    cdef sds temp = sdscat(ret[0], 'd')
+    if temp == NULL:
+        raise MemoryError
+    ret[0] = temp
     cdef list ilist = list(data.items()) # todo should we sort?
     ilist.sort()
     for key, v in ilist:
@@ -337,7 +340,10 @@ cdef int encode_dict(dict data,sds* ret) except? -1:
             encode_dict(v, ret)
         elif PyBool_Check(v):
             encode_bool(v, ret)
-    ret[0] = sdscat(ret[0], 'e')
+    temp = sdscat(ret[0], 'e')
+    if temp == NULL:
+        raise MemoryError
+    ret[0] = temp
 
 
 # encode_func = {}
@@ -357,6 +363,8 @@ cpdef bytes bencode(object data):
 
     """
     cdef sds ret =  sdsempty() # todo sds
+    if ret == NULL:
+        raise MemoryError
     if PyLong_Check(data):
         encode_int(data,  &ret)
     elif PyUnicode_Check(data):
