@@ -203,8 +203,7 @@ cdef dict decode_dict(const uint8_t[::1] data ,  Py_ssize_t* offset):
 
 
 cpdef object bdecode(const uint8_t[::1] data):
-    """
-    bdecode(data: bytes) -> Any
+    """bdecode(data: bytes) -> Any
 
     """
     cdef:
@@ -362,24 +361,25 @@ cpdef bytes bencode(object data):
     bencode(data) -> bytes
 
     """
-    cdef sds ret =  sdsempty() # todo sds
-    if ret == NULL:
-        raise MemoryError
-    if PyLong_Check(data):
-        encode_int(data,  &ret)
-    elif PyUnicode_Check(data):
-        encode_string(data,  &ret)
-    elif PyBytes_Check(data) or PyByteArray_Check(data):
-        encode_bytes(data,  &ret)
-    elif PyList_Check(data) or PyTuple_Check(data):
-        encode_list(data,  &ret)
-    elif PyDict_Check(data):
-        encode_dict(data,  &ret)
-    elif PyBool_Check(data):
-        encode_bool(data,  &ret)
-    elif type(data) == Bencached:
-        encode_bencached(data, &ret)  # this is not likely to happen
+    cdef sds ret
     try:
+        ret =  sdsempty()
+        if ret == NULL:
+            raise MemoryError
+        if PyLong_Check(data):
+            encode_int(data,  &ret)
+        elif PyUnicode_Check(data):
+            encode_string(data,  &ret)
+        elif PyBytes_Check(data) or PyByteArray_Check(data):
+            encode_bytes(data,  &ret)
+        elif PyList_Check(data) or PyTuple_Check(data):
+            encode_list(data,  &ret)
+        elif PyDict_Check(data):
+            encode_dict(data,  &ret)
+        elif PyBool_Check(data):
+            encode_bool(data,  &ret)
+        elif type(data) == Bencached:
+            encode_bencached(data, &ret)  # this is not likely to happen
         return PyBytes_FromStringAndSize(ret, <Py_ssize_t>sdslen(ret))
     finally:
         sdsfree(ret)
