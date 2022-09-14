@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from typing import IO
 try:
     from bencode._bencode import BTFailure, bdecode, bencode
 except ImportError:
@@ -8,4 +9,12 @@ loads = bdecode
 dumps = bencode
 
 
-__all__ = ["bdecode", "bencode", "loads", "dumps"]
+def load(fp: IO[bytes]):
+    return bdecode(fp.read())
+
+
+def dump(obj, fp: IO[bytes]):
+    fp.write(bencode(obj))
+
+
+__all__ = ["bdecode", "bencode", "loads", "dumps", "load", "dump"]
