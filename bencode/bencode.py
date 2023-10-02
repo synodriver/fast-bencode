@@ -1,5 +1,5 @@
 from io import BytesIO
-from typing import Any, Tuple
+from typing import Any, Tuple, Union
 
 from bencode.BTL import BTFailure
 
@@ -23,7 +23,7 @@ def decode_int(x: bytes, f: int) -> Tuple[int, int]:
     return (number, end + 1)
 
 
-def decode_string(x: bytes, f: int) -> Tuple[str, int]:
+def decode_string(x: bytes, f: int) -> Tuple[Union[str, bytes], int]:
     """
     :param x: 3:abc
     :param f: 偏移
@@ -99,7 +99,7 @@ class Bencached(object):
     __slots__ = ["bencoded"]
 
     def __init__(self, s):
-        self.bencoded = s  # type: bytes
+        self.bencoded = s
 
 
 def encode_bencached(x: Bencached, r: BytesIO):

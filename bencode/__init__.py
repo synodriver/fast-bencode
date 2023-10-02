@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 from typing import IO
+
 try:
-    from bencode._bencode import BTFailure, bdecode, bencode
+    from bencode._bencode import BTFailure, bdecode, bencode  # type: ignore
 except ImportError:
     from bencode.bencode import BTFailure, bdecode, bencode
 
