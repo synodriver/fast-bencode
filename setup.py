@@ -43,7 +43,7 @@ def get_dis():
 
 setup(
     name="fast-bencode",
-    version="1.1.3",
+    version="1.1.4",
     packages=find_packages(exclude=("test", "tests.*", "test*")),
     ext_modules=cythonize(
         ext_modules,
