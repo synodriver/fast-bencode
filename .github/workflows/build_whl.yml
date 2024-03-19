@@ -12,7 +12,7 @@ jobs:
         os: [ubuntu-latest, windows-latest, macos-13, macos-14]
       fail-fast: false
     env:
-      CIBW_BEFORE_BUILD: pip install --upgrade setuptools
+      CIBW_BEFORE_BUILD: pip install -r requirements.txt
 
     steps:
     - uses: actions/checkout@v4
