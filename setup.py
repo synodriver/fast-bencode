@@ -79,7 +79,7 @@ setup(
         "Programming Language :: Python :: 3.12",
         "Programming Language :: Python :: Implementation :: CPython",
     ],
-    cmdclass={"build_ext": build_ext_compiler_check} if has_cython else None,
+    cmdclass={"build_ext": build_ext_compiler_check} if has_cython else {},
     long_description=get_dis(),
     long_description_content_type="text/markdown",
 )
