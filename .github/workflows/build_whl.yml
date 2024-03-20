@@ -13,6 +13,7 @@ jobs:
       fail-fast: false
     env:
       CIBW_BEFORE_BUILD: pip install -r requirements.txt
+      CIBW_ARCHS_LINUX: auto aarch64
 
     steps:
     - uses: actions/checkout@v4
