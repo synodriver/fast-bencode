@@ -12,7 +12,6 @@ jobs:
         os: [ubuntu-22.04, windows-2019, macos-13, macos-14]
       fail-fast: false
     env:
-      CIBW_BEFORE_ALL: apt install lzma-dev
       CIBW_BEFORE_BUILD: pip install -r requirements.txt
       CIBW_ARCHS_LINUX: "x86_64 aarch64"
       CIBW_ARCHS_WINDOWS: "AMD64 x86"

@@ -43,7 +43,7 @@ def get_dis():
 
 setup(
     name="fast-bencode",
-    version="1.1.5",
+    version="1.1.6",
     packages=find_packages(exclude=("test", "tests.*", "test*")),
     ext_modules=cythonize(
         ext_modules,
@@ -65,13 +65,12 @@ setup(
     zip_safe=True,
     include_package_data=True,
     python_requires=">=3.6",
+    setup_requires=["Cython>=3.0.9"],
     classifiers=[
         "Development Status :: 3 - Alpha",
         "Operating System :: OS Independent",
         "Programming Language :: Cython",
         "Programming Language :: Python",
-        "Programming Language :: Python :: 3.6",
-        "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
         "Programming Language :: Python :: 3.10",
