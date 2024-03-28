@@ -1,1 +1,1 @@
-cython
+Cython>=3.0.9
