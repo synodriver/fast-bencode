@@ -10,7 +10,7 @@ from cpython.long cimport PyLong_Check
 from cpython.mem cimport PyMem_Free, PyMem_Malloc
 from cpython.tuple cimport PyTuple_Check
 from cpython.unicode cimport PyUnicode_Check
-from libc.stdint cimport int64_t, uint8_t
+from libc.stdint cimport int64_t, uint8_t, int64_t
 from libc.string cimport memcpy, strchr
 
 
@@ -245,13 +245,13 @@ cdef int encode_bencached(Bencached data, sds* r) except -1:
     sdsIncrLen(newsds, <ssize_t>data_size)
 
 
-cdef int encode_int(Py_ssize_t data, sds* r) except -1:
+cdef int encode_int(int64_t data, sds* r) except -1:
     # cdef char buf[20]
     cdef sds newsds = sdsMakeRoomFor(r[0], 20)
     if newsds == NULL:
         raise MemoryError
     r[0] = newsds
-    cdef int count = PyOS_snprintf(newsds+sdslen(newsds), 20,"i%lde", data)
+    cdef int count = PyOS_snprintf(newsds+sdslen(newsds), 20,"i%llde", data)
     # r.write(<bytes>buf[:count])
     sdsIncrLen(newsds, <ssize_t> count)
 
@@ -273,7 +273,7 @@ cdef int encode_bytes(const uint8_t[::1] data, sds* r) except -1:
     if newsds == NULL:
         raise MemoryError
     r[0] = newsds
-    count = PyOS_snprintf(newsds+sdslen(newsds), <size_t>size + 30, "%ld:", size)
+    count = PyOS_snprintf(newsds+sdslen(newsds), <size_t>size + 30, "%lld:", size)
     sdsIncrLen(newsds, <ssize_t> count)
     # print(f"in encode_bytes, count = {count}")
     memcpy(newsds+sdslen(newsds), &data[0], <size_t>size)
