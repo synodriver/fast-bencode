@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import sys
 from collections import defaultdict
 
 from setuptools import Extension, find_packages, setup  # type: ignore
@@ -11,11 +12,17 @@ try:
 except ImportError:
     has_cython = False
 
+if sys.version_info > (3, 13, 0) and not sys._is_gil_enabled():
+    defined_macros = [("Py_GIL_DISABLED", "1")]
+else:
+    defined_macros = []
+
 ext_modules = [
     Extension(
         "bencode._bencode",
         sources=["bencode/_bencode.pyx", "bencode/util.c", "bencode/sds.c"],
         include_dirs=["bencode"],
+        define_macros=defined_macros,
     )
 ]
 
@@ -52,6 +59,7 @@ setup(
             "embedsignature": True,
             "boundscheck": False,
             "wraparound": False,
+            "freethreading_compatible": True
         },
     )
     if has_cython
