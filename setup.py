@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 from collections import defaultdict
 
-from setuptools import Extension, find_packages, setup
-from setuptools.command.build_ext import build_ext
+from setuptools import Extension, find_packages, setup  # type: ignore
+from setuptools.command.build_ext import build_ext  # type: ignore
 
 try:
-    from Cython.Build import cythonize
+    from Cython.Build import cythonize # type: ignore
 
     has_cython = True
 except ImportError:
@@ -19,7 +19,7 @@ ext_modules = [
     )
 ]
 
-BUILD_ARGS = defaultdict(lambda: ["-O3", "-g0"])
+BUILD_ARGS = defaultdict(lambda: ["-O3", "-g0"])  # type: ignore
 for compiler, args in [
     ("msvc", ["/EHsc", "/DHUNSPELL_STATIC", "/Oi", "/O2", "/Ot"]),
     ("gcc", ["-O3", "-g0"]),
@@ -43,7 +43,7 @@ def get_dis():
 
 setup(
     name="fast-bencode",
-    version="1.1.6",
+    version="1.1.7",
     packages=find_packages(exclude=("test", "tests.*", "test*")),
     ext_modules=cythonize(
         ext_modules,
@@ -64,7 +64,7 @@ setup(
     url="https://github.com/synodriver/fast-bencode",
     zip_safe=True,
     include_package_data=True,
-    python_requires=">=3.6",
+    python_requires=">=3.8",
     setup_requires=["Cython>=3.0.9"],
     classifiers=[
         "Development Status :: 3 - Alpha",
@@ -76,6 +76,7 @@ setup(
         "Programming Language :: Python :: 3.10",
         "Programming Language :: Python :: 3.11",
         "Programming Language :: Python :: 3.12",
+        "Programming Language :: Python :: 3.13",
         "Programming Language :: Python :: Implementation :: CPython",
     ],
     cmdclass={"build_ext": build_ext_compiler_check} if has_cython else {},
