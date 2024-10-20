@@ -6,14 +6,21 @@ from setuptools import Extension, find_packages, setup  # type: ignore
 from setuptools.command.build_ext import build_ext  # type: ignore
 
 try:
-    from Cython.Build import cythonize # type: ignore
+    from Cython.Build import cythonize  # type: ignore
+    from Cython.Compiler.Version import version as cython_version
+    from packaging.version import Version
 
     has_cython = True
 except ImportError:
     has_cython = False
 
-if sys.version_info > (3, 13, 0) and not sys._is_gil_enabled():
-    defined_macros = [("Py_GIL_DISABLED", "1")]
+if (
+    sys.version_info > (3, 13, 0)
+    and hasattr(sys, "_is_gil_enabled")
+    and not sys._is_gil_enabled()
+):
+    print("build nogil")
+    defined_macros = [("Py_GIL_DISABLED", "1"),]# ("CYTHON_METH_FASTCALL", "1"), ("CYTHON_VECTORCALL",  1)]
 else:
     defined_macros = []
 
@@ -48,20 +55,22 @@ def get_dis():
         return f.read()
 
 
+compiler_directives = {
+    "cdivision": True,
+    "embedsignature": True,
+    "boundscheck": False,
+    "wraparound": False,
+}
+
+
+if Version(cython_version) >= Version("3.1.0a0"):
+    compiler_directives["freethreading_compatible"] = True
+
 setup(
     name="fast-bencode",
     version="1.1.7",
     packages=find_packages(exclude=("test", "tests.*", "test*")),
-    ext_modules=cythonize(
-        ext_modules,
-        compiler_directives={
-            "cdivision": True,
-            "embedsignature": True,
-            "boundscheck": False,
-            "wraparound": False,
-            "freethreading_compatible": True
-        },
-    )
+    ext_modules=cythonize(ext_modules, compiler_directives=compiler_directives)
     if has_cython
     else None,
     author="synodriver",
