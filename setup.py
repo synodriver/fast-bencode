@@ -20,7 +20,9 @@ if (
     and not sys._is_gil_enabled()
 ):
     print("build nogil")
-    defined_macros = [("Py_GIL_DISABLED", "1"),]# ("CYTHON_METH_FASTCALL", "1"), ("CYTHON_VECTORCALL",  1)]
+    defined_macros = [
+        ("Py_GIL_DISABLED", "1"),
+    ]  # ("CYTHON_METH_FASTCALL", "1"), ("CYTHON_VECTORCALL",  1)]
 else:
     defined_macros = []
 
@@ -70,9 +72,11 @@ setup(
     name="fast-bencode",
     version="1.1.7",
     packages=find_packages(exclude=("test", "tests.*", "test*")),
-    ext_modules=cythonize(ext_modules, compiler_directives=compiler_directives)
-    if has_cython
-    else None,
+    ext_modules=(
+        cythonize(ext_modules, compiler_directives=compiler_directives)
+        if has_cython
+        else None
+    ),
     author="synodriver",
     author_email="diguohuangjiajinweijun@gmail.com",
     description="Bencode and decode for python",

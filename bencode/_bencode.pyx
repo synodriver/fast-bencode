@@ -8,7 +8,7 @@ from cpython.dict cimport PyDict_Check
 from cpython.list cimport PyList_Check
 from cpython.long cimport PyLong_Check
 from cpython.tuple cimport PyTuple_Check
-from cpython.unicode cimport PyUnicode_Check
+from cpython.unicode cimport PyUnicode_AsUTF8AndSize, PyUnicode_Check
 from libc.stdint cimport int64_t, uint8_t
 from libc.string cimport memcpy, strchr
 
@@ -97,7 +97,7 @@ cdef Py_ssize_t decode_int(const uint8_t[::1] data, Py_ssize_t *offset) except? 
     return <Py_ssize_t>n
 
 
-cdef object decode_string(const uint8_t[::1] data , Py_ssize_t* offset):  # todo fused types
+cdef object decode_string(const uint8_t[::1] data , Py_ssize_t* offset, bint decode):  # todo fused types
     """
     :param data: 3:abc
     :param offset: 偏移
@@ -116,14 +116,17 @@ cdef object decode_string(const uint8_t[::1] data , Py_ssize_t* offset):  # todo
         raise ValueError
     colon += 1
     offset[0] = colon + <Py_ssize_t>length
-    cdef bytes tmp = PyBytes_FromStringAndSize(<char*>&data[colon], length)
-    try:
-        # return (<bytes>data[colon:colon + length]).decode()
-        return tmp.decode()
-    except UnicodeDecodeError:
+    cdef bytes tmp = PyBytes_FromStringAndSize(<char*>&data[colon], length) # PyUnicode_FromStringAndSize
+    if decode:
+        try:
+            # return (<bytes>data[colon:colon + length]).decode()
+            return tmp.decode()
+        except UnicodeDecodeError:
+            return tmp
+    else:
         return tmp
 
-cdef list decode_list(const uint8_t[::1] data, Py_ssize_t* offset):
+cdef list decode_list(const uint8_t[::1] data, Py_ssize_t* offset, bint decode):
     """
     l3:abci123ee
     :param data:
@@ -139,14 +142,14 @@ cdef list decode_list(const uint8_t[::1] data, Py_ssize_t* offset):
     tmp = data[offset[0]]
     while tmp != 101:
         # v, offset = decode_func[data[offset[0]]](data, offset)
-        v = decode_any(data, offset)
+        v = decode_any(data, offset, decode)
         tmp = data[offset[0]]
         ret.append(v)
     offset[0] += 1
     return ret
 
 
-cdef dict decode_dict(const uint8_t[::1] data, Py_ssize_t* offset):
+cdef dict decode_dict(const uint8_t[::1] data, Py_ssize_t* offset, bint decode):
     """
 
     :param data:
@@ -160,55 +163,40 @@ cdef dict decode_dict(const uint8_t[::1] data, Py_ssize_t* offset):
     # print(f"in decode_dict offset: {offset[0]}")  # todo del
     tmp = data[offset[0]]
     while tmp != 101:  # dict 以e结束  ord(e)
-        key = decode_string(data, offset)
+        key = decode_string(data, offset, decode)
         # print(f"dict got key {key}") # todo del
         # print(f"now  offset is {offset[0]}")
         tmp = data[offset[0]]
-        v = decode_any(data, offset)
+        v = decode_any(data, offset, decode)
         tmp = data[offset[0]]
         ret[key] = v
     offset[0] += 1
     return ret
 
-cdef object decode_any(const uint8_t[::1] data, Py_ssize_t* offset):
+cdef object decode_any(const uint8_t[::1] data, Py_ssize_t* offset, bint decode):
     cdef uint8_t tmp = data[offset[0]]
     cdef object v
     if tmp == 108:
-        v = decode_list(data, offset)
+        v = decode_list(data, offset, decode)
     elif tmp == 100:
-        v = decode_dict(data, offset)
+        v = decode_dict(data, offset, decode)
     elif tmp == 105:
         v = decode_int(data, offset)
     elif 48 <= tmp <=57:
-        v = decode_string(data ,offset)
+        v = decode_string(data, offset, decode)
     else:
         raise ValueError
     return v
 
-# decode_func = {}
-# decode_func[ord('l')] = decode_list
-# decode_func[ord('d')] = decode_dict  # type: ignore
-# decode_func[ord('i')] = decode_int  # type: ignore
-# decode_func[ord('0')] = decode_string  # type: ignore
-# decode_func[ord('1')] = decode_string  # type: ignore
-# decode_func[ord('2')] = decode_string  # type: ignore
-# decode_func[ord('3')] = decode_string  # type: ignore
-# decode_func[ord('4')] = decode_string  # type: ignore
-# decode_func[ord('5')] = decode_string  # type: ignore
-# decode_func[ord('6')] = decode_string  # type: ignore
-# decode_func[ord('7')] = decode_string  # type: ignore
-# decode_func[ord('8')] = decode_string  # type: ignore
-# decode_func[ord('9')] = decode_string  # type: ignore
 
-
-cpdef object bdecode(const uint8_t[::1] data):
-    """bdecode(data: bytes) -> Any
+cpdef object bdecode(const uint8_t[::1] data, bint decode = 1):
+    """bdecode(data: bytes, decode: bool = True) -> Any
 
     """
     cdef:
         Py_ssize_t offset = 0
     try:
-        v = decode_any(data, &offset)
+        v = decode_any(data, &offset, decode)
     except (IndexError, KeyError, ValueError):
         raise BTFailure("not a valid bencoded string")
     if offset != data.shape[0]:
@@ -251,7 +239,17 @@ cdef int encode_bool(bint data, sds* r) except -1:
 
 
 cdef int encode_string(str data, sds* r) except -1:
-    return encode_bytes(data.encode(), r)
+    cdef Py_ssize_t size
+    cdef const char* data_b = PyUnicode_AsUTF8AndSize(data, &size)
+    # return encode_bytes(data.encode(), r)
+    cdef sds newsds = sdsMakeRoomFor(r[0], <size_t> size + 30)
+    if newsds == NULL:
+        raise MemoryError
+    r[0] = newsds
+    count = PyOS_snprintf(newsds + sdslen(newsds), <size_t> size + 30, "%lld:", size)
+    sdsIncrLen(newsds, count)
+    memcpy(newsds + sdslen(newsds), data_b, <size_t> size)
+    sdsIncrLen(newsds, <int> size)
 
 cdef int encode_bytes(const uint8_t[::1] data, sds* r) except -1:
     cdef:
@@ -332,7 +330,7 @@ cdef int encode_any(object data, sds* ret) except -1: # dispatch types
 # encode_func[bool] = encode_bool  # type: ignore
 
 
-cpdef bytes bencode(object data):
+cpdef bytes bencode(object data, Py_ssize_t bufsize=100000):
     """
     bencode(data) -> bytes
 
@@ -340,6 +338,9 @@ cpdef bytes bencode(object data):
     cdef sds ret
     try:
         ret = sdsempty()
+        if ret == NULL:
+            raise MemoryError
+        ret = sdsMakeRoomFor(ret, bufsize)
         if ret == NULL:
             raise MemoryError
         encode_any(data, &ret)
