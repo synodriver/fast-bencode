@@ -10,12 +10,12 @@ loads = bdecode
 dumps = bencode
 
 
-def load(fp: IO[bytes]):
-    return bdecode(fp.read())
+def load(fp: IO[bytes], decode: bool = True):
+    return bdecode(fp.read(), decode)
 
 
-def dump(obj, fp: IO[bytes]):
-    fp.write(bencode(obj))
+def dump(obj, fp: IO[bytes], bufsize=100000):
+    fp.write(bencode(obj, bufsize))
 
 
 __all__ = ["bdecode", "bencode", "loads", "dumps", "load", "dump"]

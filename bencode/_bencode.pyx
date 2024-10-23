@@ -8,7 +8,8 @@ from cpython.dict cimport PyDict_Check
 from cpython.list cimport PyList_Check
 from cpython.long cimport PyLong_Check
 from cpython.tuple cimport PyTuple_Check
-from cpython.unicode cimport PyUnicode_AsUTF8AndSize, PyUnicode_Check
+from cpython.unicode cimport (PyUnicode_AsUTF8AndSize, PyUnicode_Check,
+                              PyUnicode_FromStringAndSize)
 from libc.stdint cimport int64_t, uint8_t
 from libc.string cimport memcpy, strchr
 
@@ -116,15 +117,16 @@ cdef object decode_string(const uint8_t[::1] data , Py_ssize_t* offset, bint dec
         raise ValueError
     colon += 1
     offset[0] = colon + <Py_ssize_t>length
-    cdef bytes tmp = PyBytes_FromStringAndSize(<char*>&data[colon], length) # PyUnicode_FromStringAndSize
+    # cdef bytes tmp = PyBytes_FromStringAndSize(<char*>&data[colon], length) # PyUnicode_FromStringAndSize
     if decode:
         try:
             # return (<bytes>data[colon:colon + length]).decode()
-            return tmp.decode()
+            # return tmp.decode()
+            return PyUnicode_FromStringAndSize(<char*>&data[colon], length)
         except UnicodeDecodeError:
-            return tmp
+            return PyBytes_FromStringAndSize(<char*>&data[colon], length)
     else:
-        return tmp
+        return PyBytes_FromStringAndSize(<char*>&data[colon], length)
 
 cdef list decode_list(const uint8_t[::1] data, Py_ssize_t* offset, bint decode):
     """

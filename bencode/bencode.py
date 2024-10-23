@@ -85,7 +85,7 @@ decode_func[ord("8")] = decode_string  # type: ignore
 decode_func[ord("9")] = decode_string  # type: ignore
 
 
-def bdecode(data: bytes):
+def bdecode(data: bytes, decode: bool = True):
     try:
         r, l = decode_func[data[0]](data, 0)
     except (IndexError, KeyError, ValueError):
@@ -157,7 +157,7 @@ encode_func[dict] = encode_dict  # type: ignore
 encode_func[bool] = encode_bool  # type: ignore
 
 
-def bencode(data: Any) -> bytes:
+def bencode(data: Any, bufsize: int = 100000) -> bytes:
     r = BytesIO()  # todo bytearray
     encode_func[type(data)](data, r)
     return r.getvalue()

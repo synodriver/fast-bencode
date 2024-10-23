@@ -23,16 +23,26 @@ from bencode import bdecode, bencode
 with open("test.torrent", "rb") as f:
     data = f.read()
 
-raw = bdecode(data)
+raw = bdecode(data, decode=False) # do not decode bytes to str, use this to speedup. default is True
 pprint(raw)
 
-assert bencode(raw) == data
+assert bencode(raw, bufsize=1000000) == data # customize buffer size(in bytes) to speedup, this reduces call to realloc
 ```
 - There are alias function ```loads``` for ```bdecode``` and ```dumps``` for ```bencode```
+- ```load``` and ```dump``` are useful for file-like object
+```python
+from pprint import pprint
+from bencode import load, dumps, loads, dumps
 
+with open("test.torrent", "rb") as f:
+    data = load(f, decode=False)
+
+pprint(data)
+
+print(dumps(data, bufsize=1000000))
+```
 
 ### build
-```bash
 git clone https://github.com/synodriver/fast-bencode.git
 cd fast-bencode
 python setup.py build_ext -i
