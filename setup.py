@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-import sys
+import sysconfig
 from collections import defaultdict
 
 from setuptools import Extension, find_packages, setup  # type: ignore
@@ -8,17 +8,13 @@ from packaging.version import Version
 
 try:
     from Cython.Build import cythonize  # type: ignore
-    from Cython.Compiler.Version import version as cython_version
+    from Cython.Compiler.Version import version as cython_version # type: ignore
 
     has_cython = True
 except ImportError:
     has_cython = False
 
-if (
-    sys.version_info > (3, 13, 0)
-    and hasattr(sys, "_is_gil_enabled")
-    and not sys._is_gil_enabled()
-):
+if sysconfig.get_config_var("Py_GIL_DISABLED"):
     print("build nogil")
     defined_macros = [
         ("Py_GIL_DISABLED", "1"),
@@ -98,6 +94,7 @@ setup(
         "Programming Language :: Python :: 3.11",
         "Programming Language :: Python :: 3.12",
         "Programming Language :: Python :: 3.13",
+        "Programming Language :: Python :: 3.14",
         "Programming Language :: Python :: Implementation :: CPython",
     ],
     cmdclass={"build_ext": build_ext_compiler_check} if has_cython else {},
