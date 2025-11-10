@@ -4,11 +4,11 @@ from collections import defaultdict
 
 from setuptools import Extension, find_packages, setup  # type: ignore
 from setuptools.command.build_ext import build_ext  # type: ignore
+from packaging.version import Version
 
 try:
     from Cython.Build import cythonize  # type: ignore
     from Cython.Compiler.Version import version as cython_version
-    from packaging.version import Version
 
     has_cython = True
 except ImportError:
@@ -65,7 +65,7 @@ compiler_directives = {
 }
 
 
-if Version(cython_version) >= Version("3.1.0a0"):
+if has_cython and Version(cython_version) >= Version("3.1.0a0"):
     compiler_directives["freethreading_compatible"] = True
 
 setup(
