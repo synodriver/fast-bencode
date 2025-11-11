@@ -9,23 +9,24 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-22.04, windows-2025, macos-13, macos-14]
+        os: [ubuntu-22.04, windows-2025, macos-latest, macos-15-intel]
       fail-fast: false
     env:
       CIBW_BEFORE_BUILD: pip install -r requirements.txt
-      CIBW_ARCHS_LINUX: "x86_64 aarch64"
-      CIBW_ARCHS_WINDOWS: "AMD64 x86"
+      CIBW_ARCHS_LINUX: "x86_64 aarch64 riscv64"
+      CIBW_ARCHS_WINDOWS: "AMD64 x86 ARM64"
       CIBW_ARCHS_MACOS: "x86_64 universal2 arm64"
       CIBW_ENVIRONMENT: USE-CYTHON="1" USE-CFFI="1"
       CIBW_PROJECT_REQUIRES_PYTHON: ">=3.8"
       CIBW_ENABLE: "cpython-freethreading"
+      CIBW_ALLOW_EMPTY: True
     steps:
     - uses: actions/checkout@v4
     - name: Check out recursively
       run: git submodule update --init --recursive
     - uses: actions/setup-python@v5
       with:
-        python-version: "3.12"
+        python-version: "3.13"
     - name: Set up QEMU
       if: runner.os == 'Linux'
       uses: docker/setup-qemu-action@v3
