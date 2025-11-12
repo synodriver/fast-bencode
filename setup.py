@@ -66,7 +66,7 @@ if has_cython and Version(cython_version) >= Version("3.1.0a0"):
 
 setup(
     name="fast-bencode",
-    version="1.1.7",
+    version="1.1.8",
     packages=find_packages(exclude=("test", "tests.*", "test*")),
     ext_modules=(
         cythonize(ext_modules, compiler_directives=compiler_directives)
