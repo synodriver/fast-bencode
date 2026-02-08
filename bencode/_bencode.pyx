@@ -36,6 +36,7 @@ cdef extern from "sds.h" nogil:
     sds sdscatsds(sds s,  sds t)
     sds sdscpylen(sds s,  char *t, size_t len)
     sds sdscpy(sds s,  char *t)
+    sds sdscatprintf(sds s, const char *fmt, ...)
     sds sdscatfmt(sds s, char *fmt, ...)
     sds sdstrim(sds s,  char *cset)
     void sdsrange(sds s, ssize_t start, ssize_t end);
@@ -215,23 +216,18 @@ cdef class Bencached:
 
 cdef int encode_bencached(Bencached data, sds* r) except -1:
     cdef Py_ssize_t data_size = PyBytes_GET_SIZE(data.bencoded)
-    cdef sds newsds = sdsMakeRoomFor(r[0], <size_t>data_size)
+    cdef sds newsds = sdscatlen(r[0], <char*>data.bencoded, <size_t>data_size)
     if newsds == NULL:
         raise MemoryError
     r[0] = newsds
-    memcpy(newsds+sdslen(newsds), <char*>data.bencoded, <size_t>data_size)
-    sdsIncrLen(newsds, <int>data_size)
 
 
 cdef int encode_int(int64_t data, sds* r) except -1:
     # cdef char buf[20]
-    cdef sds newsds = sdsMakeRoomFor(r[0], 20)
+    cdef sds newsds = sdscatprintf(r[0], "i%llde", data)
     if newsds == NULL:
         raise MemoryError
     r[0] = newsds
-    cdef int count = PyOS_snprintf(newsds+sdslen(newsds), 20,"i%llde", data)
-    # r.write(<bytes>buf[:count])
-    sdsIncrLen(newsds, <int> count)
 
 cdef int encode_bool(bint data, sds* r) except -1:
     if data:
@@ -243,31 +239,25 @@ cdef int encode_bool(bint data, sds* r) except -1:
 cdef int encode_string(str data, sds* r) except -1:
     cdef Py_ssize_t size
     cdef const char* data_b = PyUnicode_AsUTF8AndSize(data, &size)
-    # return encode_bytes(data.encode(), r)
-    cdef sds newsds = sdsMakeRoomFor(r[0], <size_t> size + 30)
+    cdef sds newsds = sdscatprintf(r[0], "%lld:", size)
+    if newsds == NULL:
+        raise MemoryError
+    newsds = sdscatlen(newsds, data_b, size)
     if newsds == NULL:
         raise MemoryError
     r[0] = newsds
-    count = PyOS_snprintf(newsds + sdslen(newsds), <size_t> size + 30, "%lld:", size)
-    sdsIncrLen(newsds, count)
-    memcpy(newsds + sdslen(newsds), data_b, <size_t> size)
-    sdsIncrLen(newsds, <int> size)
 
 cdef int encode_bytes(const uint8_t[::1] data, sds* r) except -1:
     cdef:
         Py_ssize_t size = data.shape[0]
         int count
-    cdef sds newsds = sdsMakeRoomFor(r[0], <size_t>size + 30)
+    cdef sds newsds = sdscatprintf(r[0], "%lld:", size)
+    if newsds == NULL:
+        raise MemoryError
+    newsds = sdscatlen(newsds, &data[0], size)
     if newsds == NULL:
         raise MemoryError
     r[0] = newsds
-    count = PyOS_snprintf(newsds+sdslen(newsds), <size_t>size + 30, "%lld:", size)
-    sdsIncrLen(newsds, count)
-    # print(f"in encode_bytes, count = {count}")
-    memcpy(newsds+sdslen(newsds), &data[0], <size_t>size)
-    # r.write(<bytes>buf[:count+<int>size])
-    sdsIncrLen(newsds, <int> size)
-    # r.write(b''.join((str(len(data)).encode(), b':', data)))
 
 
 cdef int encode_list(object data, sds* r) except -1: # object is list or tuple, so we use object here
