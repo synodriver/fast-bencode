@@ -121,6 +121,8 @@ cdef object decode_string(const uint8_t[::1] data , Py_ssize_t* offset, bint dec
     if data[offset[0]] == 48 and colon != offset[0] + 1:
         raise ValueError
     colon += 1
+    if length < 0 or length > data.shape[0] - colon:
+        raise ValueError
     offset[0] = colon + <Py_ssize_t>length
     # cdef bytes tmp = PyBytes_FromStringAndSize(<char*>&data[colon], length) # PyUnicode_FromStringAndSize
     if decode:
