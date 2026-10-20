@@ -11,7 +11,7 @@ from cpython.tuple cimport PyTuple_Check
 from cpython.unicode cimport (PyUnicode_AsUTF8AndSize, PyUnicode_Check,
                               PyUnicode_FromStringAndSize)
 from libc.stdint cimport int64_t, uint8_t
-from libc.string cimport memcpy, strchr
+from libc.string cimport memchr, memcpy
 
 
 cdef extern from "util.h" nogil:
@@ -71,8 +71,12 @@ ctypedef fused string:
 
 # bytes.index
 cdef Py_ssize_t bytes_index(const uint8_t[::1] data, int c, Py_ssize_t offset) nogil:
-    cdef char* substring = strchr(<const char *>&data[offset], c)
-    return <Py_ssize_t>(substring - <char*>&data[0])
+    if offset >= data.shape[0]:
+        return data.shape[0]
+    cdef const uint8_t* substring = <const uint8_t*>memchr(&data[offset], c, <size_t>(data.shape[0] - offset))
+    if substring == NULL:
+        return data.shape[0]
+    return <Py_ssize_t>(substring - &data[0])
 
 cdef Py_ssize_t decode_int(const uint8_t[::1] data, Py_ssize_t *offset) except? 0:
     """
